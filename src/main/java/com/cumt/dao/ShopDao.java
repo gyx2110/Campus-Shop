@@ -7,9 +7,9 @@ public interface ShopDao {
 	/**
 	 * 新增店铺
 	 * @param shop 
-	 * @return 
+	 * @return 1 插入成功 -1 插入失败
 	 */
-	int insertShop(com.cumt.entity.Shop shop);
+	int insertShop(Shop shop);
 	
 	/**
 	 * 更新店铺
