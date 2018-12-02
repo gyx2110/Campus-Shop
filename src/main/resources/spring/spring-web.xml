@@ -25,5 +25,15 @@
         <property name="prefix" value="/WEB-INF/html/"/> 
         <property name="suffix" value=".html"/>
     </bean> 
+    <bean id="multipartResolver" 
+         class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
+        <property name="defaultEncoding" value="utf-8"/> 
+        <!-- 1024*1024*20 = 20M -->
+        <property name="maxUploadSize" value="20971520"/>
+        
+		<property name="maxInMemorySize" value="20971520"/> 
+
+    </bean> 
+    
     <context:component-scan base-package="com.cumt.web"/>
 </beans>

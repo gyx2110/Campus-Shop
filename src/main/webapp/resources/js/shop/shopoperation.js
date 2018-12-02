@@ -4,16 +4,18 @@
 $(function() {
 	// 从selectstring中获取店铺id
 	var shopId = getQueryString("shopId");
-	// 如果shopId不为空，则为修改
+	// 如果shopId为空，就是注册， 否则为修改
 	var isEdit = shopId ? true : false;
 	// 初始化店铺信息：店铺分类和区域信息列表，用于注册店铺
-	var initUrl = "/o2o/shopadmin/getshopinitinfo";
+	var initUrl = "/ssm/shopadmin/getshopinitinfo";
+	
+	// alert(initUrl);
 	// 注册店铺
-	var registerShopUrl = "/o2o/shopadmin/registershop";
+	var registerShopUrl = "/ssm/shopadmin/registershop";
 	// 根据shopid获取店铺详情，用于修改店铺信息
-	var shopInfoUrl = "/o2o/shopadmin/getshopbyid?shopId=" + shopId;
+	var shopInfoUrl = "/ssm/shopadmin/getshopbyid?shopId=" + shopId;
 	// 修改店铺
-	var modifyShopUrl = "/o2o/shopadmin/modifyshop";
+	var modifyShopUrl = "/ssm/shopadmin/modifyshop";
 
 	// 初始化
 	if (isEdit) {

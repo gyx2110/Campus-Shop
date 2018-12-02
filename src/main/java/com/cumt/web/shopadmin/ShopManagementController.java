@@ -18,10 +18,15 @@ import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.cumt.dto.ShopExecution;
+import com.cumt.entity.Area;
 import com.cumt.entity.PersonInfo;
 import com.cumt.entity.Shop;
+import com.cumt.entity.ShopCategory;
 import com.cumt.enums.ShopStateEnum;
+import com.cumt.service.AreaService;
+import com.cumt.service.ShopCategoryService;
 import com.cumt.service.ShopService;
+import com.cumt.util.CodeUtil;
 import com.cumt.util.HttpServletRequestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -32,8 +37,27 @@ public class ShopManagementController {
 	@Autowired
 	private ShopService shopService;
 	
-	// @Autowired
-	// private ShopCategoryService shopCategoryService;
+	@Autowired
+	private ShopCategoryService shopCategoryService;
+	
+	@Autowired 
+	private AreaService areaService;
+	@RequestMapping(value="/getshopinitinfo", method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getShopInitInfo() {
+		Map<String, Object> modelMap = new HashMap<>();
+		try {
+			List<ShopCategory> shopCategoryList = shopCategoryService.getShopCategoryList(null , 0, 10);
+			List<Area> areaList = areaService.getAreaList();
+			modelMap.put("shopCategoryList", shopCategoryList);
+			modelMap.put("areaList", areaList);
+			modelMap.put("success", true);
+		}catch(Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", e.getMessage());
+		}
+		return modelMap;
+	}
 	
 	/**
 	 * 注册店铺
@@ -45,6 +69,11 @@ public class ShopManagementController {
 	@ResponseBody
 	public Map<String, Object> registerShop(HttpServletRequest req) {
 		Map<String, Object> modelMap = new HashMap<>();
+		if(!CodeUtil.checkVerifyCode(req)) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", "验证码有误");
+			return modelMap;
+		}
 		// 1、接受并转化相应参数，包括店铺信息及图片信息
 		String shopStr = HttpServletRequestUtil.getString(req, "shopStr");
 		// jackson-databind-->https://github.com/FasterXML/jackson-databind将json转换为pojo
@@ -76,6 +105,10 @@ public class ShopManagementController {
 		// 注册店铺
 		if(shop != null) {
 			PersonInfo owner = (PersonInfo)req.getSession().getAttribute("user");
+			if(owner == null) {
+				owner = new PersonInfo();
+				owner.setUserId(1L);
+			}
 			shop.setOwner(owner);
 			ShopExecution shopExecution = shopService.addShop(shop,shopImg);
 			if(shopExecution.getState() == ShopStateEnum.CHECK.getState()) {

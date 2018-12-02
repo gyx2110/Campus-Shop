@@ -1,6 +1,7 @@
 /**
- * 因为商品的添加和编辑复用同一个页面，所以需要根据Url中的商品Id来判断
+ /* 因为商品的添加和编辑复用同一个页面，所以需要根据Url中的商品Id来判断
  */
+
 $(function() {
 	// 通过Url是否含有productId来判断是添加商品还是编辑
 	var productId = getQueryString('productId');
