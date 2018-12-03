@@ -1,13 +1,22 @@
 package com.cumt.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cumt.dao.ShopCategoryDao;
+import com.cumt.dto.ShopCategoryExecution;
 import com.cumt.entity.ShopCategory;
+import com.cumt.enums.OperationStatusEnum;
+import com.cumt.enums.ShopCategoryStateEnum;
+import com.cumt.interceptor.ShopCategoryOperationException;
 import com.cumt.service.ShopCategoryService;
+import com.cumt.util.ImageUtil;
+import com.cumt.util.PathUtil;
 
 @Service
 public class ShopCategoryServiceImpl implements ShopCategoryService{
@@ -24,5 +33,71 @@ public class ShopCategoryServiceImpl implements ShopCategoryService{
 		return shopCategoryDao.selectShopCategoryById(shopCategoryId);
 	}
 
+	@Override
+	@Transactional
+	public ShopCategoryExecution addShopCategory(ShopCategory shopCategory, MultipartFile shopCategoryImg) {
+		if(shopCategory == null) {
+			return new ShopCategoryExecution(ShopCategoryStateEnum.NULL_SHOP_CATEGORY);
+		}
+		shopCategory.setCreateTime(new Date());
+		shopCategory.setLastEditTime(new Date());
+		if(shopCategoryImg != null) {
+			addShopCategoryImg(shopCategory, shopCategoryImg);
+		}
+		try {
+			int effectedNum = shopCategoryDao.insertShopCategory(shopCategory);
+			if(effectedNum <= 0) {
+				throw new ShopCategoryOperationException(ShopCategoryStateEnum.EDIT_ERROR.getStateInfo());
+			}
+		}catch(Exception e) {
+			throw new ShopCategoryOperationException(
+					ShopCategoryStateEnum.EDIT_ERROR.getStateInfo() + e.getMessage());
+		}
+		return new ShopCategoryExecution(OperationStatusEnum.SUCCESS, shopCategory);
+	}
+
+	@Override
+	@Transactional
+	public ShopCategoryExecution modifyShopCategory(ShopCategory shopCategory, MultipartFile shopCategoryImg) {
+		if(shopCategory == null) {
+			return new ShopCategoryExecution(ShopCategoryStateEnum.NULL_SHOP_CATEGORY);
+		}
+		if(shopCategory.getShopCategoryId() == null) {
+			return new ShopCategoryExecution(ShopCategoryStateEnum.NULL_SHOP_CATEGORY_ID);
+		}
+		shopCategory.setLastEditTime(new Date());
+		if(shopCategoryImg != null) {
+			ShopCategory originShopCategory = shopCategoryDao.selectShopCategoryById(
+					shopCategory.getShopCategoryId());
+			if(originShopCategory.getShopCategoryImg() != null) {
+				// 如果原来ShopCategory有图片 那就把之前的删除掉
+				ImageUtil.deleteFileOrPath(originShopCategory.getShopCategoryImg());
+			}
+			addShopCategoryImg(shopCategory, shopCategoryImg);
+		}
+		try {
+			int effectedNum = shopCategoryDao.updateShopCategory(shopCategory);
+			if(effectedNum <= 0) {
+				throw new ShopCategoryOperationException(ShopCategoryStateEnum.EDIT_ERROR.getStateInfo());
+			}
+		}catch(Exception e) {
+			throw new ShopCategoryOperationException(
+					ShopCategoryStateEnum.EDIT_ERROR.getStateInfo() + e.getMessage());
+		}
+		return new ShopCategoryExecution(OperationStatusEnum.SUCCESS, shopCategory);
+	}
+	
+	/**
+	 * 添加店铺类别图片
+	 * 
+	 * @param shopCategory    店铺类别实体类
+	 * @param shopCategoryImg 店铺类别图片
+	 */
+	private void addShopCategoryImg(ShopCategory shopCategory, MultipartFile shopCategoryImg) {
+		// 获取图片存储路径，将图片放在相应店铺类别的文件夹下
+		String dest = PathUtil.getShopCategoryImagePath();
+		String generateShopCategoryImg = ImageUtil.generateShopCategoryImg(shopCategoryImg, dest);
+		shopCategory.setShopCategoryImg(generateShopCategoryImg);
+	}
 	
 }

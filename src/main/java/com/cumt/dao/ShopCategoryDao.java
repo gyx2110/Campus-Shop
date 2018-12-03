@@ -29,16 +29,22 @@ public interface ShopCategoryDao {
 			@Param("rowIndex") int rowIndex, @Param("pageSize") int pageSize);
 
 	/***
-	 * 
+	 * 增加shopCategory 店铺种类
 	 * @param shopCategory
-	 * @return
+	 * @return -1 操作失败
 	 */
 	int insertShopCategory(@Param("shopCategory")ShopCategory shopCategory);
 	
+	
+	/***
+	 * 修改shopCategory 店铺种类
+	 * @param shopCategory
+	 * @return
+	 */
 	int updateShopCategory(@Param("shopCategory")ShopCategory shopCategory);
 	
 	/**
-	 * 根据Id查询商品分类信息
+	 * 根据Id查询店铺分类信息
 	 * 
 	 * @param shopCategory
 	 * @return

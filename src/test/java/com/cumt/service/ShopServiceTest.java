@@ -23,7 +23,6 @@ public class ShopServiceTest extends BaseTest{
 	@Autowired
 	private ShopService shopService; 
 	
-	
 	@Ignore
 	@Test
 	public void testAddShop() throws IOException {

@@ -19,9 +19,9 @@ import com.cumt.util.ImageUtil;
 import com.cumt.util.PathUtil;
 
 import exceptions.ShopOperationException;
+
 @Service
 public class ShopServiceImpl implements ShopService {
-
 	@Autowired
 	private ShopDao shopDao;
 	
