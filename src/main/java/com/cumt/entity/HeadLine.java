@@ -81,5 +81,5 @@ public class HeadLine {
 
 	private Date createTime;
 	private Date lastEditTime;
-
+	
 }

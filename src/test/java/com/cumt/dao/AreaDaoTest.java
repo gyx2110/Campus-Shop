@@ -9,6 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cumt.entity.Area;
 
+/***
+ * 区域Dao层 测试
+ * @author draymonder
+ *
+ */
+
 public class AreaDaoTest extends BaseTest{
 	@Autowired
 	private AreaDao areaDao;

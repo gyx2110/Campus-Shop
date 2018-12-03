@@ -5,6 +5,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.cumt.entity.ShopCategory;
+/***
+ * 店铺分类接口
+ * @author draymonder
+ *
+ */
 
 public interface ShopCategoryDao {
 	/**
@@ -23,6 +28,14 @@ public interface ShopCategoryDao {
 	List<ShopCategory> queryShopCategory(@Param("shopCategoryCondition") ShopCategory shopCategoryCondition,
 			@Param("rowIndex") int rowIndex, @Param("pageSize") int pageSize);
 
+	/***
+	 * 
+	 * @param shopCategory
+	 * @return
+	 */
+	int insertShopCategory(@Param("shopCategory")ShopCategory shopCategory);
+	
+	int updateShopCategory(@Param("shopCategory")ShopCategory shopCategory);
 	
 	/**
 	 * 根据Id查询商品分类信息

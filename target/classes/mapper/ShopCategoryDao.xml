@@ -4,8 +4,8 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cumt.dao.ShopCategoryDao">
-	<select  id="queryShopCategory" resultType="com.cumt.entity.ShopCategory">
-		select 
+	<select id="queryShopCategory" resultType="com.cumt.entity.ShopCategory">
+		select
 		shop_category_id,
 		shop_category_name,
 		shop_category_desc,
@@ -20,32 +20,55 @@
 			<if test="shopCategoryCondition == null">
 				and parent_id is null
 			</if>
-			<!-- 查询二级类别的商铺信息-->
+			<!-- 查询二级类别的商铺信息 -->
 			<if test="shopCategoryCondition != null">
 				and parent_id is not null
 			</if>
 			<!-- 如果传递了父类的id,则查询对应父类下的目录 -->
-			<if test="shopCategoryCondition != null and shopCategoryCondition.parent != null">
+			<if
+				test="shopCategoryCondition != null and shopCategoryCondition.parent != null">
 				and parent_id = #{shopCategoryCondition.parent.shopCategoryId}
 			</if>
 		</where>
-		order by 
+		order by
 		priority DESC
 		limit #{rowIndex}, #{pageSize}
 	</select>
 	
-	
+	<insert id="insertShopCategory" useGeneratedKeys="true" keyColumn="shop_category_id" keyProperty="shopCategory.shopCategoryId">
+		INSERT INTO
+		tb_shop_category
+		(shop_category_name, shop_category_desc,
+		shop_category_img, priority, create_time, last_edit_time, parent_id)
+		VALUES
+		(#{shopCategory.shopCategoryName}, #{shopCategory.shopCategoryDesc}, #{shopCategory.shopCategoryImg},
+		#{shopCategory.priority}, #{shopCategory.createTime}, #{shopCategory.lastEditTime}, #{shopCategory.parent.shopCategoryId});
+	</insert>
+
+	<update id="updateShopCategory"  parameterType="com.cumt.entity.ShopCategory">
+		UPDATE tb_shop_category
+		<set>
+			<if test="shopCategory.shopCategoryName != null">shop_category_name=#{shopCategory.shopCategoryName},</if>
+			<if test="shopCategory.shopCategoryDesc != null">shop_category_desc=#{shopCategory.shopCategoryDesc},</if>
+			<if test="shopCategory.shopCategoryImg != null">shop_category_img=#{shopCategory.shopCategoryImg},</if>
+			<if test="shopCategory.priority != null">priority=#{shopCategory.priority},</if>
+			<if test="shopCategory.lastEditTime != null">last_edit_time=#{shopCategory.lastEditTime},</if>
+			<if test="shopCategory.parent != null">parent_id=#{shopCategory.parent.shopCategoryId}</if>
+		</set>
+		where shop_category_id = #{shopCategory.shopCategoryId}
+	</update>	
+
 	<select id="selectShopCategoryById" resultType="com.cumt.entity.ShopCategory">
 		SELECT
-			shop_category_name, 
-			shop_category_desc,
-			shop_category_img,
-			priority,
-			create_time,
-			last_edit_time,
-			parent_id
+		shop_category_name,
+		shop_category_desc,
+		shop_category_img,
+		priority,
+		create_time,
+		last_edit_time,
+		parent_id
 		FROM
-			tb_shop_category
+		tb_shop_category
 		<where>
 			shop_category_id = #{shopCategoryId}
 		</where>
