@@ -7,7 +7,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cumt.dto.ShopCategoryExecution;
 import com.cumt.dto.ShopExecution;
 import com.cumt.entity.ShopCategory;
-
+/***
+ * 店铺种类Service
+ * @author draymonder
+ *
+ */
 public interface ShopCategoryService {
 	/**
 	 * 条件获取店铺类别分页列表

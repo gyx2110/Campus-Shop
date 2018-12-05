@@ -13,6 +13,7 @@ import com.cumt.dto.ShopExecution;
 import com.cumt.entity.Area;
 import com.cumt.entity.Shop;
 import com.cumt.entity.ShopCategory;
+import com.cumt.enums.OperationStatusEnum;
 import com.cumt.enums.ShopStateEnum;
 import com.cumt.service.ShopService;
 import com.cumt.util.ImageUtil;
@@ -76,5 +77,39 @@ public class ShopServiceImpl implements ShopService {
 		shop.setShopImg(shopImgAddr);
 	}
 
+	@Override
+	public Shop getShopById(long shopId) {
+		return shopDao.queryShopById(shopId);
+	}
+
+	@Override
+	@Transactional
+	public ShopExecution updateShop(Shop shop, MultipartFile shopImg) throws ShopOperationException {
+		if(shop == null) {
+			return new ShopExecution(ShopStateEnum.NULL_SHOP);
+		}
+		if(shop.getShopId() == null) {
+			return new ShopExecution(ShopStateEnum.NULL_SHOPID);
+		}
+		try {
+			if(shopImg != null) {
+				Shop tmpShop = shopDao.queryShopById(shop.getShopId());
+				if(tmpShop.getShopImg() != null && "".equals(tmpShop.getShopImg()) != true) {
+					ImageUtil.deleteFileOrPath(tmpShop.getShopImg());
+				}
+				addShopImg(shop, shopImg);
+			}
+			shop.setLastEditTime(new Date());
+			int effectedNum = shopDao.updateShop(shop);
+			if(effectedNum > 0) {
+				shop = shopDao.queryShopById(shop.getShopId());
+				return new ShopExecution(ShopStateEnum.SUCCESS, shop);
+			}else {
+				return new ShopExecution(ShopStateEnum.INNER_ERROR);
+			}
+		}catch(Exception e) {
+			throw new ShopOperationException(ShopStateEnum.EDIT_ERROR.getStateInfo() + " "+ e.getMessage());
+		}
+	}
 
 }

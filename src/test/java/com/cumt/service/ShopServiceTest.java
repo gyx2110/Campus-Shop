@@ -19,6 +19,8 @@ import com.cumt.entity.PersonInfo;
 import com.cumt.entity.Shop;
 import com.cumt.entity.ShopCategory;
 
+import exceptions.ShopOperationException;
+
 public class ShopServiceTest extends BaseTest{
 	@Autowired
 	private ShopService shopService; 
@@ -64,4 +66,28 @@ public class ShopServiceTest extends BaseTest{
 				IOUtils.toByteArray(input));
 		return multipartFile;
 	}
+	
+	@Ignore
+	@Test
+	public void testGetShopById() {
+		Shop shop = shopService.getShopById(1L);
+		System.out.println(shop.getShopName() + " " + shop.getArea().getAreaName() + " "+ shop.getShopCategory().getShopCategoryName());
+	}
+	
+	@Test
+	public void testUpdateShop() throws ShopOperationException, IOException {
+		Shop shop = new Shop();
+		shop.setShopId(2L);
+		PersonInfo owner = new PersonInfo();
+		owner.setUserId(1L);
+		shop.setOwner(owner);
+		ShopCategory sc = new ShopCategory();
+		sc.setShopCategoryId(1L);
+		shop.setShopCategory(sc);
+		String str = "d:\\image\\php.jpg";
+		//shop.setShopImg(path2MultipartFile(str));;
+		ShopExecution se = shopService.updateShop(shop, path2MultipartFile(str));
+		System.out.println(se.getStateInfo());
+	}
+	
 }
