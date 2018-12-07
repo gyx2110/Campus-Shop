@@ -74,6 +74,8 @@ public class ShopServiceTest extends BaseTest{
 		System.out.println(shop.getShopName() + " " + shop.getArea().getAreaName() + " "+ shop.getShopCategory().getShopCategoryName());
 	}
 	
+	
+	@Ignore
 	@Test
 	public void testUpdateShop() throws ShopOperationException, IOException {
 		Shop shop = new Shop();

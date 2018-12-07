@@ -4,7 +4,11 @@ import java.util.List;
 
 import com.cumt.entity.Shop;
 import com.cumt.enums.ShopStateEnum;
-
+/***
+ * @Description: 店铺返回结果信息
+ * @author draymonder
+ *
+ */
 public class ShopExecution {
 	// 结果状态
 	private int state;

@@ -12,7 +12,12 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.coobird.thumbnailator.Thumbnails;
-
+/***
+ * 图片处理类 
+ * 处理缩略图，删除目录，给出地址传送图片
+ * @author draymonder
+ *
+ */
 public class ImageUtil {
 	private final static  SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 	private final static  Random r= new Random();

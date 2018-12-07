@@ -20,7 +20,11 @@ import com.cumt.util.ImageUtil;
 import com.cumt.util.PathUtil;
 
 import exceptions.ShopOperationException;
-
+/***
+ * 店铺Service 实现类
+ * @author draymonder
+ *
+ */
 @Service
 public class ShopServiceImpl implements ShopService {
 	@Autowired

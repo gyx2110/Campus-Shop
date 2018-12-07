@@ -1,7 +1,11 @@
 package com.cumt.entity;
 
 import java.util.Date;
-
+/***
+ * 商品图片实体类
+ * @author draymonder
+ *
+ */
 public class ProductImg {
 	private Long productImgId;
 	private String imgAddr;

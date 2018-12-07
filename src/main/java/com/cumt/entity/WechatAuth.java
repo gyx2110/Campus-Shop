@@ -2,6 +2,11 @@ package com.cumt.entity;
 
 import java.util.Date;
 
+/***
+ * 微信用户实体类
+ * @author draymonder
+ *
+ */
 public class WechatAuth {
 	// id
 	private Long wechatAuthId;

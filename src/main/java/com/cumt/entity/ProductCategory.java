@@ -2,6 +2,11 @@ package com.cumt.entity;
 
 import java.util.Date;
 
+/***
+ * 商品种类 
+ * @author draymonder
+ *
+ */
 public class ProductCategory {
 	private Long productCategoryId;
 	private Long shopId;

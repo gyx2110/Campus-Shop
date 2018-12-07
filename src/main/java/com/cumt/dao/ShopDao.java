@@ -26,6 +26,7 @@ public interface ShopDao {
 	 * @return 1 插入成功 -1 插入失败
 	 */
 	int updateShop(Shop shop);
+	
 	/**
 	 * @param 检索店铺
 	 */

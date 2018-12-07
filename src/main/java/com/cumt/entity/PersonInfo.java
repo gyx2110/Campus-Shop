@@ -1,7 +1,11 @@
 package com.cumt.entity;
 
 import java.util.Date;
-
+/***
+ * 个人信息实体类
+ * @author draymonder
+ *
+ */
 public class PersonInfo {
 	// ID
 	private Long userId;

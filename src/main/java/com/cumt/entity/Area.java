@@ -1,7 +1,11 @@
 package com.cumt.entity;
 
 import java.util.Date;
-
+/***
+ * 区域实体类
+ * @author draymonder
+ *
+ */
 public class Area {
 	// ID
 	private Integer areaId;

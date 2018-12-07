@@ -96,4 +96,20 @@ public class ShopDaoTest extends BaseTest {
 		System.out.println(shop.getShopName());
 		
 	}
+	
+	@Ignore
+	@Test
+	public void testQueryShopCount() {
+		System.out.println(shopDao.queryShopCount(null));
+	}
+	
+	@Test
+	public void testQueryShopList() {
+		Shop shop = shopDao.queryShopById(2L);
+		System.out.println(shop.getArea().getAreaName());
+		System.out.println(shopDao.queryShopList(shop, 0, 100).size());
+	}
+	
+	
 }
+

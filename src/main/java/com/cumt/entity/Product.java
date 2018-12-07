@@ -2,7 +2,11 @@ package com.cumt.entity;
 
 import java.util.Date;
 import java.util.List;
-
+/***
+ * 产品实体类
+ * @author draymonder
+ *
+ */
 public class Product {
 	private Long productId;
 	private String productName;

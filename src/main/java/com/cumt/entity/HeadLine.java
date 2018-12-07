@@ -2,6 +2,11 @@ package com.cumt.entity;
 
 import java.util.Date;
 
+/***
+ * 头条实体类
+ * @author draymonder
+ *
+ */
 public class HeadLine {
 	private Long lineId;
 	// 头条信息

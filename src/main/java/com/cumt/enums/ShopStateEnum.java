@@ -1,5 +1,10 @@
 package com.cumt.enums;
 
+/***
+ * 店铺状态枚举类
+ * @author draymonder
+ *
+ */
 public enum ShopStateEnum {
 	CHECK(0,"审核中"), OFFLINE(-1, "非法店铺"), SUCCESS(1, "操作成功"),
 	PASS(2,"通过认证"), INNER_ERROR(-1001,"内部系统错误"),

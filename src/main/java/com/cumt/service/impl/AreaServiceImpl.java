@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 import com.cumt.dao.AreaDao;
 import com.cumt.entity.Area;
 import com.cumt.service.AreaService;
-
+/***
+ * 区域Service实现类
+ * @author draymonder
+ *
+ */
 @Service
 public class AreaServiceImpl implements AreaService {
 	@Autowired

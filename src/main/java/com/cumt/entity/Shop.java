@@ -2,6 +2,11 @@ package com.cumt.entity;
 
 import java.util.Date;
 
+/***
+ * 商店实体类
+ * @author draymonder
+ *
+ */
 public class Shop {
 	private Long shopId;
 	private String shopName;

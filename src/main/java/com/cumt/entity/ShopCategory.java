@@ -1,7 +1,11 @@
 package com.cumt.entity;
 
 import java.util.Date;
-
+/***
+ * 店铺种类实体类
+ * @author draymonder
+ *
+ */
 public class ShopCategory {
 	private Long shopCategoryId;
 	// 商铺类别名

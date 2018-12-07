@@ -1,5 +1,10 @@
 package com.cumt.util;
 
+/***
+ * 路径处理类
+ * @author draymonder
+ *
+ */
 public class PathUtil {
 	private static String seperator = System.getProperty("file.separator");
 	

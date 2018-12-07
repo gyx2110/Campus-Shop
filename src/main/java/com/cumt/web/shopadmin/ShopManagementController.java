@@ -22,6 +22,7 @@ import com.cumt.entity.Area;
 import com.cumt.entity.PersonInfo;
 import com.cumt.entity.Shop;
 import com.cumt.entity.ShopCategory;
+import com.cumt.enums.OperationStatusEnum;
 import com.cumt.enums.ShopStateEnum;
 import com.cumt.service.AreaService;
 import com.cumt.service.ShopCategoryService;
@@ -30,18 +31,31 @@ import com.cumt.util.CodeUtil;
 import com.cumt.util.HttpServletRequestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/***
+ * 店铺操作控制类   ***负责后台处理
+ * @author draymonder
+ *
+ */
 
 @Controller
 @RequestMapping("/shopadmin")
 public class ShopManagementController {
+	// shop服务
 	@Autowired
 	private ShopService shopService;
 	
+	// shopCategory服务
 	@Autowired
 	private ShopCategoryService shopCategoryService;
 	
+	// area服务
 	@Autowired 
 	private AreaService areaService;
+	
+	/***
+	 * 店铺信息初始化: 店铺区域和店铺类别
+	 * @return
+	 */
 	@RequestMapping(value="/getshopinitinfo", method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> getShopInitInfo() {
@@ -129,4 +143,96 @@ public class ShopManagementController {
 		}
 		return modelMap;
 	}
+	
+	/***
+	 * 根据id获取店铺信息
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping(value="/getshopbyid", method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getShopById(HttpServletRequest req) {
+		Map<String, Object> modelMap = new HashMap<>();
+		long shopId = HttpServletRequestUtil.getLong(req, "shopId");
+		if(shopId > 0) {
+			try {
+				Shop shop = shopService.getShopById(shopId);
+				modelMap.put("shop", shop);
+				List<Area> areaList = areaService.getAreaList();
+				modelMap.put("areaList", areaList);
+				modelMap.put("success", true);
+			}
+			catch(Exception e) {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", "getShopByIdError "+e.getMessage());
+			}
+		}else {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", ShopStateEnum.NULL_SHOP.getStateInfo());
+		}
+		return modelMap;
+	}
+	
+	/***
+	 * 修改店铺
+	 * @param req
+	 * @return
+	 */
+	
+	@RequestMapping(value="/updateshop", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updateShop(HttpServletRequest req) {
+		Map<String, Object> modelMap = new HashMap<>();
+		if(!CodeUtil.checkVerifyCode(req)) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", OperationStatusEnum.VERIFYCODE_ERROR.getStateInfo());
+			return modelMap;
+		}
+		
+		// 1. 接受并转换相应参数，包括店铺信息及图片信息
+		String shopStr = HttpServletRequestUtil.getString(req, "shopStr");
+		ObjectMapper mapper = new ObjectMapper();
+		Shop  shop = null;
+		try {
+			shop = mapper.readValue(shopStr, Shop.class);
+		}catch(Exception e) {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", "shopTranslateError "+e.getMessage());
+			return modelMap;
+		}
+		
+		// 2.获取图片文件流
+		MultipartHttpServletRequest multipartRequest = null;
+		MultipartFile shopImg = null;
+		MultipartResolver multipartResolver = new CommonsMultipartResolver(req.getSession().getServletContext());
+		if(multipartResolver.isMultipart(req)) {
+			multipartRequest = (MultipartHttpServletRequest) req;
+			shopImg = (MultipartFile) multipartRequest.getFile("shopImg");
+		}
+		
+		// 3.修改店铺
+		if(shop != null && shop.getShopId() > 0) {
+			PersonInfo owner = (PersonInfo)req.getSession().getAttribute("user");
+			if(owner == null) {
+				owner = new PersonInfo();
+				owner.setUserId(1L);
+			}
+			shop.setOwner(owner);
+			ShopExecution shopExecution = shopService.updateShop(shop, shopImg);
+			if(shopExecution.getState() == ShopStateEnum.SUCCESS.getState()) {
+				modelMap.put("success", true);
+			}
+			else {
+				modelMap.put("success", false);
+				modelMap.put("errMsg", shopExecution.getStateInfo());
+			}
+			// return modelMap;
+		}else {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", ShopStateEnum.NULL_SHOPID.getStateInfo());
+		}
+		return modelMap;
+	}
+	
+	
 }

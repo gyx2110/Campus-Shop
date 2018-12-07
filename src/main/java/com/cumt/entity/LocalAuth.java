@@ -2,6 +2,11 @@ package com.cumt.entity;
 
 import java.util.Date;
 
+/***
+ * 本地用户实体类
+ * @author draymonder
+ *
+ */
 public class LocalAuth {
 	// id
 	private Long localAuthId;

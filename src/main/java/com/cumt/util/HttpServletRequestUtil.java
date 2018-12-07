@@ -1,7 +1,11 @@
 package com.cumt.util;
 
 import javax.servlet.http.HttpServletRequest;
-
+/***
+ * HttpServlet请求获取参数工具类
+ * @author draymonder
+ *
+ */
 public class HttpServletRequestUtil {
 	public static int getInt(HttpServletRequest req, String key) {
 		try {

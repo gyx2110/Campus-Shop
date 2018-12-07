@@ -17,7 +17,11 @@ import com.cumt.interceptor.ShopCategoryOperationException;
 import com.cumt.service.ShopCategoryService;
 import com.cumt.util.ImageUtil;
 import com.cumt.util.PathUtil;
-
+/***
+ * 店铺种类Service实现类
+ * @author draymonder
+ *
+ */
 @Service
 public class ShopCategoryServiceImpl implements ShopCategoryService{
 	@Autowired
