@@ -15,7 +15,7 @@ $(function() {
 	// 根据shopid获取店铺详情，用于修改店铺信息
 	var shopInfoUrl = "/ssm/shopadmin/getshopbyid?shopId=" + shopId;
 	// 修改店铺
-	var modifyShopUrl = "/ssm/shopadmin/modifyshop";
+	var modifyShopUrl = "/ssm/shopadmin/updateshop";
 
 	// 初始化
 	if (isEdit) {

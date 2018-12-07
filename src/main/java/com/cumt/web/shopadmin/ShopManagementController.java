@@ -110,19 +110,21 @@ public class ShopManagementController {
 			// 获取req中上传文件中的shopImg文件
 			shopImg = (MultipartFile)multipartHttpServletRequest.getFile("shopImg");
 		}
+		/*
 		if(shopImg == null) {
 			modelMap.put("success", false);
 			modelMap.put("errMsg", "没有上传图片");
 			return modelMap;
 		}
+		*/
 		
-		// 注册店铺
+		// 注册店铺 因为shopId是系统分配的。所以不需要判断shopId
 		if(shop != null) {
 			PersonInfo owner = (PersonInfo)req.getSession().getAttribute("user");
-			if(owner == null) {
-				owner = new PersonInfo();
-				owner.setUserId(1L);
-			}
+			// if(owner == null) {
+				// owner = new PersonInfo();
+				// owner.setUserId(1L);
+			// }
 			shop.setOwner(owner);
 			ShopExecution shopExecution = shopService.addShop(shop,shopImg);
 			if(shopExecution.getState() == ShopStateEnum.CHECK.getState()) {
@@ -130,10 +132,10 @@ public class ShopManagementController {
 				modelMap.put("success", true);
 				@SuppressWarnings("unchecked")
 				List<Shop> shopList = (List<Shop>) req.getSession().getAttribute("shopList");
-				if(shopList == null || shopList.isEmpty()) {
+				if(shopList == null) {
 					shopList = new ArrayList<>();
 				}
-				shopList.add(shop);
+				shopList.add(shopExecution.getShop());
 				req.getSession().setAttribute("shopList", shopList);
 			}
 		}
@@ -148,6 +150,7 @@ public class ShopManagementController {
 	 * 根据id获取店铺信息
 	 * @param req
 	 * @return
+	 * 返回对应ShopId信息，并且返回区域列表 供用户选择
 	 */
 	@RequestMapping(value="/getshopbyid", method=RequestMethod.GET)
 	@ResponseBody
@@ -178,7 +181,6 @@ public class ShopManagementController {
 	 * @param req
 	 * @return
 	 */
-	
 	@RequestMapping(value="/updateshop", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> updateShop(HttpServletRequest req) {
@@ -211,13 +213,16 @@ public class ShopManagementController {
 		}
 		
 		// 3.修改店铺
-		if(shop != null && shop.getShopId() > 0) {
+		if(shop != null && shop.getShopId() != null) {
+			/*
+			 session中存放着user的信息 
 			PersonInfo owner = (PersonInfo)req.getSession().getAttribute("user");
 			if(owner == null) {
 				owner = new PersonInfo();
 				owner.setUserId(1L);
 			}
 			shop.setOwner(owner);
+			*/
 			ShopExecution shopExecution = shopService.updateShop(shop, shopImg);
 			if(shopExecution.getState() == ShopStateEnum.SUCCESS.getState()) {
 				modelMap.put("success", true);

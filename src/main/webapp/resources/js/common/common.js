@@ -13,7 +13,7 @@ function changeVerifyCode(img) {
 
 /**
  * 根据属性名获取QueryString中所带的属性值
- * 
+ * 需要用到shopId等信息
  * @param name:属性名
  */
 function getQueryString(name) {
