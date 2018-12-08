@@ -1,5 +1,8 @@
 package com.cumt.web.shopadmin;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,6 +10,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.omg.CORBA_2_3.portable.InputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,7 +62,7 @@ public class ShopManagementController {
 	 */
 	@RequestMapping(value="/getshopinitinfo", method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> getShopInitInfo() {
+	private Map<String, Object> getShopInitInfo() {
 		Map<String, Object> modelMap = new HashMap<>();
 		try {
 			List<ShopCategory> shopCategoryList = shopCategoryService.getShopCategoryList(null , 0, 10);
@@ -81,7 +85,7 @@ public class ShopManagementController {
 	 */
 	@RequestMapping(value="/registershop", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> registerShop(HttpServletRequest req) {
+	private Map<String, Object> registerShop(HttpServletRequest req) {
 		Map<String, Object> modelMap = new HashMap<>();
 		if(!CodeUtil.checkVerifyCode(req)) {
 			modelMap.put("success", false);
@@ -154,7 +158,7 @@ public class ShopManagementController {
 	 */
 	@RequestMapping(value="/getshopbyid", method=RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> getShopById(HttpServletRequest req) {
+	private Map<String, Object> getShopById(HttpServletRequest req) {
 		Map<String, Object> modelMap = new HashMap<>();
 		long shopId = HttpServletRequestUtil.getLong(req, "shopId");
 		if(shopId > 0) {
@@ -183,7 +187,7 @@ public class ShopManagementController {
 	 */
 	@RequestMapping(value="/updateshop", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> updateShop(HttpServletRequest req) {
+	private Map<String, Object> updateShop(HttpServletRequest req) {
 		Map<String, Object> modelMap = new HashMap<>();
 		if(!CodeUtil.checkVerifyCode(req)) {
 			modelMap.put("success", false);
@@ -240,4 +244,98 @@ public class ShopManagementController {
 	}
 	
 	
+	@RequestMapping(value="/getshopmanagementinfo", method=RequestMethod.GET)
+	@ResponseBody
+	private Map<String, Object> getShopManageInfo(HttpServletRequest req) {
+		Map<String, Object> modelMap = new HashMap<>();
+		long shopId = HttpServletRequestUtil.getLong(req, "shopId");
+		if(shopId <= 0) {
+			Object currentShopObj = req.getSession().getAttribute("currentShop");
+			if(currentShopObj == null) {
+				modelMap.put("redirect", true);
+				modelMap.put("url", "ssm/shopadmin/shoplist");
+			}
+			else {
+				Shop currentShop = (Shop) currentShopObj;
+				modelMap.put("redirect", false);
+				modelMap.put("shopId", currentShop.getShopId());
+			}
+		}
+		else {
+			Shop currentShop = new Shop();
+			currentShop.setShopId(shopId);
+			req.getSession().setAttribute("currentShop", currentShop);
+			modelMap.put("redirect", false);
+		}
+		return modelMap;
+	}
+	
+	
+	
+	/***
+	 * 获取相应用户的shopList
+	 * 
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping(value="/getshoplist", method=RequestMethod.GET)
+	@ResponseBody
+	private Map<String, Object> getShopList(HttpServletRequest req) {
+		Map<String, Object> modelMap = new HashMap<>();
+		PersonInfo user = new PersonInfo();
+		user.setUserId(1L);
+		user.setName("draymonder");
+		req.getSession().setAttribute("user", user);
+		user = (PersonInfo) req.getSession().getAttribute("user");
+		// 未实现 登陆功能 因而先手动赋值
+		long userId = user.getUserId();
+		List<Shop> shopList = new ArrayList<>();
+		try {
+			Shop shopCondition = new Shop();
+			shopCondition.setOwner(user);
+			ShopExecution shopExecution = shopService.getShopList(shopCondition, 0, 100); 
+			if(shopExecution.getState() == ShopStateEnum.SUCCESS.getState()) {
+				modelMap.put("success", true);
+				modelMap.put("shopList", shopExecution.getShopList());
+				modelMap.put("user", user);
+			}
+			else {
+				modelMap.put("success",false);
+				modelMap.put("errMsg", shopExecution.getStateInfo());
+			}
+		}catch(Exception e) {
+			modelMap.put("success",false);
+			modelMap.put("errMsg", e.getMessage());
+			return modelMap;
+		}
+		return modelMap;
+	}
+	
+	/***
+	 * 输入流转文件
+	 */
+	public static void inputSreamToFile(InputStream ins, File file) {
+		FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(file);
+			int byteLen = 0;
+			byte []buff = new byte[1024];
+			while((byteLen = ins.read(buff)) != -1) {
+				fos.write(buff, 0, byteLen);
+			}
+		}catch(Exception e) {
+			throw new RuntimeException("调用inputStreamToFile产生异常" + e.getMessage());
+		}finally {
+			try {
+				if(fos != null) {
+					fos.close();
+				}
+				if(ins != null) {
+					ins.close();
+				}
+			}catch(Exception e) {
+				throw new RuntimeException("inputStreamToFile关闭io产生异常：" + e.getMessage());
+			}	
+		}
+	}
 }

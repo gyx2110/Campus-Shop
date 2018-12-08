@@ -1,0 +1,22 @@
+﻿.row-shop {
+    border: 1px solid #999;
+    padding: .5rem;
+    /*padding-left: 1rem;
+    padding-top:.5rem;
+    padding-right: .5rem;
+    padding-bottom: .5rem;*/
+    border-bottom: none;
+}
+
+.row-shop:last-child {
+    border-bottom: 1px solid #999;
+}
+
+.shop-name {
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+
+.shop-wrap a {
+
+}

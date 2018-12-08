@@ -1,7 +1,8 @@
 package com.cumt.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import com.cumt.enums.OperationStatusEnum;
 import com.cumt.enums.ShopStateEnum;
 import com.cumt.service.ShopService;
 import com.cumt.util.ImageUtil;
+import com.cumt.util.PageCalculator;
 import com.cumt.util.PathUtil;
 
 import exceptions.ShopOperationException;
@@ -116,4 +118,16 @@ public class ShopServiceImpl implements ShopService {
 		}
 	}
 
+	@Override
+	public ShopExecution getShopList(Shop shopCondition, int pageIndex, int pageSize) throws ShopOperationException {
+		int rowIndex = PageCalculator.calculateRowIndex(pageIndex, pageSize);
+		List<Shop> shopList = new ArrayList<Shop>();
+		// ShopExecution shopExecution = new ShopExecution();
+		shopList = shopDao.queryShopList(shopCondition, rowIndex, pageSize);
+		int count = shopDao.queryShopCount(shopCondition);
+		if(shopList != null) {
+			return new ShopExecution(ShopStateEnum.SUCCESS, shopList, count);
+		}
+		return new ShopExecution(ShopStateEnum.EDIT_ERROR);
+	}
 }

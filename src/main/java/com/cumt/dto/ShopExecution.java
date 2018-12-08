@@ -40,6 +40,14 @@ public class ShopExecution {
 		this.stateInfo = stateEnum.getStateInfo();
 		this.shopList = shopList;
 	}
+	
+	// 店铺操作成功的使用的构造器
+	public ShopExecution(ShopStateEnum stateEnum, List<Shop> shopList, int count) {
+		this.state = stateEnum.getState();
+		this.stateInfo = stateEnum.getStateInfo();
+		this.shopList = shopList;
+		this.count = count;
+	}
 	public int getState() {
 		return state;
 	}

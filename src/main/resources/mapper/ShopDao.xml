@@ -88,16 +88,16 @@
 	</update>
 	
 	<!-- 
-	<select id="queryShopCount" resultType="Integer">
-		select count(1)
-		from 
-		tb_shop s, tb_area a, tb_shop_category sc
-		<where>
-			<include refid="selectShopByCondition"/>
-		</where>
-		and s.area_id = a.area_id
-		and s.shop_category_id = sc.shop_category_id
-	</select>
+		<select id="queryShopCount" resultType="Integer">
+			select count(1)
+			from 
+			tb_shop s, tb_area a, tb_shop_category sc
+			<where>
+				<include refid="queryShopByCondition"/>
+			</where>
+			and s.area_id = a.area_id
+			and s.shop_category_id = sc.shop_category_id
+		</select>
 	 -->
 	 <sql id = "queryShopByCondition">
 	 	1=1
@@ -167,8 +167,8 @@
 	 	s.area_id = a.area_id
 	 	and 
 	 	s.shop_category_id = sc.shop_category_id
-	 	order by s.priority desc
-	 	limit #{index}, #{pageSize}
+	 	order by s.priority DESC
+	 	limit #{pageIndex}, #{pageSize}
 	 </select>
 
 	

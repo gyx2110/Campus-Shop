@@ -48,5 +48,5 @@ public interface ShopDao {
 	 * @return
 	 */
 	List<Shop> queryShopList(@Param("shopCondition")Shop shopCondition,
-			@Param("index")int rowIndex, @Param("pageSize")int pageSize);
+			@Param("pageIndex")int rowIndex, @Param("pageSize")int pageSize);
 }

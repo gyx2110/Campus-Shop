@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Ignore;
@@ -92,4 +93,13 @@ public class ShopServiceTest extends BaseTest{
 		System.out.println(se.getStateInfo());
 	}
 	
+	@Test
+	public void testGetShopList() {
+		Shop shopCondition = new Shop();
+		ShopCategory sp = new ShopCategory();
+		sp.setShopCategoryId(1L);
+		shopCondition.setShopCategory(sp);
+		ShopExecution se = shopService.getShopList(shopCondition, 2, 2);
+		System.out.println(se.getStateInfo() +" " + se.getCount());
+	}
 }

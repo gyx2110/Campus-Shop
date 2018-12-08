@@ -3,7 +3,10 @@ $(function(){
     // 获取shopId
     var shopId = getQueryString("shopId");
     // 商铺管理的url
-    var shopInfoUrl = '/o2o/shopadmin/getshopmanageInfo?shopId=' + shopId;
+    if(shopId == '') {
+    	window.location.href = '/ssm/shopadmin/shoplist';
+    }
+    var shopInfoUrl = '/ssm/shopadmin/getshopmanagementinfo?shopId=' + shopId;
 
     $.getJSON(shopInfoUrl,function (data) {
         // 如果后台返回redirect=true,则跳转后台到设置的url
@@ -14,8 +17,8 @@ $(function(){
             if (data.shopId != undefined && data.shopId != null){
                 shopId = data.shopId;
             }
-            $('#shopInfo').attr('href','/o2o/shopadmin/shopoperation?shopId=' + shopId);
-            $('#productCategory').attr('href','/o2o/shopadmin/productcategorymanagement');
+            $('#shopInfo').attr('href','/ssm/shopadmin/shopoperation?shopId=' + shopId);
+            $('#productCategory').attr('href','/ssm/shopadmin/productcategorymanagement');
         }
     });
 

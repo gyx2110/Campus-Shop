@@ -1,23 +1,52 @@
 $(function(){
-
-    // 获取shopId
-    var shopId = getQueryString("shopId");
-    // 商铺管理的url
-    var shopInfoUrl = '/o2o/shopadmin/getshopmanageInfo?shopId=' + shopId;
-
-    $.getJSON(shopInfoUrl,function (data) {
-        // 如果后台返回redirect=true,则跳转后台到设置的url
-        if(data.redirect){
-            window.location.href = data.url;
-        }else{
-            // 如果后台返回redirect=false，则设置shopId并给 按钮设置超链接属性（即编辑商铺）
-            if (data.shopId != undefined && data.shopId != null){
-                shopId = data.shopId;
-            }
-            $('#shopInfo').attr('href','/o2o/shopadmin/shopoperation?shopId=' + shopId);
-            $('#productCategory').attr('href','/o2o/shopadmin/productcategorymanagement');
-        }
-    });
-
-
-});
+	getshoplist();
+	function getshoplist(e) {
+		$.ajax({
+			url: "/ssm/shopadmin/getshoplist",
+			type: "get",
+			dataType: "json",
+			success : function(data) {
+				if(data.success) {
+					handleList(data.shopList);
+					handleUser(data.user);
+				}
+			}
+		});
+	}
+	function handleUser(data) {
+		$('#user-name').text(data.name);
+	}
+	
+	function handleList(data) {
+		var shopListHtml = '';
+		data.map(function(item, index){
+			shopListHtml += '<div class="row row-shop"><div class="col-40">'
+					+item.shopName + '</div><div class="col-40">'
+					+shopStatus(item.enableStatus)
+					+'</div><div class="col-20">'
+					+ goShop(item.enableStatus, item.shopId) + '</div></div>';
+		})
+		$('.shop-wrap').html(shopListHtml);
+	}
+	
+	function shopStatus(status) {
+		if(status == 0) {
+			return '审核中';
+		}
+		else if(status == 1) {
+			return '审核通过';
+		}
+		else {
+			return '店铺非法';
+		}
+	}
+	
+	function goShop(status, shopId) {
+		if(status == 1) {
+			return '<a href="/ssm/shopadmin/shopmanagement?shopId='+shopId+'">进入</a>';
+		}
+		else {
+			return '';
+		}
+	}
+})
