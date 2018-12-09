@@ -3,7 +3,8 @@ package com.cumt.entity;
 import java.util.Date;
 
 /***
- * 商品种类 
+ * 商品种类
+ * 
  * @author draymonder
  *
  */

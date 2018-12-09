@@ -13,22 +13,22 @@ import com.cumt.entity.ShopCategory;
 
 /***
  * 店铺种类测试
+ * 
  * @author draymonder
  *
  */
 
-public class ShopCategoryDaoTest extends BaseTest{
+public class ShopCategoryDaoTest extends BaseTest {
 	@Autowired
 	private ShopCategoryDao shopCategoryDao;
-	
+
 	@Ignore
 	@Test
 	public void testQueryShopCategory() {
-		List<ShopCategory> list = shopCategoryDao.queryShopCategory(
-				null, 0, 1);
+		List<ShopCategory> list = shopCategoryDao.queryShopCategory(null, 0, 1);
 		System.out.println(list.size());
 	}
-	
+
 	@Ignore
 	@Test
 	public void testInsertShopCategory() {
@@ -42,7 +42,7 @@ public class ShopCategoryDaoTest extends BaseTest{
 		int ok = shopCategoryDao.insertShopCategory(shopCategory);
 		assertEquals(1, ok);
 	}
-	
+
 	@Ignore
 	@Test
 	public void testUpdateShopCategory() {
@@ -57,7 +57,7 @@ public class ShopCategoryDaoTest extends BaseTest{
 		int ok = shopCategoryDao.updateShopCategory(shopCategory);
 		assertEquals(1, ok);
 	}
-	
+
 	@Ignore
 	@Test
 	public void testSelectShopCategoryById() {

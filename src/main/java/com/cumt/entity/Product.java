@@ -2,8 +2,10 @@ package com.cumt.entity;
 
 import java.util.Date;
 import java.util.List;
+
 /***
  * 产品实体类
+ * 
  * @author draymonder
  *
  */
@@ -19,7 +21,7 @@ public class Product {
 	private Integer priority;
 	private Date createTime;
 	private Date lastEditTime;
-	//0.下架  1.在前端展示系统展示
+	// 0.下架 1.在前端展示系统展示
 	private Integer enableStatus;
 
 	private List<ProductImg> productImgList;

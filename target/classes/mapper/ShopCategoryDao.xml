@@ -14,7 +14,8 @@
 		create_time,
 		last_edit_time,
 		parent_id
-		from tb_shop_category
+		from
+		tb_shop_category
 		<where>
 			<!-- 首页查询一级类别的商铺信息 -->
 			<if test="shopCategoryCondition == null">
@@ -34,18 +35,23 @@
 		priority DESC
 		limit #{rowIndex}, #{pageSize}
 	</select>
-	
-	<insert id="insertShopCategory" useGeneratedKeys="true" keyColumn="shop_category_id" keyProperty="shopCategory.shopCategoryId">
+
+	<insert id="insertShopCategory" useGeneratedKeys="true"
+		keyColumn="shop_category_id" keyProperty="shopCategory.shopCategoryId">
 		INSERT INTO
 		tb_shop_category
 		(shop_category_name, shop_category_desc,
-		shop_category_img, priority, create_time, last_edit_time, parent_id)
+		shop_category_img, priority,
+		create_time, last_edit_time, parent_id)
 		VALUES
-		(#{shopCategory.shopCategoryName}, #{shopCategory.shopCategoryDesc}, #{shopCategory.shopCategoryImg},
-		#{shopCategory.priority}, #{shopCategory.createTime}, #{shopCategory.lastEditTime}, #{shopCategory.parent.shopCategoryId});
+		(#{shopCategory.shopCategoryName}, #{shopCategory.shopCategoryDesc},
+		#{shopCategory.shopCategoryImg},
+		#{shopCategory.priority},
+		#{shopCategory.createTime}, #{shopCategory.lastEditTime},
+		#{shopCategory.parent.shopCategoryId});
 	</insert>
 
-	<update id="updateShopCategory"  parameterType="com.cumt.entity.ShopCategory">
+	<update id="updateShopCategory" parameterType="com.cumt.entity.ShopCategory">
 		UPDATE tb_shop_category
 		<set>
 			<if test="shopCategory.shopCategoryName != null">shop_category_name=#{shopCategory.shopCategoryName},</if>
@@ -56,7 +62,7 @@
 			<if test="shopCategory.parent != null">parent_id=#{shopCategory.parent.shopCategoryId}</if>
 		</set>
 		where shop_category_id = #{shopCategory.shopCategoryId}
-	</update>	
+	</update>
 
 	<select id="selectShopCategoryById" resultType="com.cumt.entity.ShopCategory">
 		SELECT

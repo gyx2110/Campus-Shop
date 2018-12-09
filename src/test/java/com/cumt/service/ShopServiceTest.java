@@ -22,10 +22,10 @@ import com.cumt.entity.ShopCategory;
 
 import exceptions.ShopOperationException;
 
-public class ShopServiceTest extends BaseTest{
+public class ShopServiceTest extends BaseTest {
 	@Autowired
-	private ShopService shopService; 
-	
+	private ShopService shopService;
+
 	@Ignore
 	@Test
 	public void testAddShop() throws IOException {
@@ -52,8 +52,7 @@ public class ShopServiceTest extends BaseTest{
 		System.out.println("ShopExecution.state" + se.getState());
 		System.out.println("ShopExecution.stateInfo" + se.getStateInfo());
 	}
-	
-	
+
 	/**
 	 * filePath to MultipartFile
 	 * 
@@ -67,15 +66,15 @@ public class ShopServiceTest extends BaseTest{
 				IOUtils.toByteArray(input));
 		return multipartFile;
 	}
-	
+
 	@Ignore
 	@Test
 	public void testGetShopById() {
 		Shop shop = shopService.getShopById(1L);
-		System.out.println(shop.getShopName() + " " + shop.getArea().getAreaName() + " "+ shop.getShopCategory().getShopCategoryName());
+		System.out.println(shop.getShopName() + " " + shop.getArea().getAreaName() + " "
+				+ shop.getShopCategory().getShopCategoryName());
 	}
-	
-	
+
 	@Ignore
 	@Test
 	public void testUpdateShop() throws ShopOperationException, IOException {
@@ -88,11 +87,11 @@ public class ShopServiceTest extends BaseTest{
 		sc.setShopCategoryId(1L);
 		shop.setShopCategory(sc);
 		String str = "d:\\image\\php.jpg";
-		//shop.setShopImg(path2MultipartFile(str));;
+		// shop.setShopImg(path2MultipartFile(str));;
 		ShopExecution se = shopService.updateShop(shop, path2MultipartFile(str));
 		System.out.println(se.getStateInfo());
 	}
-	
+
 	@Test
 	public void testGetShopList() {
 		Shop shopCondition = new Shop();
@@ -100,6 +99,6 @@ public class ShopServiceTest extends BaseTest{
 		sp.setShopCategoryId(1L);
 		shopCondition.setShopCategory(sp);
 		ShopExecution se = shopService.getShopList(shopCondition, 2, 2);
-		System.out.println(se.getStateInfo() +" " + se.getCount());
+		System.out.println(se.getStateInfo() + " " + se.getCount());
 	}
 }

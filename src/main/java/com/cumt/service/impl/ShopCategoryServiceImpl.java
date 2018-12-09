@@ -17,13 +17,15 @@ import com.cumt.interceptor.ShopCategoryOperationException;
 import com.cumt.service.ShopCategoryService;
 import com.cumt.util.ImageUtil;
 import com.cumt.util.PathUtil;
+
 /***
  * 店铺种类Service实现类
+ * 
  * @author draymonder
  *
  */
 @Service
-public class ShopCategoryServiceImpl implements ShopCategoryService{
+public class ShopCategoryServiceImpl implements ShopCategoryService {
 	@Autowired
 	private ShopCategoryDao shopCategoryDao;
 
@@ -40,22 +42,21 @@ public class ShopCategoryServiceImpl implements ShopCategoryService{
 	@Override
 	@Transactional
 	public ShopCategoryExecution addShopCategory(ShopCategory shopCategory, MultipartFile shopCategoryImg) {
-		if(shopCategory == null) {
+		if (shopCategory == null) {
 			return new ShopCategoryExecution(ShopCategoryStateEnum.NULL_SHOP_CATEGORY);
 		}
 		shopCategory.setCreateTime(new Date());
 		shopCategory.setLastEditTime(new Date());
-		if(shopCategoryImg != null) {
+		if (shopCategoryImg != null) {
 			addShopCategoryImg(shopCategory, shopCategoryImg);
 		}
 		try {
 			int effectedNum = shopCategoryDao.insertShopCategory(shopCategory);
-			if(effectedNum <= 0) {
+			if (effectedNum <= 0) {
 				throw new ShopCategoryOperationException(ShopCategoryStateEnum.EDIT_ERROR.getStateInfo());
 			}
-		}catch(Exception e) {
-			throw new ShopCategoryOperationException(
-					ShopCategoryStateEnum.EDIT_ERROR.getStateInfo() + e.getMessage());
+		} catch (Exception e) {
+			throw new ShopCategoryOperationException(ShopCategoryStateEnum.EDIT_ERROR.getStateInfo() + e.getMessage());
 		}
 		return new ShopCategoryExecution(OperationStatusEnum.SUCCESS, shopCategory);
 	}
@@ -63,17 +64,16 @@ public class ShopCategoryServiceImpl implements ShopCategoryService{
 	@Override
 	@Transactional
 	public ShopCategoryExecution modifyShopCategory(ShopCategory shopCategory, MultipartFile shopCategoryImg) {
-		if(shopCategory == null) {
+		if (shopCategory == null) {
 			return new ShopCategoryExecution(ShopCategoryStateEnum.NULL_SHOP_CATEGORY);
 		}
-		if(shopCategory.getShopCategoryId() == null) {
+		if (shopCategory.getShopCategoryId() == null) {
 			return new ShopCategoryExecution(ShopCategoryStateEnum.NULL_SHOP_CATEGORY_ID);
 		}
 		shopCategory.setLastEditTime(new Date());
-		if(shopCategoryImg != null) {
-			ShopCategory originShopCategory = shopCategoryDao.selectShopCategoryById(
-					shopCategory.getShopCategoryId());
-			if(originShopCategory.getShopCategoryImg() != null) {
+		if (shopCategoryImg != null) {
+			ShopCategory originShopCategory = shopCategoryDao.selectShopCategoryById(shopCategory.getShopCategoryId());
+			if (originShopCategory.getShopCategoryImg() != null) {
 				// 如果原来ShopCategory有图片 那就把之前的删除掉
 				ImageUtil.deleteFileOrPath(originShopCategory.getShopCategoryImg());
 			}
@@ -81,21 +81,22 @@ public class ShopCategoryServiceImpl implements ShopCategoryService{
 		}
 		try {
 			int effectedNum = shopCategoryDao.updateShopCategory(shopCategory);
-			if(effectedNum <= 0) {
+			if (effectedNum <= 0) {
 				throw new ShopCategoryOperationException(ShopCategoryStateEnum.EDIT_ERROR.getStateInfo());
 			}
-		}catch(Exception e) {
-			throw new ShopCategoryOperationException(
-					ShopCategoryStateEnum.EDIT_ERROR.getStateInfo() + e.getMessage());
+		} catch (Exception e) {
+			throw new ShopCategoryOperationException(ShopCategoryStateEnum.EDIT_ERROR.getStateInfo() + e.getMessage());
 		}
 		return new ShopCategoryExecution(OperationStatusEnum.SUCCESS, shopCategory);
 	}
-	
+
 	/**
 	 * 添加店铺类别图片
 	 * 
-	 * @param shopCategory    店铺类别实体类
-	 * @param shopCategoryImg 店铺类别图片
+	 * @param shopCategory
+	 *            店铺类别实体类
+	 * @param shopCategoryImg
+	 *            店铺类别图片
 	 */
 	private void addShopCategoryImg(ShopCategory shopCategory, MultipartFile shopCategoryImg) {
 		// 获取图片存储路径，将图片放在相应店铺类别的文件夹下
@@ -103,5 +104,5 @@ public class ShopCategoryServiceImpl implements ShopCategoryService{
 		String generateShopCategoryImg = ImageUtil.generateShopCategoryImg(shopCategoryImg, dest);
 		shopCategory.setShopCategoryImg(generateShopCategoryImg);
 	}
-	
+
 }

@@ -12,24 +12,27 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.coobird.thumbnailator.Thumbnails;
+
 /***
- * 图片处理类 
- * 处理缩略图，删除目录，给出地址传送图片
+ * 图片处理类 处理缩略图，删除目录，给出地址传送图片
+ * 
  * @author draymonder
  *
  */
 public class ImageUtil {
-	private final static  SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-	private final static  Random r= new Random();
-	
+	private final static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+	private final static Random r = new Random();
+
 	/**
 	 * 处理商铺缩略图
 	 * 
-	 * @param thumbnail  Spring自带的文件处理对象
-	 * @param targetAddr 图片存储相对路径
+	 * @param thumbnail
+	 *            Spring自带的文件处理对象
+	 * @param targetAddr
+	 *            图片存储相对路径
 	 * @return
 	 */
-	public static String genarateThumbnail(MultipartFile  thumbnail, String targetAddr) {
+	public static String genarateThumbnail(MultipartFile thumbnail, String targetAddr) {
 		// 文件名
 		String realFileName = getRandomFileName();
 		// 拓展名
@@ -39,19 +42,20 @@ public class ImageUtil {
 		String relativeAddr = targetAddr + realFileName + extension;
 		File dest = new File(PathUtil.getImgBasePath() + relativeAddr);
 		try {
-			Thumbnails.of(thumbnail.getInputStream()).size(200, 200).outputQuality(0.8)
-			.toFile(dest);
-		}catch(Exception e) {
+			Thumbnails.of(thumbnail.getInputStream()).size(200, 200).outputQuality(0.8).toFile(dest);
+		} catch (Exception e) {
 			throw new RuntimeException("创建缩略图失败：" + e.toString());
 		}
 		return relativeAddr;
 	}
-	
+
 	/**
 	 * 处理商品分类图
 	 * 
-	 * @param thumbnail  Spring自带的文件处理对象
-	 * @param targetAddr 图片存储路径
+	 * @param thumbnail
+	 *            Spring自带的文件处理对象
+	 * @param targetAddr
+	 *            图片存储路径
 	 * @return
 	 */
 	public static String generateShopCategoryImg(MultipartFile thumbnail, String targetAddr) {
@@ -70,12 +74,14 @@ public class ImageUtil {
 		}
 		return relativeAddr;
 	}
-	
+
 	/**
 	 * 处理商品缩略图
 	 * 
-	 * @param thumbnail  Spring自带的文件处理对象
-	 * @param targetAddr 图片存储路径
+	 * @param thumbnail
+	 *            Spring自带的文件处理对象
+	 * @param targetAddr
+	 *            图片存储路径
 	 * @return
 	 */
 	public static String generateNormalImg(MultipartFile thumbnail, String targetAddr) {
@@ -88,37 +94,37 @@ public class ImageUtil {
 		String relativeAddr = targetAddr + realFileName + extension;
 		File dest = new File(PathUtil.getImgBasePath() + relativeAddr);
 		try {
-			Thumbnails.of(thumbnail.getInputStream()).size(337, 640)
-					.outputQuality(0.9f).toFile(dest);
+			Thumbnails.of(thumbnail.getInputStream()).size(337, 640).outputQuality(0.9f).toFile(dest);
 		} catch (Exception e) {
 			throw new RuntimeException("创建缩略图失败：" + e.toString());
 		}
 		return relativeAddr;
 	}
 
-	
-	
 	/**
-	 * 创建目标路径所涉及到的目录 
+	 * 创建目标路径所涉及到的目录
 	 */
 	private static void makeDirPath(String targetAddr) {
 		String realFileParentPath = PathUtil.getImgBasePath() + targetAddr;
 		File dirPath = new File(realFileParentPath);
-		if(!dirPath.exists()) {
+		if (!dirPath.exists()) {
 			dirPath.mkdirs();
 		}
 	}
+
 	/**
 	 * 获取文件拓展名
+	 * 
 	 * @param targetAddr
 	 */
-	private static String getFileExtension(MultipartFile  cFile) {
+	private static String getFileExtension(MultipartFile cFile) {
 		String originalFileName = cFile.getOriginalFilename();
 		return originalFileName.substring(originalFileName.lastIndexOf("."));
 	}
-	
+
 	/**
 	 * 获取随机文件名
+	 * 
 	 * @return String 文件随机名
 	 */
 	private static String getRandomFileName() {
@@ -126,7 +132,7 @@ public class ImageUtil {
 		String nowTimestr = sdf.format(new Date());
 		return nowTimestr + randNum;
 	}
-	
+
 	/**
 	 * 删除文件或目录下的文件
 	 * 
@@ -147,7 +153,7 @@ public class ImageUtil {
 			fileOrPath.delete();
 		}
 	}
-	
+
 	/**
 	 * filePath to MultipartFile
 	 * 

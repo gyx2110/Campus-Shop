@@ -16,34 +16,34 @@ public class ShopCategoryExecution {
 	private int state;
 	// 状态标识
 	private String stateInfo;
-	
-	// 操作的shopCategory(增删改店铺类别的时候用) 
+
+	// 操作的shopCategory(增删改店铺类别的时候用)
 	private ShopCategory shopCategory;
-	
+
 	private List<ShopCategory> shopCategoryList;
-	
+
 	public ShopCategoryExecution() {
-		
+
 	}
-	
+
 	// 店铺类别操作失败的时候使用的构造器
 	public ShopCategoryExecution(ShopCategoryStateEnum stateEnum) {
 		this.state = stateEnum.getState();
 		this.stateInfo = stateEnum.getStateInfo();
 	}
-	
+
 	// 店铺类别操作成功的时候使用的构造器,基本操作
 	public ShopCategoryExecution(OperationStatusEnum stateEnum, ShopCategory shopCategory) {
 		this.state = stateEnum.getState();
 		this.stateInfo = stateEnum.getStateInfo();
 		this.shopCategory = shopCategory;
 	}
-	
+
 	// 店铺类别操作成功的时候使用的构造器
 	public ShopCategoryExecution(OperationStatusEnum stateEnum, List<ShopCategory> shopCategoryList) {
 		this.state = stateEnum.getState();
 		this.stateInfo = stateEnum.getStateInfo();
-		this.shopCategoryList = shopCategoryList ;
+		this.shopCategoryList = shopCategoryList;
 	}
 
 	public int getState() {
@@ -77,6 +77,5 @@ public class ShopCategoryExecution {
 	public void setShopCategoryList(List<ShopCategory> shopCategoryList) {
 		this.shopCategoryList = shopCategoryList;
 	}
-	
-	
+
 }

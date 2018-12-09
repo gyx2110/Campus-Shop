@@ -11,14 +11,15 @@ import com.cumt.entity.Area;
 
 /***
  * 区域Dao层 测试
+ * 
  * @author draymonder
  *
  */
 
-public class AreaDaoTest extends BaseTest{
+public class AreaDaoTest extends BaseTest {
 	@Autowired
 	private AreaDao areaDao;
-	
+
 	@Ignore
 	@Test
 	public void testQueryArea() {

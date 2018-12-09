@@ -1,8 +1,10 @@
 package com.cumt.entity;
 
 import java.util.Date;
+
 /***
  * 商品图片实体类
+ * 
  * @author draymonder
  *
  */

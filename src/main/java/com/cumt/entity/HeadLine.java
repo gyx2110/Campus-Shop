@@ -4,6 +4,7 @@ import java.util.Date;
 
 /***
  * 头条实体类
+ * 
  * @author draymonder
  *
  */
@@ -86,5 +87,5 @@ public class HeadLine {
 
 	private Date createTime;
 	private Date lastEditTime;
-	
+
 }

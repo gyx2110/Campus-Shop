@@ -4,9 +4,9 @@ $(function() {
 	// var productCategoryURL =
 	// '/o2o/shopadmin/getproductcategorybyshopId?shopId=' + shopId;
 
-	var getProductCategoryURL = '/o2o/shopadmin/getproductcategorylist';
-	var addProductCategoryURL = '/o2o/shopadmin/addproductcategorys';
-	var deleteProductCategoryUrl = '/o2o/shopadmin/removeproductcategory';
+	var getProductCategoryURL = '/ssm/shopadmin/getproductcategorylist';
+	var addProductCategoryURL = '/ssm/shopadmin/addproductcategorys';
+	var deleteProductCategoryUrl = '/ssm/shopadmin/removeproductcategory';
 	// 调用getProductCategoryList，加载数据
 	getProductCategoryList();
 
@@ -18,8 +18,7 @@ $(function() {
 					var dataList = data.data;
 					$('.product-categroy-wrap').html('');
 					var tempHtml = '';
-					dataList
-							.map(function(item, index) {
+					dataList.map(function(item, index) {
 								tempHtml += ''
 										+ '<div class="row row-product-category now">'
 										+ '<div class="col-33 product-category-name">'

@@ -4,6 +4,7 @@ import java.util.Date;
 
 /***
  * 商店实体类
+ * 
  * @author draymonder
  *
  */

@@ -22,8 +22,10 @@ import com.cumt.util.PageCalculator;
 import com.cumt.util.PathUtil;
 
 import exceptions.ShopOperationException;
+
 /***
  * 店铺Service 实现类
+ * 
  * @author draymonder
  *
  */
@@ -31,47 +33,47 @@ import exceptions.ShopOperationException;
 public class ShopServiceImpl implements ShopService {
 	@Autowired
 	private ShopDao shopDao;
-	
+
 	@Override
 	@Transactional
 	public ShopExecution addShop(Shop shop, MultipartFile shopImg) {
 		// 空值判断
-		if(shop == null) {
+		if (shop == null) {
 			return new ShopExecution(ShopStateEnum.NULL_SHOP);
 		}
 		Area area = shop.getArea();
-		if(area == null) {
+		if (area == null) {
 			return new ShopExecution(ShopStateEnum.NULL_SHOP);
 		}
 		ShopCategory shopcategory = shop.getShopCategory();
-		if(shopcategory == null) {
+		if (shopcategory == null) {
 			return new ShopExecution(ShopStateEnum.NULL_SHOPCATEGORY);
 		}
-		
+
 		try {
 			// 店铺初始值
-			shop.setEnableStatus(0); 
+			shop.setEnableStatus(0);
 			shop.setCreateTime(new Date());
 			shop.setLastEditTime(new Date());
 			// 添加店铺信息
 			int effectedNum = shopDao.insertShop(shop);
-			if(effectedNum <= 0) {
+			if (effectedNum <= 0) {
 				throw new ShopOperationException("店铺创建失败");
-			}else {
-				if(shopImg != null) {
+			} else {
+				if (shopImg != null) {
 					try {
 						addShopImg(shop, shopImg);
-					}catch(Exception e) {
-						throw new ShopOperationException("addShopImg error:"+e.getMessage());
+					} catch (Exception e) {
+						throw new ShopOperationException("addShopImg error:" + e.getMessage());
 					}
 					effectedNum = shopDao.updateShop(shop);
-					if(effectedNum <= 0) {
+					if (effectedNum <= 0) {
 						throw new ShopOperationException("更新图片地址失败");
 					}
 				}
 			}
-		}catch(Exception e) {
-			throw new ShopOperationException("addShop error:"+e.getMessage());
+		} catch (Exception e) {
+			throw new ShopOperationException("addShop error:" + e.getMessage());
 		}
 		return new ShopExecution(ShopStateEnum.CHECK, shop);
 	}
@@ -91,30 +93,30 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	@Transactional
 	public ShopExecution updateShop(Shop shop, MultipartFile shopImg) throws ShopOperationException {
-		if(shop == null) {
+		if (shop == null) {
 			return new ShopExecution(ShopStateEnum.NULL_SHOP);
 		}
-		if(shop.getShopId() == null) {
+		if (shop.getShopId() == null) {
 			return new ShopExecution(ShopStateEnum.NULL_SHOPID);
 		}
 		try {
-			if(shopImg != null) {
+			if (shopImg != null) {
 				Shop tmpShop = shopDao.queryShopById(shop.getShopId());
-				if(tmpShop.getShopImg() != null && "".equals(tmpShop.getShopImg()) != true) {
+				if (tmpShop.getShopImg() != null && "".equals(tmpShop.getShopImg()) != true) {
 					ImageUtil.deleteFileOrPath(tmpShop.getShopImg());
 				}
 				addShopImg(shop, shopImg);
 			}
 			shop.setLastEditTime(new Date());
 			int effectedNum = shopDao.updateShop(shop);
-			if(effectedNum > 0) {
+			if (effectedNum > 0) {
 				shop = shopDao.queryShopById(shop.getShopId());
 				return new ShopExecution(ShopStateEnum.SUCCESS, shop);
-			}else {
+			} else {
 				return new ShopExecution(ShopStateEnum.INNER_ERROR);
 			}
-		}catch(Exception e) {
-			throw new ShopOperationException(ShopStateEnum.EDIT_ERROR.getStateInfo() + " "+ e.getMessage());
+		} catch (Exception e) {
+			throw new ShopOperationException(ShopStateEnum.EDIT_ERROR.getStateInfo() + " " + e.getMessage());
 		}
 	}
 
@@ -125,7 +127,7 @@ public class ShopServiceImpl implements ShopService {
 		// ShopExecution shopExecution = new ShopExecution();
 		shopList = shopDao.queryShopList(shopCondition, rowIndex, pageSize);
 		int count = shopDao.queryShopCount(shopCondition);
-		if(shopList != null) {
+		if (shopList != null) {
 			return new ShopExecution(ShopStateEnum.SUCCESS, shopList, count);
 		}
 		return new ShopExecution(ShopStateEnum.EDIT_ERROR);

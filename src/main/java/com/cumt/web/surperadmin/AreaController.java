@@ -17,15 +17,14 @@ import com.cumt.service.AreaService;
 
 import ch.qos.logback.classic.Logger;
 
-
 @Controller
 @RequestMapping("/superadmin")
 public class AreaController {
 	Logger logger = (Logger) LoggerFactory.getLogger(AreaController.class);
 	@Autowired
 	private AreaService areaService;
-	
-	@RequestMapping(value="/listarea", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/listarea", method = RequestMethod.GET)
 	// modelMap 自动转换成 json格式数据
 	@ResponseBody
 	private Map<String, Object> listArea() {
@@ -37,14 +36,14 @@ public class AreaController {
 			list = areaService.getAreaList();
 			modelMap.put("rows", list);
 			modelMap.put("total", list.size());
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			modelMap.put("success", false);
 			modelMap.put("errMsg", e.toString());
 		}
 		logger.error("test error");
 		long endTime = System.currentTimeMillis();
-		logger.debug("costTime:[{}ms]", endTime-startTime);
+		logger.debug("costTime:[{}ms]", endTime - startTime);
 		logger.info("====end====");
 		return modelMap;
 	}

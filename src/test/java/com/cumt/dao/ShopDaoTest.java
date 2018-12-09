@@ -3,6 +3,7 @@ package com.cumt.dao;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -85,7 +86,7 @@ public class ShopDaoTest extends BaseTest {
 		int effectedNum = shopDao.updateShop(shop);
 		assertEquals(effectedNum, 1);
 	}
-	
+
 	@Ignore
 	@Test
 	public void testQueryShopById() {
@@ -94,32 +95,35 @@ public class ShopDaoTest extends BaseTest {
 		System.out.println(shop.getArea().getAreaName());
 		System.out.println(shop.getShopCategory().getShopCategoryName());
 		System.out.println(shop.getShopName());
-		
+		System.out.println(shop.getOwner().getName());
+
 	}
-	
+
 	@Ignore
 	@Test
 	public void testQueryShopCount() {
 		Shop shop = shopDao.queryShopById(2L);
 		System.out.println(shopDao.queryShopCount(shop));
 	}
-	
-	@Ignore
+
+	//@Ignore
 	@Test
 	public void testQueryShopList() {
 		PersonInfo owner = new PersonInfo();
 		owner.setUserId(1L);
 		ShopCategory sp = new ShopCategory();
 		sp.setShopCategoryId(1L);
-		
+
 		Shop shop = new Shop();
 		shop.setShopCategory(sp);
-		//shop.setOwner(owner);
+		// shop.setOwner(owner);
 		int count = shopDao.queryShopCount(shop);
 		System.out.println(count);
+		List<Shop> list = shopDao.queryShopList(shop, 0, 100);
+		for(Shop ssp : list) {
+			System.out.println(ssp.getOwner().getName());
+		}
 		System.out.println(shopDao.queryShopList(shop, 0, 100).size());
 	}
-	
-	
-}
 
+}

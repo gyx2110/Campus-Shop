@@ -1,5 +1,4 @@
 $(function(){
-
     // 获取shopId
     var shopId = getQueryString("shopId");
     // 商铺管理的url
@@ -17,6 +16,8 @@ $(function(){
             if (data.shopId != undefined && data.shopId != null){
                 shopId = data.shopId;
             }
+            $('#shop-name').html(data.currentShop.shopName);
+            $('#shop-name').attr('disabled',true);
             $('#shopInfo').attr('href','/ssm/shopadmin/shopoperation?shopId=' + shopId);
             $('#productCategory').attr('href','/ssm/shopadmin/productcategorymanagement');
         }

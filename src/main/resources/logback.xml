@@ -15,10 +15,12 @@
 			<pattern>${log.pattern1}</pattern>
 		</encoder>
 	</appender>
-	<appender name="debugAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<appender name="debugAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${log.filePath}/debug.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${log.filePath}/debug/debug.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+			<fileNamePattern>${log.filePath}/debug/debug.%d{yyyy-MM-dd}.log.gz
+			</fileNamePattern>
 			<maxHistory>${log.maxHistory}</maxHistory>
 		</rollingPolicy>
 		<encoder>
@@ -30,11 +32,13 @@
 			<onMismatch>DENY</onMismatch>
 		</filter>
 	</appender>
-	
-	<appender name="infoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+	<appender name="infoAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${log.filePath}/info.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${log.filePath}/info/info.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+			<fileNamePattern>${log.filePath}/info/info.%d{yyyy-MM-dd}.log.gz
+			</fileNamePattern>
 			<maxHistory>${log.maxHistory}</maxHistory>
 		</rollingPolicy>
 		<encoder>
@@ -46,11 +50,13 @@
 			<onMismatch>DENY</onMismatch>
 		</filter>
 	</appender>
-	
-	<appender name="errorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+	<appender name="errorAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${log.filePath}/error.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${log.filePath}/error/error.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+			<fileNamePattern>${log.filePath}/error/error.%d{yyyy-MM-dd}.log.gz
+			</fileNamePattern>
 			<maxHistory>${log.maxHistory}</maxHistory>
 		</rollingPolicy>
 		<encoder>
@@ -62,14 +68,14 @@
 			<onMismatch>DENY</onMismatch>
 		</filter>
 	</appender>
-	
+
 	<logger name="com.cumt" level="${log.level}" additivity="true">
-		<appender-ref ref="debugAppender"/>
-		<appender-ref ref="infoAppender"/>
-		<appender-ref ref="errorAppender"/>
+		<appender-ref ref="debugAppender" />
+		<appender-ref ref="infoAppender" />
+		<appender-ref ref="errorAppender" />
 	</logger>
-	
+
 	<root level="info">
-		<appender-ref ref="consoleAppender"/>
+		<appender-ref ref="consoleAppender" />
 	</root>
 </configuration>

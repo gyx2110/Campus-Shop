@@ -36,7 +36,8 @@ import com.cumt.util.HttpServletRequestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /***
- * 店铺操作控制类   ***负责后台处理
+ * 店铺操作控制类 ***负责后台处理
+ * 
  * @author draymonder
  *
  */
@@ -47,47 +48,48 @@ public class ShopManagementController {
 	// shop服务
 	@Autowired
 	private ShopService shopService;
-	
+
 	// shopCategory服务
 	@Autowired
 	private ShopCategoryService shopCategoryService;
-	
+
 	// area服务
-	@Autowired 
+	@Autowired
 	private AreaService areaService;
-	
+
 	/***
 	 * 店铺信息初始化: 店铺区域和店铺类别
+	 * 
 	 * @return
 	 */
-	@RequestMapping(value="/getshopinitinfo", method=RequestMethod.GET)
+	@RequestMapping(value = "/getshopinitinfo", method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> getShopInitInfo() {
 		Map<String, Object> modelMap = new HashMap<>();
 		try {
-			List<ShopCategory> shopCategoryList = shopCategoryService.getShopCategoryList(null , 0, 10);
+			List<ShopCategory> shopCategoryList = shopCategoryService.getShopCategoryList(null, 0, 10);
 			List<Area> areaList = areaService.getAreaList();
 			modelMap.put("shopCategoryList", shopCategoryList);
 			modelMap.put("areaList", areaList);
 			modelMap.put("success", true);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			modelMap.put("success", false);
 			modelMap.put("errMsg", e.getMessage());
 		}
 		return modelMap;
 	}
-	
+
 	/**
 	 * 注册店铺
 	 * 
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="/registershop", method=RequestMethod.POST)
+	@RequestMapping(value = "/registershop", method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> registerShop(HttpServletRequest req) {
 		Map<String, Object> modelMap = new HashMap<>();
-		if(!CodeUtil.checkVerifyCode(req)) {
+		if (!CodeUtil.checkVerifyCode(req)) {
 			modelMap.put("success", false);
 			modelMap.put("errMsg", "验证码有误");
 			return modelMap;
@@ -99,186 +101,177 @@ public class ShopManagementController {
 		Shop shop = null;
 		try {
 			shop = mapper.readValue(shopStr, Shop.class);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			modelMap.put("success", false);
 			modelMap.put("errMsg", e.getMessage());
 			return modelMap;
 		}
-		
+
 		MultipartHttpServletRequest multipartHttpServletRequest = null;
 		MultipartFile shopImg = null;
-		MultipartResolver  mutipartResolver = new CommonsMultipartResolver(req.getSession().getServletContext());
+		MultipartResolver mutipartResolver = new CommonsMultipartResolver(req.getSession().getServletContext());
 		// 判断req 是否有文件上传请求
-		if(mutipartResolver.isMultipart(req)) {
-			multipartHttpServletRequest = (MultipartHttpServletRequest)req;
+		if (mutipartResolver.isMultipart(req)) {
+			multipartHttpServletRequest = (MultipartHttpServletRequest) req;
 			// 获取req中上传文件中的shopImg文件
-			shopImg = (MultipartFile)multipartHttpServletRequest.getFile("shopImg");
+			shopImg = (MultipartFile) multipartHttpServletRequest.getFile("shopImg");
 		}
 		/*
-		if(shopImg == null) {
-			modelMap.put("success", false);
-			modelMap.put("errMsg", "没有上传图片");
-			return modelMap;
-		}
-		*/
-		
+		 * if(shopImg == null) { modelMap.put("success", false); modelMap.put("errMsg",
+		 * "没有上传图片"); return modelMap; }
+		 */
+
 		// 注册店铺 因为shopId是系统分配的。所以不需要判断shopId
-		if(shop != null) {
-			PersonInfo owner = (PersonInfo)req.getSession().getAttribute("user");
+		if (shop != null) {
+			PersonInfo owner = (PersonInfo) req.getSession().getAttribute("user");
 			// if(owner == null) {
-				// owner = new PersonInfo();
-				// owner.setUserId(1L);
+			// owner = new PersonInfo();
+			// owner.setUserId(1L);
 			// }
 			shop.setOwner(owner);
-			ShopExecution shopExecution = shopService.addShop(shop,shopImg);
-			if(shopExecution.getState() == ShopStateEnum.CHECK.getState()) {
+			ShopExecution shopExecution = shopService.addShop(shop, shopImg);
+			if (shopExecution.getState() == ShopStateEnum.CHECK.getState()) {
 				// 返回 CHECK属性就说明 店铺注册成功了
 				modelMap.put("success", true);
 				@SuppressWarnings("unchecked")
 				List<Shop> shopList = (List<Shop>) req.getSession().getAttribute("shopList");
-				if(shopList == null) {
+				if (shopList == null) {
 					shopList = new ArrayList<>();
 				}
 				shopList.add(shopExecution.getShop());
 				req.getSession().setAttribute("shopList", shopList);
 			}
-		}
-		else {
+		} else {
 			modelMap.put("success", false);
 			modelMap.put("errMsg", "没有得到店铺信息");
 		}
 		return modelMap;
 	}
-	
+
 	/***
 	 * 根据id获取店铺信息
+	 * 
 	 * @param req
-	 * @return
-	 * 返回对应ShopId信息，并且返回区域列表 供用户选择
+	 * @return 返回对应ShopId信息，并且返回区域列表 供用户选择
 	 */
-	@RequestMapping(value="/getshopbyid", method=RequestMethod.GET)
+	@RequestMapping(value = "/getshopbyid", method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> getShopById(HttpServletRequest req) {
 		Map<String, Object> modelMap = new HashMap<>();
 		long shopId = HttpServletRequestUtil.getLong(req, "shopId");
-		if(shopId > 0) {
+		if (shopId > 0) {
 			try {
 				Shop shop = shopService.getShopById(shopId);
 				modelMap.put("shop", shop);
 				List<Area> areaList = areaService.getAreaList();
 				modelMap.put("areaList", areaList);
 				modelMap.put("success", true);
-			}
-			catch(Exception e) {
+			} catch (Exception e) {
 				modelMap.put("success", false);
-				modelMap.put("errMsg", "getShopByIdError "+e.getMessage());
+				modelMap.put("errMsg", "getShopByIdError " + e.getMessage());
 			}
-		}else {
+		} else {
 			modelMap.put("success", false);
 			modelMap.put("errMsg", ShopStateEnum.NULL_SHOP.getStateInfo());
 		}
 		return modelMap;
 	}
-	
+
 	/***
 	 * 修改店铺
+	 * 
 	 * @param req
 	 * @return
 	 */
-	@RequestMapping(value="/updateshop", method=RequestMethod.POST)
+	@RequestMapping(value = "/updateshop", method = RequestMethod.POST)
 	@ResponseBody
 	private Map<String, Object> updateShop(HttpServletRequest req) {
 		Map<String, Object> modelMap = new HashMap<>();
-		if(!CodeUtil.checkVerifyCode(req)) {
+		if (!CodeUtil.checkVerifyCode(req)) {
 			modelMap.put("success", false);
 			modelMap.put("errMsg", OperationStatusEnum.VERIFYCODE_ERROR.getStateInfo());
 			return modelMap;
 		}
-		
+
 		// 1. 接受并转换相应参数，包括店铺信息及图片信息
 		String shopStr = HttpServletRequestUtil.getString(req, "shopStr");
 		ObjectMapper mapper = new ObjectMapper();
-		Shop  shop = null;
+		Shop shop = null;
 		try {
 			shop = mapper.readValue(shopStr, Shop.class);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			modelMap.put("success", false);
-			modelMap.put("errMsg", "shopTranslateError "+e.getMessage());
+			modelMap.put("errMsg", "shopTranslateError " + e.getMessage());
 			return modelMap;
 		}
-		
+
 		// 2.获取图片文件流
 		MultipartHttpServletRequest multipartRequest = null;
 		MultipartFile shopImg = null;
 		MultipartResolver multipartResolver = new CommonsMultipartResolver(req.getSession().getServletContext());
-		if(multipartResolver.isMultipart(req)) {
+		if (multipartResolver.isMultipart(req)) {
 			multipartRequest = (MultipartHttpServletRequest) req;
 			shopImg = (MultipartFile) multipartRequest.getFile("shopImg");
 		}
-		
+
 		// 3.修改店铺
-		if(shop != null && shop.getShopId() != null) {
+		if (shop != null && shop.getShopId() != null) {
 			/*
-			 session中存放着user的信息 
-			PersonInfo owner = (PersonInfo)req.getSession().getAttribute("user");
-			if(owner == null) {
-				owner = new PersonInfo();
-				owner.setUserId(1L);
-			}
-			shop.setOwner(owner);
-			*/
+			 * session中存放着user的信息 PersonInfo owner =
+			 * (PersonInfo)req.getSession().getAttribute("user"); if(owner == null) { owner
+			 * = new PersonInfo(); owner.setUserId(1L); } shop.setOwner(owner);
+			 */
 			ShopExecution shopExecution = shopService.updateShop(shop, shopImg);
-			if(shopExecution.getState() == ShopStateEnum.SUCCESS.getState()) {
+			if (shopExecution.getState() == ShopStateEnum.SUCCESS.getState()) {
 				modelMap.put("success", true);
-			}
-			else {
+			} else {
 				modelMap.put("success", false);
 				modelMap.put("errMsg", shopExecution.getStateInfo());
 			}
 			// return modelMap;
-		}else {
+		} else {
 			modelMap.put("success", false);
 			modelMap.put("errMsg", ShopStateEnum.NULL_SHOPID.getStateInfo());
 		}
 		return modelMap;
 	}
-	
-	
-	@RequestMapping(value="/getshopmanagementinfo", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/getshopmanagementinfo", method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> getShopManageInfo(HttpServletRequest req) {
 		Map<String, Object> modelMap = new HashMap<>();
 		long shopId = HttpServletRequestUtil.getLong(req, "shopId");
-		if(shopId <= 0) {
+		// 如果shopId不存在
+		if (shopId <= 0) {
 			Object currentShopObj = req.getSession().getAttribute("currentShop");
-			if(currentShopObj == null) {
+			if (currentShopObj == null) {
 				modelMap.put("redirect", true);
 				modelMap.put("url", "ssm/shopadmin/shoplist");
-			}
-			else {
+			} else {
 				Shop currentShop = (Shop) currentShopObj;
 				modelMap.put("redirect", false);
 				modelMap.put("shopId", currentShop.getShopId());
+				// modelMap.put("shopName", currentShop.getShopName());
+				modelMap.put("currentShop", currentShop);
 			}
-		}
-		else {
-			Shop currentShop = new Shop();
-			currentShop.setShopId(shopId);
+		} else {
+			Shop currentShop = shopService.getShopById(shopId);
 			req.getSession().setAttribute("currentShop", currentShop);
 			modelMap.put("redirect", false);
+			// modelMap.put("shopId", shopId);
+			modelMap.put("shopId", shopId);
+			modelMap.put("currentShop", currentShop);
 		}
 		return modelMap;
 	}
-	
-	
-	
+
 	/***
 	 * 获取相应用户的shopList
 	 * 
 	 * @param req
 	 * @return
 	 */
-	@RequestMapping(value="/getshoplist", method=RequestMethod.GET)
+	@RequestMapping(value = "/getshoplist", method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> getShopList(HttpServletRequest req) {
 		Map<String, Object> modelMap = new HashMap<>();
@@ -293,24 +286,23 @@ public class ShopManagementController {
 		try {
 			Shop shopCondition = new Shop();
 			shopCondition.setOwner(user);
-			ShopExecution shopExecution = shopService.getShopList(shopCondition, 0, 100); 
-			if(shopExecution.getState() == ShopStateEnum.SUCCESS.getState()) {
+			ShopExecution shopExecution = shopService.getShopList(shopCondition, 0, 100);
+			if (shopExecution.getState() == ShopStateEnum.SUCCESS.getState()) {
 				modelMap.put("success", true);
 				modelMap.put("shopList", shopExecution.getShopList());
 				modelMap.put("user", user);
-			}
-			else {
-				modelMap.put("success",false);
+			} else {
+				modelMap.put("success", false);
 				modelMap.put("errMsg", shopExecution.getStateInfo());
 			}
-		}catch(Exception e) {
-			modelMap.put("success",false);
+		} catch (Exception e) {
+			modelMap.put("success", false);
 			modelMap.put("errMsg", e.getMessage());
 			return modelMap;
 		}
 		return modelMap;
 	}
-	
+
 	/***
 	 * 输入流转文件
 	 */
@@ -319,23 +311,23 @@ public class ShopManagementController {
 		try {
 			fos = new FileOutputStream(file);
 			int byteLen = 0;
-			byte []buff = new byte[1024];
-			while((byteLen = ins.read(buff)) != -1) {
+			byte[] buff = new byte[1024];
+			while ((byteLen = ins.read(buff)) != -1) {
 				fos.write(buff, 0, byteLen);
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			throw new RuntimeException("调用inputStreamToFile产生异常" + e.getMessage());
-		}finally {
+		} finally {
 			try {
-				if(fos != null) {
+				if (fos != null) {
 					fos.close();
 				}
-				if(ins != null) {
+				if (ins != null) {
 					ins.close();
 				}
-			}catch(Exception e) {
+			} catch (Exception e) {
 				throw new RuntimeException("inputStreamToFile关闭io产生异常：" + e.getMessage());
-			}	
+			}
 		}
 	}
 }
