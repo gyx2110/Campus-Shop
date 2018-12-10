@@ -8,7 +8,8 @@ package com.cumt.enums;
  */
 public enum ProductCategoryStateEnum {
 	EDIT_ERROR(-2000, "商品类别编辑失败"), NULL_PRODUCT_CATEGORY(-2002, "productCategory信息为空"), NULL_PRODUCT_CATEGORY_ID(-2003,
-			"productCategoryId为空"),EMPTY_LIST(-2010, "商品类别列表为空"),ADD_ERROR(-2222,"插入productCategory失败，可能无相应商店ShopId");
+			"productCategoryId为空"), EMPTY_LIST(-2010, "商品类别列表为空"), ADD_ERROR(-2222,
+					"插入productCategory失败，可能无相应商店ShopId"), NULL_SHOP(-3333, "Session中无ShopId");
 	private int state;
 	private String stateInfo;
 
