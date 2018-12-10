@@ -1,4 +1,4 @@
-package com.cumt.interceptor;
+package exceptions;
 
 /***
  * 店铺种类操作异常

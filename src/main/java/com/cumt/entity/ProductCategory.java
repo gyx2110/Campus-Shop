@@ -11,10 +11,30 @@ import java.util.Date;
 public class ProductCategory {
 	private Long productCategoryId;
 	private Long shopId;
+	public ProductCategory() {}
+	/***
+	 * 
+	 * @param productCategoryId
+	 * @param shopId
+	 * @param productCategoryName
+	 * @param priority
+	 * @param createTime
+	 */
+	public ProductCategory(Long productCategoryId, Long shopId, String productCategoryName, Integer priority,
+			Date createTime) {
+		super();
+		this.productCategoryId = productCategoryId;
+		this.shopId = shopId;
+		this.productCategoryName = productCategoryName;
+		this.priority = priority;
+		this.createTime = createTime;
+	}
+
 	private String productCategoryName;
 	private Integer priority;
 	private Date createTime;
 
+	
 	public Long getProductCategoryId() {
 		return productCategoryId;
 	}

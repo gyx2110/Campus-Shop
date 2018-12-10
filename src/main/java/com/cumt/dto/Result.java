@@ -20,12 +20,22 @@ public class Result<T> {
 	public Result() {
 	}
 
-	// 成功时的构造器
+	/***
+	 * 成功时的构造器
+	 * @param success
+	 * @param data
+	 */
 	public Result(boolean success, T data) {
 		this.success = success;
 		this.data = data;
 	}
-
+	
+	/***
+	 * 失败时的构造器
+	 * @param success
+	 * @param errorCode
+	 * @param errorMsg
+	 */
 	public Result(boolean success, int errorCode, String errorMsg) {
 		this.success = success;
 		this.errorCode = errorCode;

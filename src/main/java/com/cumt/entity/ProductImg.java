@@ -15,6 +15,27 @@ public class ProductImg {
 	private Integer priority;
 	private Date createTime;
 	private Long productId;
+	public ProductImg() {}
+	/***
+	 * 
+	 * @param productImgId
+	 * @param imgAddr
+	 * @param imgDesc
+	 * @param priority
+	 * @param createTime
+	 * @param productId
+	 */
+	public ProductImg(Long productImgId, String imgAddr, String imgDesc, Integer priority, Date createTime,
+			Long productId) {
+		super();
+		this.productImgId = productImgId;
+		this.imgAddr = imgAddr;
+		this.imgDesc = imgDesc;
+		this.priority = priority;
+		this.createTime = createTime;
+		this.productId = productId;
+	}
+
 
 	public Long getProductImgId() {
 		return productImgId;

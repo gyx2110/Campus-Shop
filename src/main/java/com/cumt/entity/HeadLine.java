@@ -20,6 +20,32 @@ public class HeadLine {
 	private Integer priority;
 	// 0.不可用 1.可用
 	private Integer enableStatus;
+	public HeadLine() {}
+	
+	/***
+	 * 
+	 * @param lineId
+	 * @param lineName
+	 * @param lineLink
+	 * @param lineImg
+	 * @param priority
+	 * @param enableStatus
+	 * @param createTime
+	 * @param lastEditTime
+	 */
+	public HeadLine(Long lineId, String lineName, String lineLink, String lineImg, Integer priority,
+			Integer enableStatus, Date createTime, Date lastEditTime) {
+		super();
+		this.lineId = lineId;
+		this.lineName = lineName;
+		this.lineLink = lineLink;
+		this.lineImg = lineImg;
+		this.priority = priority;
+		this.enableStatus = enableStatus;
+		this.createTime = createTime;
+		this.lastEditTime = lastEditTime;
+	}
+
 
 	public Long getLineId() {
 		return lineId;

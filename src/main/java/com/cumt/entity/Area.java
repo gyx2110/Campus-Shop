@@ -19,6 +19,24 @@ public class Area {
 	private Date createTime;
 	// 更新时间
 	private Date lastEditTime;
+	
+	public Area() {}
+	/***
+	 * 
+	 * @param areaId
+	 * @param areaName
+	 * @param priority
+	 * @param createTime
+	 * @param lastEditTime
+	 */
+	public Area(Integer areaId, String areaName, Integer priority, Date createTime, Date lastEditTime) {
+		super();
+		this.areaId = areaId;
+		this.areaName = areaName;
+		this.priority = priority;
+		this.createTime = createTime;
+		this.lastEditTime = lastEditTime;
+	}
 
 	public Integer getAreaId() {
 		return areaId;

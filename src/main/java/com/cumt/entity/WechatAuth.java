@@ -18,6 +18,22 @@ public class WechatAuth {
 	// 个人信息
 	private PersonInfo personInfo;
 
+	public WechatAuth() {}
+	/***
+	 * 
+	 * @param wechatAuthId
+	 * @param openId
+	 * @param createTime
+	 * @param personInfo
+	 */
+	public WechatAuth(Long wechatAuthId, String openId, Date createTime, PersonInfo personInfo) {
+		super();
+		this.wechatAuthId = wechatAuthId;
+		this.openId = openId;
+		this.createTime = createTime;
+		this.personInfo = personInfo;
+	}
+
 	public Long getWechatAuthId() {
 		return wechatAuthId;
 	}

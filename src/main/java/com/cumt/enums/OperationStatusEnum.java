@@ -26,7 +26,11 @@ public enum OperationStatusEnum {
 		return stateInfo;
 	}
 
-	// 根据传入的state值返回相应的状态值
+	/***
+	 * 根据传入的state值返回相应的状态值
+	 * @param index
+	 * @return
+	 */
 	public static OperationStatusEnum stateOf(int index) {
 		for (OperationStatusEnum state : values()) {
 			if (state.getState() == index) {

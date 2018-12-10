@@ -2,6 +2,8 @@ package com.cumt.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.cumt.entity.ProductCategory;
 
 /***
@@ -20,4 +22,21 @@ public interface ProductCategoryDao {
 	 */
 	List<ProductCategory> queryProductCategoryByShopId(long shopId);
 
+	/***
+	 * 批量添加商品类别
+	 * 
+	 * @param productCategoryList
+	 *            商品类别列表
+	 * @return
+	 */
+	int batchInsertProductCategory(List<ProductCategory> productCategoryList);
+
+	/***
+	 * 删除商品类别
+	 * 
+	 * @param productCategoryId
+	 * @param shopId
+	 * @return
+	 */
+	int deleteProductCategory(@Param("productCategoryId") long productCategoryId, @Param("shopId") long shopId);
 }

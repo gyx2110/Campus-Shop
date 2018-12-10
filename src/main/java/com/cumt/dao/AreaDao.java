@@ -13,10 +13,9 @@ import com.cumt.entity.Area;
 
 // Dao层只需要接口 函数名称 就可以在mapper里面写语句
 public interface AreaDao {
-	/**
+	/***
 	 * 列出区域列表
-	 * 
-	 * @return areaList
+	 * @return
 	 */
 	public List<Area> queryArea();
 }

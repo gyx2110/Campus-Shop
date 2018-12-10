@@ -25,7 +25,12 @@ public enum ShopStateEnum {
 	public String getStateInfo() {
 		return stateInfo;
 	}
-
+	
+	/***
+	 * 
+	 * @param state
+	 * @return
+	 */
 	public static ShopStateEnum stateOf(int state) {
 		for (ShopStateEnum stateEnum : values()) {
 			if (stateEnum.getState() == state) {

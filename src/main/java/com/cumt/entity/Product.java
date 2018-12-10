@@ -27,6 +27,43 @@ public class Product {
 	private List<ProductImg> productImgList;
 	private ProductCategory productCategory;
 	private Shop shop;
+	
+	public Product() {}
+	
+	/***
+	 * 
+	 * @param productId
+	 * @param productName
+	 * @param productDesc
+	 * @param imgAddr
+	 * @param normalPrice
+	 * @param promotionPrice
+	 * @param priority
+	 * @param createTime
+	 * @param lastEditTime
+	 * @param enableStatus
+	 * @param productImgList
+	 * @param productCategory
+	 * @param shop
+	 */
+	public Product(Long productId, String productName, String productDesc, String imgAddr, String normalPrice,
+			String promotionPrice, Integer priority, Date createTime, Date lastEditTime, Integer enableStatus,
+			List<ProductImg> productImgList, ProductCategory productCategory, Shop shop) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.productDesc = productDesc;
+		this.imgAddr = imgAddr;
+		this.normalPrice = normalPrice;
+		this.promotionPrice = promotionPrice;
+		this.priority = priority;
+		this.createTime = createTime;
+		this.lastEditTime = lastEditTime;
+		this.enableStatus = enableStatus;
+		this.productImgList = productImgList;
+		this.productCategory = productCategory;
+		this.shop = shop;
+	}
 
 	public Long getProductId() {
 		return productId;

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,7 +31,12 @@ import com.cumt.service.ProductCategoryService;
 public class ProductCategoryController {
 	@Autowired
 	private ProductCategoryService productCategoryService;
-
+	
+	/***
+	 * 返回商品种类列表
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(value = "/getproductcategorylist", method = RequestMethod.GET)
 	@ResponseBody
 	private Result<List<ProductCategory>> getProductCategoryList(HttpServletRequest req) {
@@ -55,5 +61,12 @@ public class ProductCategoryController {
 			return new Result<List<ProductCategory>>(false, productCategoryExecution.getState(),
 					productCategoryExecution.getStateInfo());
 		}
+	}
+	
+	@RequestMapping(value="addproductcategorys", method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> addProductCategorys(@RequestBody List<ProductCategory> list, HttpServletRequest req) {
+		Map<String, Object> modelMap = new HashMap<>();
+		return modelMap;
 	}
 }

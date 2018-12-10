@@ -13,10 +13,11 @@ import com.cumt.dto.ShopCategoryExecution;
 import com.cumt.entity.ShopCategory;
 import com.cumt.enums.OperationStatusEnum;
 import com.cumt.enums.ShopCategoryStateEnum;
-import com.cumt.interceptor.ShopCategoryOperationException;
 import com.cumt.service.ShopCategoryService;
 import com.cumt.util.ImageUtil;
 import com.cumt.util.PathUtil;
+
+import exceptions.ShopCategoryOperationException;
 
 /***
  * 店铺种类Service实现类
@@ -60,7 +61,7 @@ public class ShopCategoryServiceImpl implements ShopCategoryService {
 		}
 		return new ShopCategoryExecution(OperationStatusEnum.SUCCESS, shopCategory);
 	}
-
+	
 	@Override
 	@Transactional
 	public ShopCategoryExecution modifyShopCategory(ShopCategory shopCategory, MultipartFile shopCategoryImg) {

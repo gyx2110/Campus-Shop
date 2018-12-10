@@ -235,7 +235,11 @@ public class ShopManagementController {
 		}
 		return modelMap;
 	}
-
+	/***
+	 * 获取相应店铺信息
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(value = "/getshopmanagementinfo", method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> getShopManageInfo(HttpServletRequest req) {

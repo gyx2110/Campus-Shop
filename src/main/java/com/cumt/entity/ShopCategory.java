@@ -20,6 +20,31 @@ public class ShopCategory {
 	private Integer priority;
 	private Date createTime;
 
+	public ShopCategory() {}
+	/***
+	 * 
+	 * @param shopCategoryId
+	 * @param shopCategoryName
+	 * @param shopCategoryDesc
+	 * @param shopCategoryImg
+	 * @param priority
+	 * @param createTime
+	 * @param lastEditTime
+	 * @param parent
+	 */
+	public ShopCategory(Long shopCategoryId, String shopCategoryName, String shopCategoryDesc, String shopCategoryImg,
+			Integer priority, Date createTime, Date lastEditTime, ShopCategory parent) {
+		super();
+		this.shopCategoryId = shopCategoryId;
+		this.shopCategoryName = shopCategoryName;
+		this.shopCategoryDesc = shopCategoryDesc;
+		this.shopCategoryImg = shopCategoryImg;
+		this.priority = priority;
+		this.createTime = createTime;
+		this.lastEditTime = lastEditTime;
+		this.parent = parent;
+	}
+
 	public Long getShopCategoryId() {
 		return shopCategoryId;
 	}

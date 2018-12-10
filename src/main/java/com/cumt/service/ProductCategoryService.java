@@ -2,7 +2,9 @@ package com.cumt.service;
 
 import java.util.List;
 
+import com.cumt.dto.ProductCategoryExecution;
 import com.cumt.entity.ProductCategory;
+import exceptions.ProductCategoryOperationException;
 
 /***
  * 商品种类Service
@@ -18,4 +20,21 @@ public interface ProductCategoryService {
 	 */
 	List<ProductCategory> getProductCategoryList(long shopId);
 
+	/***
+	 * 批量添加商品类别
+	 * @param list
+	 * @return
+	 * @throws ProductCategoryOperationException
+	 */
+	ProductCategoryExecution batchInsertProductCategory(List<ProductCategory> list)
+			throws ProductCategoryOperationException;
+	/***
+	 * 将对应商店(shopId)下的商品类别删除(productCategoryId)
+	 * @param productCategoryId
+	 * @param shopId
+	 * @return
+	 * @throws ProductCategoryOperationException
+	 */
+	ProductCategoryExecution deleteProductCategory(long productCategoryId, long shopId)
+			throws ProductCategoryOperationException;
 }

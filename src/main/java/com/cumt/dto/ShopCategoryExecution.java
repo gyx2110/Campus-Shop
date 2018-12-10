@@ -26,20 +26,31 @@ public class ShopCategoryExecution {
 
 	}
 
-	// 店铺类别操作失败的时候使用的构造器
+	/***
+	 * 店铺类别操作失败的时候使用的构造器
+	 * @param stateEnum
+	 */
 	public ShopCategoryExecution(ShopCategoryStateEnum stateEnum) {
 		this.state = stateEnum.getState();
 		this.stateInfo = stateEnum.getStateInfo();
 	}
 
-	// 店铺类别操作成功的时候使用的构造器,基本操作
+	/***
+	 * 店铺类别操作成功的时候使用的构造器,基本操作
+	 * @param stateEnum
+	 * @param shopCategory
+	 */
 	public ShopCategoryExecution(OperationStatusEnum stateEnum, ShopCategory shopCategory) {
 		this.state = stateEnum.getState();
 		this.stateInfo = stateEnum.getStateInfo();
 		this.shopCategory = shopCategory;
 	}
 
-	// 店铺类别操作成功的时候使用的构造器
+	/***
+	 * 店铺类别操作成功的时候使用的构造器
+	 * @param stateEnum
+	 * @param shopCategoryList
+	 */
 	public ShopCategoryExecution(OperationStatusEnum stateEnum, List<ShopCategory> shopCategoryList) {
 		this.state = stateEnum.getState();
 		this.stateInfo = stateEnum.getStateInfo();

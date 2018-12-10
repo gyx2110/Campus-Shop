@@ -11,5 +11,9 @@ import com.cumt.entity.Area;
  *
  */
 public interface AreaService {
+	/***
+	 * 获取区域列表
+	 * @return
+	 */
 	public List<Area> getAreaList();
 }

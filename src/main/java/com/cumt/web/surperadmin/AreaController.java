@@ -24,8 +24,12 @@ public class AreaController {
 	@Autowired
 	private AreaService areaService;
 
+	/***
+	 * 获取Area列表
+	 * modelMap 自动转换成 json格式数据
+	 * @return
+	 */
 	@RequestMapping(value = "/listarea", method = RequestMethod.GET)
-	// modelMap 自动转换成 json格式数据
 	@ResponseBody
 	private Map<String, Object> listArea() {
 		logger.info("====start====");

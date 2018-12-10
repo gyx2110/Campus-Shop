@@ -20,6 +20,28 @@ public class LocalAuth {
 	// 修改时间
 	private Date lastEditTime;
 
+	public LocalAuth() {}
+	
+	/***
+	 * 
+	 * @param localAuthId
+	 * @param username
+	 * @param password
+	 * @param createTime
+	 * @param lastEditTime
+	 * @param personInfo
+	 */
+	public LocalAuth(Long localAuthId, String username, String password, Date createTime, Date lastEditTime,
+			PersonInfo personInfo) {
+		super();
+		this.localAuthId = localAuthId;
+		this.username = username;
+		this.password = password;
+		this.createTime = createTime;
+		this.lastEditTime = lastEditTime;
+		this.personInfo = personInfo;
+	}
+
 	public Long getLocalAuthId() {
 		return localAuthId;
 	}

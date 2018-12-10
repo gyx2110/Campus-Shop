@@ -26,6 +26,44 @@ public class Shop {
 	private Area area;
 	private PersonInfo owner;
 	private ShopCategory shopCategory;
+	
+	public Shop() {}
+	/***
+	 * 
+	 * @param shopId
+	 * @param shopName
+	 * @param shopDesc
+	 * @param shopAddr
+	 * @param phone
+	 * @param shopImg
+	 * @param priority
+	 * @param createTime
+	 * @param lastEditTime
+	 * @param enableStatus
+	 * @param advice
+	 * @param area
+	 * @param owner
+	 * @param shopCategory
+	 */
+	public Shop(Long shopId, String shopName, String shopDesc, String shopAddr, String phone, String shopImg,
+			Integer priority, Date createTime, Date lastEditTime, Integer enableStatus, String advice, Area area,
+			PersonInfo owner, ShopCategory shopCategory) {
+		super();
+		this.shopId = shopId;
+		this.shopName = shopName;
+		this.shopDesc = shopDesc;
+		this.shopAddr = shopAddr;
+		this.phone = phone;
+		this.shopImg = shopImg;
+		this.priority = priority;
+		this.createTime = createTime;
+		this.lastEditTime = lastEditTime;
+		this.enableStatus = enableStatus;
+		this.advice = advice;
+		this.area = area;
+		this.owner = owner;
+		this.shopCategory = shopCategory;
+	}
 
 	public Long getShopId() {
 		return shopId;

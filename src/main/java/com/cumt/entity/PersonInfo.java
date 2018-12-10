@@ -25,6 +25,33 @@ public class PersonInfo {
 	// 店家可以是顾客 超级管理员可以是顾客或者店家
 	private Integer userType;
 
+	public PersonInfo() {}
+	/***
+	 * 
+	 * @param userId
+	 * @param name
+	 * @param profileImg
+	 * @param email
+	 * @param gender
+	 * @param enableStutus
+	 * @param userType
+	 * @param createTime
+	 * @param lastEditTime
+	 */
+	public PersonInfo(Long userId, String name, String profileImg, String email, String gender, Integer enableStutus,
+			Integer userType, Date createTime, Date lastEditTime) {
+		super();
+		this.userId = userId;
+		this.name = name;
+		this.profileImg = profileImg;
+		this.email = email;
+		this.gender = gender;
+		this.enableStutus = enableStutus;
+		this.userType = userType;
+		this.createTime = createTime;
+		this.lastEditTime = lastEditTime;
+	}
+
 	public Long getUserId() {
 		return userId;
 	}
