@@ -1,19 +1,17 @@
 $(function() {
 	// 后台从session中获取shop的信息，这里就不传shopId了
-	// var shopId = getQueryString("shopId");
-	// var productCategoryURL =
-	// '/o2o/shopadmin/getproductcategorybyshopId?shopId=' + shopId;
 
 	var getProductCategoryURL = '/ssm/shopadmin/getproductcategorylist';
 	var addProductCategoryURL = '/ssm/shopadmin/addproductcategorys';
 	var deleteProductCategoryUrl = '/ssm/shopadmin/removeproductcategory';
 	// 调用getProductCategoryList，加载数据
 	getProductCategoryList();
-
+	
 	function getProductCategoryList() {
 		$.getJSON(
 			getProductCategoryURL,
 			function(data) {
+				// console.log(data);
 				if (data.success) {
 					var dataList = data.data;
 					$('.product-categroy-wrap').html('');
@@ -69,7 +67,7 @@ $(function() {
 			contentType : 'application/json',
 			success : function(data) {
 				if (data.success) {
-					$.toast('新增【' + data.effectNum + '】条成功！');
+					$.toast('新增【' + data.effectedNum + '】条成功！');
 					// 重新加载数据
 					getProductCategoryList();
 				} else {
@@ -84,7 +82,8 @@ $(function() {
 	$('.product-categroy-wrap').on('click',
 			'.row-product-category.now .delete', function(e) {
 				var target = e.currentTarget;
-				$.confirm('确定么?', function() {
+				console.log(target);
+				$.confirm('确定删除么?', function() {
 					$.ajax({
 						url : deleteProductCategoryUrl,
 						type : 'POST',

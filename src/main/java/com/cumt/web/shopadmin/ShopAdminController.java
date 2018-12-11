@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ShopAdminController {
 
 	/***
-	 * 店铺注册页面
+	 * 店铺注册页面/店铺修改页面
 	 * 
 	 * @return
 	 */
@@ -56,7 +56,7 @@ public class ShopAdminController {
 	}
 	
 	/**
-	 * 商品操作页面
+	 * 商品注册页面/商品操作页面
 	 * 
 	 * @return
 	 */
