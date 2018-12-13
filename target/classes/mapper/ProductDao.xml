@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cumt.dao.ProductDap">
+	<!-- <resultMap id="productMap" type="com.cumt.entity.Product"> <id column="product_id" 
+		property="productId"/> property对应实体类属性名 column 对应库表中的字段名 <result column="product_name" 
+		property="productName"/> <result column="product_desc" property="productDesc"/> 
+		<result column="img_addr" property="imgAddr"> <result column="normal_price" 
+		property="normalPrice"/> <result column="promotion_price" property="promotionPrice"/> 
+		<result column="priority" property="priority"/> <result column="create_time" 
+		property="createTime"/> <result column="last_edit_time" property="lastEditTime"/> 
+		<result column="enable_status" property="enableStatus"/> <association property="productCategory" 
+		column="product_category_id" javaType="com.cumt.entity.ProductCategory"> 
+		<id column="product_category_id" property="productCategoryId"/> <result column="product_category_name" 
+		property="productCategoryName"/> <result column="product_category_desc" property="productCategoryDesc"/> 
+		<result column="priority" property="priorty"/> <result column="create_time" 
+		property="createTime"/> </association> <association property="shop" column="shop_id" 
+		javaType="com.cumt.entity.Shop"> <id column="shop_id" property="shopId"/> 
+		<result column="owner_id" property="ownerId"/> <result column="shop_name" 
+		property="shopName"/> <result column="shop_desc" property="shopDesc"/> <result 
+		column="" </association> </resultMap> -->
+	<insert id="insertProduct" parameterType="com.cumt.entity.Product"
+		useGeneratedKeys="true" keyProperty="productId" keyColumn="product_id">
+		insert into
+		tb_product
+		(
+			product_name,product_desc,img_addr,
+			normal_price,
+			promotion_price, priority, create_time,
+			last_edit_time,
+			enable_status, product_category_id,
+			shop_id
+		)
+		values
+		(
+			#{productName}, #{productDesc}, #{imgAddr},
+			#{normalPrice}, #{promotionPrice}, #{priority},
+			#{createTime}, #{lastEditTime}, #{enableStatus},
+			#{productCategory.productCategoryId},
+			#{shop.shopId}
+		)
+	</insert>
+
+</mapper>
