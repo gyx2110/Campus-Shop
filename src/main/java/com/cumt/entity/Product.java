@@ -23,7 +23,7 @@ public class Product {
 	private Date lastEditTime;
 	// 0.下架 1.在前端展示系统展示
 	private Integer enableStatus;
-
+	// 商品详情图片
 	private List<ProductImg> productImgList;
 	private ProductCategory productCategory;
 	private Shop shop;

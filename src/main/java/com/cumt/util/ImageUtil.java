@@ -24,7 +24,7 @@ public class ImageUtil {
 	private final static Random r = new Random();
 
 	/**
-	 * 处理商铺缩略图
+	 * 处理缩略图
 	 * 
 	 * @param thumbnail
 	 *            Spring自带的文件处理对象
@@ -39,6 +39,7 @@ public class ImageUtil {
 		String extension = getFileExtension(thumbnail);
 		// 创建目录
 		makeDirPath(targetAddr);
+		// 相对路径
 		String relativeAddr = targetAddr + realFileName + extension;
 		File dest = new File(PathUtil.getImgBasePath() + relativeAddr);
 		try {
@@ -50,7 +51,7 @@ public class ImageUtil {
 	}
 
 	/**
-	 * 处理商品分类图
+	 * 处理商铺分类图
 	 * 
 	 * @param thumbnail
 	 *            Spring自带的文件处理对象
