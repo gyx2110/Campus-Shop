@@ -1,6 +1,7 @@
 package com.cumt.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -15,7 +16,7 @@ public class ProductDaoTest extends BaseTest {
 	@Autowired
 	private ProductDao productDao;
 
-	// @Ignore
+	@Ignore
 	@Test
 	public void testInsertProduct() {
 		ProductCategory pc = new ProductCategory();
@@ -31,5 +32,33 @@ public class ProductDaoTest extends BaseTest {
 				2, new Date(), new Date(), 1, null, pc, sp);
 		int num = productDao.insertProduct(pro1);
 		System.out.println(num);
+	}
+
+	@Ignore
+	@Test
+	public void testUpdateProduct() {
+		ProductCategory pc = new ProductCategory();
+		pc.setProductCategoryId(2L);
+		Shop sp = new Shop();
+		sp.setShopId(1L);
+		ProductImg pi = new ProductImg();
+		pi.setProductImgId(1L);
+		Product pro1 = new Product(2L, "充气", "舒服的体验,很适合你", "", "199", "89", 0, new Date(), new Date(), 0, null, pc, sp);
+		int num = productDao.updateProduct(pro1);
+		System.out.println(num);
+	}
+
+	@Ignore
+	@Test
+	public void testSelectProductById() {
+		long productId = 2L;
+		Product product = productDao.selectProductById(productId);
+		System.out.println(product.getProductName());
+		List<ProductImg> list = product.getProductImgList();
+		// System.out.println(product.getProductImgList().size());
+		System.out.println(list.size());
+		for (ProductImg i : list) {
+			System.out.println(i.getImgAddr());
+		}
 	}
 }

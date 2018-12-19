@@ -20,7 +20,7 @@ $(function() {
 		// 为true，则根据productId调用获取product信息的方法
 		getProductInfoById(productId);
 		// 编辑Url
-		productPostUrl = '/ssm/shopadmin/modifyproduct';
+		productPostUrl = '/ssm/shopadmin/updateproduct';
 	} else {
 		// 为false，则初始化新增product页面
 		getProductInitInfo();

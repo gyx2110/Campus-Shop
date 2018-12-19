@@ -123,4 +123,69 @@ public class ProductServiceImpl implements ProductService {
 			}
 		}
 	}
+	
+	
+	@Override
+	@Transactional
+	public ProductExecution updateProduct(Product product, MultipartFile productImg, List<MultipartFile> productImgList)
+			throws ProductOperationException {
+		// 空值判断
+		if (product != null && product.getShop() != null && product.getShop().getShopId() != null) {
+			// 设置最后更新时间
+			product.setLastEditTime(new Date());
+			// 缩略图不为空则添加
+			if (productImg != null) {
+				// 先获取原有信息，得到原有图片地址
+				Product orignalProduct = productDao.selectProductById(product.getProductId());
+				// 删除原有图片
+				if(orignalProduct.getImgAddr() != null) {
+					ImageUtil.deleteFileOrPath(orignalProduct.getImgAddr());
+				}
+				// 增加缩略图
+				addProductImg(product, productImg);
+			}
+			
+			// 商品详情图片不为空  则删除原有的图片再添加
+			if(productImgList != null && !productImgList.isEmpty()) {
+				deleteProductImgList(product.getProductId());
+				addProductImgList(product, productImgList);
+			}
+			
+			// 更新商品信息
+			try {
+				int effectedNum = productDao.updateProduct(product);
+				if (effectedNum <= 0) {
+					throw new ProductOperationException(ProductStateEnum.EDIT_ERROR.getStateInfo());
+				}
+				return new ProductExecution(OperationStatusEnum.SUCCESS, product);
+			} catch (Exception e) {
+				throw new ProductOperationException(OperationStatusEnum.ERROR.getStateInfo() + e.getMessage());
+			}
+		} else {
+			return new ProductExecution(ProductStateEnum.EMPTY);
+		}
+	}
+	
+	/***
+	 * 删除某个商品下的详情图
+	 * @param productId
+	 */
+	private void deleteProductImgList(Long productId) {
+		// 根据productId获取原有的图片
+		List<ProductImg> productImgList = productImgDao.selectProductImgListByProductId(productId);
+		if(productImgList != null && !productImgList.isEmpty()) {
+			for(ProductImg productImg : productImgList) {
+				// 删除文件中的图片
+				ImageUtil.deleteFileOrPath(productImg.getImgAddr());
+			}
+			productImgDao.deleteProductImgByProductId(productId);
+		}
+		// 删除数据库的记录
+		
+	}
+
+	@Override
+	public Product getProductById(long productId) {
+		return productDao.selectProductById(productId);
+	}
 }

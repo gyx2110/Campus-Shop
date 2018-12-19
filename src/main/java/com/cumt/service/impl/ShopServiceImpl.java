@@ -57,6 +57,7 @@ public class ShopServiceImpl implements ShopService {
 			shop.setLastEditTime(new Date());
 			// 添加店铺信息
 			int effectedNum = shopDao.insertShop(shop);
+			System.out.println(shop.getShopId());
 			if (effectedNum <= 0) {
 				throw new ShopOperationException("店铺创建失败");
 			} else {

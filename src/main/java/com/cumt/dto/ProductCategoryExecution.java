@@ -64,6 +64,7 @@ public class ProductCategoryExecution {
 		this.state = stateEnum.getState();
 		this.stateInfo = stateEnum.getStateInfo();
 		this.productCategoryList = list;
+		this.effectedNum = list.size();
 	}
 
 	/***

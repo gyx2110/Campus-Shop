@@ -26,7 +26,7 @@ public class ShopServiceTest extends BaseTest {
 	@Autowired
 	private ShopService shopService;
 
-	@Ignore
+	// @Ignore
 	@Test
 	public void testAddShop() throws IOException {
 		Shop shop = new Shop();
@@ -91,7 +91,8 @@ public class ShopServiceTest extends BaseTest {
 		ShopExecution se = shopService.updateShop(shop, path2MultipartFile(str));
 		System.out.println(se.getStateInfo());
 	}
-
+	
+	@Ignore
 	@Test
 	public void testGetShopList() {
 		Shop shopCondition = new Shop();

@@ -59,4 +59,11 @@ public interface ProductDao {
 	 * @return
 	 */
 	int updateProductCategoryToNull(long productCategoryId);
+	
+	/***
+	 * 更新商品信息
+	 * @param product
+	 * @return
+	 */
+	int updateProduct(Product product);
 }
