@@ -28,6 +28,8 @@ import com.cumt.util.CodeUtil;
 import com.cumt.util.HttpServletRequestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import exceptions.ProductOperationException;
+
 /***
  * 商品操作控制器
  * 
@@ -73,7 +75,7 @@ public class ProductManagementController {
 			return modelMap;
 		}
 		
-		// 接收前端传来的参数
+		// 接收 商品信息
 		String productStr = null;
 		Product product = new Product();
 		ObjectMapper mapper = new ObjectMapper();
@@ -121,7 +123,7 @@ public class ProductManagementController {
 					modelMap.put("success", false);
 					modelMap.put("errMsg", productExecution.getStateInfo());
 				}
-			} catch(Exception e) {
+			} catch(ProductOperationException e) {
 				modelMap.put("success", false);
 				modelMap.put("errMsg", e.toString());
 				return modelMap;

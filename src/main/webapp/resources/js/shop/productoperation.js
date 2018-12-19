@@ -3,14 +3,15 @@
  */
 
 $(function() {
+	var IMAGE_MAX_COUNT = 6;
 	// 通过Url是否含有productId来判断是添加商品还是编辑
 	var productId = getQueryString('productId');
 	// 标识符 productId非空则为true即编辑，否则为添加商品
 	var isEdit = productId ? true : false;
 	// 根据productId获取商品信息Url
-	var infoUrl = '/o2o/shopadmin/getproductbyid?productId=' + productId;
+	var infoUrl = '/ssm/shopadmin/getproductbyid?productId=' + productId;
 	// 获取当前店铺设定的商品类别列表Url
-	var categoryUrl = '/o2o/shopadmin/getproductcategorylist';
+	var categoryUrl = '/ssm/shopadmin/getproductcategorylist';
 	// 商品提交Url，通过标识符来判断是添加还是编辑操作
 	var productPostUrl = '';
 
@@ -19,16 +20,16 @@ $(function() {
 		// 为true，则根据productId调用获取product信息的方法
 		getProductInfoById(productId);
 		// 编辑Url
-		productPostUrl = '/o2o/shopadmin/modifyproduct';
+		productPostUrl = '/ssm/shopadmin/modifyproduct';
 	} else {
 		// 为false，则初始化新增product页面
 		getProductInitInfo();
 		// 新增Url
-		productPostUrl = '/o2o/shopadmin/addproduct';
+		productPostUrl = '/ssm/shopadmin/addproduct';
 	}
 
 	/**
-	 * 始化新增product页面
+	 * 初始化新增product页面
 	 * 
 	 * 根据页面原型和数据模型，需要加载该shop对应的productCategory信息(shop信息从服务端session中获取)
 	 */
@@ -69,7 +70,7 @@ $(function() {
 	                var optionArr = data.productCategoryList;
 	                var optionSelected = product.productCategory.productCategoryId;
 	                optionArr.map(function(item, index) {
-                            var isSelect = optionSelected === item.productCategoryId ? 'selected' : '';
+                            var isSelect = (optionSelected === item.productCategoryId ? 'selected' : '');
                             optionHtml += '<option data-value="'
                                     + item.productCategoryId
                                     + '"'
@@ -84,10 +85,11 @@ $(function() {
     };
 
 	/**
-	 * 点击控件的最后一个且图片数量小于6个的时候，生成一个选择框
+	 * IMAGE_MAX_COUNT = 6
+	 * 点击控件的最后一个且图片数量小于 IMAGE_MAX_COUNT，生成一个选择框
 	 */
 	$('.detail-img-div').on('change', '.detail-img:last-child', function() {
-		if ($('.detail-img').length < 6) {
+		if ($('.detail-img').length < IMAGE_MAX_COUNT) {
 			$('#detail-img').append('<input type="file" class="detail-img">');
 		}
 	});
@@ -132,12 +134,11 @@ $(function() {
 						// 判断该控件是否已经选择了文件
 						if ($('.detail-img')[index].files.length > 0) {
 							// 将第i个文件流赋值给key为productImgi的表单键值对里
-							formData.append('productDetailImg' + index, $('.detail-img')[index].files[0]);
+							formData.append('productImg' + index, $('.detail-img')[index].files[0]);
 						}
 					});
 				// 将product 转换为json ,添加到forData
 				formData.append('productStr', JSON.stringify(product));
-
 				// 获取表单中的验证码
 				var verifyCodeActual = $('#j_kaptcha').val();
 				if (!verifyCodeActual) {
