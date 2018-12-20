@@ -14,7 +14,6 @@ import com.cumt.dto.ShopExecution;
 import com.cumt.entity.Area;
 import com.cumt.entity.Shop;
 import com.cumt.entity.ShopCategory;
-import com.cumt.enums.OperationStatusEnum;
 import com.cumt.enums.ShopStateEnum;
 import com.cumt.service.ShopService;
 import com.cumt.util.ImageUtil;

@@ -61,4 +61,14 @@ public class ProductDaoTest extends BaseTest {
 			System.out.println(i.getImgAddr());
 		}
 	}
+	
+	@Test
+	public void testSelectProductList() {
+		//List<Product> list = productDao.selectProductList(null, 0, 100);
+		// System.out.println(list.size());
+		Product pro = new Product();
+		pro.setEnableStatus(1);
+		int size = productDao.selectProductCount(pro);
+		System.out.println(size);
+	}
 }

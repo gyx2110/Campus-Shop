@@ -67,7 +67,7 @@ public class ProductManagementController {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			productStr = HttpServletRequestUtil.getString(req, "productStr");
-//			System.out.println(productStr);
+			// System.out.println(productStr);
 			product = mapper.readValue(productStr, Product.class);
 			System.out.println(product.getProductName());
 		} catch (Exception e) {
@@ -75,33 +75,33 @@ public class ProductManagementController {
 			modelMap.put("errMsg", e.getMessage());
 			return modelMap;
 		}
-		
+
 		// 缩略图
 		MultipartFile productImg = null;
 		// 详情图
 		List<MultipartFile> productImgList = new ArrayList<>();
 		try {
 			MultipartResolver resolver = new CommonsMultipartResolver(req.getSession().getServletContext());
-			if(resolver.isMultipart(req)) {
+			if (resolver.isMultipart(req)) {
 				productImg = handleImage(req, productImgList);
 			}
-		} catch(Exception e) {
+		} catch (Exception e) {
 			modelMap.put("success", false);
 			modelMap.put("errMsg", e.getMessage());
 			return modelMap;
 		}
-		
+
 		// System.out.println("yessssss");
 		// 调用service层店铺修改
-		if(product != null) {
-			System.out.println(2333);
+		if (product != null) {
+			// System.out.println(2333);
 			try {
 				Shop currentShop = (Shop) req.getSession().getAttribute("currentShop");
 				// 当前商品设置商店
 				product.setShop(currentShop);
-				
+
 				ProductExecution pe = productService.updateProduct(product, productImg, productImgList);
-				if(pe.getState() == OperationStatusEnum.SUCCESS.getState()) {
+				if (pe.getState() == OperationStatusEnum.SUCCESS.getState()) {
 					modelMap.put("success", true);
 				} else {
 					modelMap.put("success", false);
@@ -112,9 +112,6 @@ public class ProductManagementController {
 				modelMap.put("errMsg", e.toString());
 				return modelMap;
 			}
-		} else {
-			modelMap.put("success", false);
-			modelMap.put("errMsg", ProductStateEnum.PRODUCT_EMPTY.getStateInfo());
 		}
 		return modelMap;
 	}
@@ -248,5 +245,58 @@ public class ProductManagementController {
 				break;
 		}
 		return productImg;
+	}
+
+	@RequestMapping(value = "/getproductlistbyshop", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> getProductListByShop(HttpServletRequest req) {
+		Map<String, Object> modelMap = new HashMap<>();
+		// 获取页码和每页数量
+		int pageIndex = HttpServletRequestUtil.getInt(req, "pageIndex");
+		int pageSize = HttpServletRequestUtil.getInt(req, "pageSize");
+
+		// 获取Session中的shop信息
+		Shop currentShop = (Shop) req.getSession().getAttribute("currentShop");
+		// 空值判断
+		if (pageIndex > -1 && pageSize > -1 && currentShop != null && currentShop.getShopId() != null) {
+			long productCategoryId = HttpServletRequestUtil.getLong(req, "productCategoryId");
+			String productName = HttpServletRequestUtil.getString(req, "productName");
+			Product productCondition = compactProductCondition(currentShop.getShopId(), productCategoryId, productName);
+			ProductExecution productExecution = productService.getProductList(productCondition, pageIndex, pageSize);
+			modelMap.put("productList", productExecution.getProductList());
+			modelMap.put("count", productExecution.getCount());
+			modelMap.put("shopId", currentShop.getShopId());
+			modelMap.put("success", true);
+		} else {
+			modelMap.put("success", false);
+			modelMap.put("errMsg", ProductStateEnum.EMPTY.getStateInfo());
+		}
+		return modelMap;
+	}
+
+	/**
+	 * 商品查询条件
+	 * 
+	 * @param shopId
+	 * @param productCategoryId
+	 * @param productName
+	 * @return
+	 */
+	private Product compactProductCondition(Long shopId, long productCategoryId, String productName) {
+		Product productCondition = new Product();
+		Shop shop = new Shop();
+		shop.setShopId(shopId);
+		productCondition.setShop(shop);
+		// 查询类别
+		if (productCategoryId != -1) {
+			ProductCategory productCategory = new ProductCategory();
+			productCategory.setProductCategoryId(productCategoryId);
+			productCondition.setProductCategory(productCategory);
+		}
+		// 查询商品名
+		if (productName != null) {
+			productCondition.setProductName(productName);
+		}
+		return productCondition;
 	}
 }

@@ -28,7 +28,6 @@ public class ProductCategoryDaoTest extends BaseTest {
 	public void testBatchInsertProductCategory() {
 		List<ProductCategory> list = new ArrayList<>();
 		ProductCategory p = null;
-		int n = 5;
 		for (int i = 1; i <= 5; i++) {
 			p = new ProductCategory(null,(long)i,"test"+i+10,i,new Date());
 			// p.setCreateTime(new Date());

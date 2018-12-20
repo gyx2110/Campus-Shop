@@ -136,6 +136,21 @@ $(function() {
 			success : function(data) {
 				if (data.success) {
 					$.toast("提交成功！");
+					
+					if (isEdit) {
+						var goHtml = "/ssm/shopadmin/shopmanagement?shopId="+ shopId;
+						// window.setTimeout(goHtml, 2000); 
+						$('#goback1').attr('href', goHtml);
+						$('#goback2').attr('href', goHtml);
+					// window.location.href= "/ssm/shopadmin/shopmanagement?"+ shopId;
+					} else {
+						var goHtml = "/ssm/shopadmin/shoplist";
+						$('#goback1').attr('href', goHtml);
+						$('#goback2').attr('href', goHtml);
+						//window.setTimeout(goHtml, 2000); 
+						// setTimeout("/ssm/shopadmin/shoplist", 2000); 
+						// window.location.href = "/ssm/shopadmin/shoplist";
+					}
 				} else {
 					$.toast("提交失败！" + data.errMsg);
 				}

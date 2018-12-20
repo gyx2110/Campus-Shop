@@ -42,10 +42,11 @@ public class ProductExecution {
 	}
 
 	// 商品操作成功的时候使用的构造器
-	public ProductExecution(OperationStatusEnum stateEnum, List<Product> ProductList) {
+	public ProductExecution(OperationStatusEnum stateEnum, List<Product> productList) {
 		this.state = stateEnum.getState();
 		this.stateInfo = stateEnum.getStateInfo();
 		this.productList = productList;
+		this.count = productList.size();
 	}
 
 	public int getState() {

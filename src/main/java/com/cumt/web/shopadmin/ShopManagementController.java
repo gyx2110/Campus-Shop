@@ -2,7 +2,6 @@ package com.cumt.web.shopadmin;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -285,8 +284,6 @@ public class ShopManagementController {
 		req.getSession().setAttribute("user", user);
 		user = (PersonInfo) req.getSession().getAttribute("user");
 		// 未实现 登陆功能 因而先手动赋值
-		long userId = user.getUserId();
-		List<Shop> shopList = new ArrayList<>();
 		try {
 			Shop shopCondition = new Shop();
 			shopCondition.setOwner(user);

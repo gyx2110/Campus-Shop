@@ -1,6 +1,6 @@
 $(function() {
 	// 后台从session中获取shop的信息，这里就不传shopId了
-
+	var count = 1;
 	var getProductCategoryURL = '/ssm/shopadmin/getproductcategorylist';
 	var addProductCategoryURL = '/ssm/shopadmin/addproductcategorys';
 	var deleteProductCategoryUrl = '/ssm/shopadmin/removeproductcategory';
@@ -67,9 +67,11 @@ $(function() {
 			contentType : 'application/json',
 			success : function(data) {
 				if (data.success) {
-					$.toast('新增【' + data.effectedNum + '】条成功！');
+					$.toast('新增[' + data.effectedNum + ']条成功！');
+					count++;
 					// 重新加载数据
 					getProductCategoryList();
+					$('#goback1').attr('href', "javascript:history.go(-"+count+")");
 				} else {
 					$.toast(data.errMsg);
 				}
@@ -94,8 +96,10 @@ $(function() {
 						success : function(data) {
 							if (data.success) {
 								$.toast('删除成功！');
+								count++;
 								// 重新加载数据
 								getProductCategoryList();
+								$('#goback1').attr('href', "javascript:history.go(-"+count+")");
 							} else {
 								$.toast('删除失败！');
 							}

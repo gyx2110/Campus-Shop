@@ -19,6 +19,7 @@ import com.cumt.enums.OperationStatusEnum;
 import com.cumt.enums.ProductStateEnum;
 import com.cumt.service.ProductService;
 import com.cumt.util.ImageUtil;
+import com.cumt.util.PageCalculator;
 import com.cumt.util.PathUtil;
 
 import exceptions.ProductOperationException;
@@ -178,14 +179,24 @@ public class ProductServiceImpl implements ProductService {
 				// 删除文件中的图片
 				ImageUtil.deleteFileOrPath(productImg.getImgAddr());
 			}
+			// 删除数据库的记录
 			productImgDao.deleteProductImgByProductId(productId);
 		}
-		// 删除数据库的记录
+		
 		
 	}
 
 	@Override
 	public Product getProductById(long productId) {
 		return productDao.selectProductById(productId);
+	}
+
+	@Override
+	public ProductExecution getProductList(Product productCondition, int pageIndex, int pageSize) {
+		// 换算成行数
+		int rowIndex = PageCalculator.calculateRowIndex(pageIndex, pageSize);
+		// 获取相应条件下的list
+		List<Product> productList = productDao.selectProductList(productCondition, rowIndex, pageSize);
+		return new ProductExecution(OperationStatusEnum.SUCCESS, productList);
 	}
 }
