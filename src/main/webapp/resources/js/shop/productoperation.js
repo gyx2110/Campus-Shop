@@ -68,7 +68,9 @@ $(function() {
 	                // 设置商品类别列表及选中的商品类别
 	                var optionHtml = '';
 	                var optionArr = data.productCategoryList;
-	                var optionSelected = product.productCategory.productCategoryId;
+	                var optionSelected= '';
+	                if(product.productCategory != null && product.productCategory.productCategoryId != null)
+	                	optionSelected = product.productCategory.productCategoryId;
 	                optionArr.map(function(item, index) {
                             var isSelect = (optionSelected === item.productCategoryId ? 'selected' : '');
                             optionHtml += '<option data-value="'

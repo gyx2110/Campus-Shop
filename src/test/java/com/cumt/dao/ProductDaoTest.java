@@ -62,6 +62,7 @@ public class ProductDaoTest extends BaseTest {
 		}
 	}
 	
+	@Ignore
 	@Test
 	public void testSelectProductList() {
 		//List<Product> list = productDao.selectProductList(null, 0, 100);
@@ -69,6 +70,14 @@ public class ProductDaoTest extends BaseTest {
 		Product pro = new Product();
 		pro.setEnableStatus(1);
 		int size = productDao.selectProductCount(pro);
+		System.out.println(size);
+	}
+	
+	@Ignore
+	@Test
+	public void testUpdateProductCategoryToNull() {
+		Long productCategoryId = 1L;
+		int size = productDao.updateProductCategoryToNull(productCategoryId);
 		System.out.println(size);
 	}
 }

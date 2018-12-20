@@ -25,13 +25,13 @@ $(function() {
 						contraryStatus = 0;
 					}
 					tempHtml += '' + '<div class="row row-product">'
-							+ '<div class="col-33">'
+							+ '<div class="col-20">'
 							+ item.productName
 							+ '</div>'
 							+ '<div class="col-20">'
 							+ item.priority
 							+ '</div>'
-							+ '<div class="col-40">'
+							+ '<div class="col-60">'
 							+ '<a href="#" class="edit" data-id="'
 							+ item.productId
 							+ '" data-status="'
