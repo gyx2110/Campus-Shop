@@ -9,6 +9,15 @@ import java.util.Date;
  *
  */
 public class Area {
+	@Override
+	public String toString() {
+		return "Area [areaId=" + areaId + ", areaName=" + areaName + ", priority=" + priority + ", createTime="
+				+ createTime + ", lastEditTime=" + lastEditTime + ", getAreaId()=" + getAreaId() + ", getAreaName()="
+				+ getAreaName() + ", getPriority()=" + getPriority() + ", getCreateTime()=" + getCreateTime()
+				+ ", getLastEditTime()=" + getLastEditTime() + ", getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + "]";
+	}
+
 	// ID
 	private Integer areaId;
 	// 名称

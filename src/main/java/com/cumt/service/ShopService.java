@@ -4,8 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cumt.dto.ShopExecution;
 import com.cumt.entity.Shop;
-
-import exceptions.ShopOperationException;
+import com.cumt.exceptions.ShopOperationException;
 
 /***
  * 商店Service

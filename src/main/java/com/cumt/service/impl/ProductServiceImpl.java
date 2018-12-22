@@ -17,12 +17,11 @@ import com.cumt.entity.ProductImg;
 import com.cumt.enums.EnableStatusEnum;
 import com.cumt.enums.OperationStatusEnum;
 import com.cumt.enums.ProductStateEnum;
+import com.cumt.exceptions.ProductOperationException;
 import com.cumt.service.ProductService;
 import com.cumt.util.ImageUtil;
 import com.cumt.util.PageCalculator;
 import com.cumt.util.PathUtil;
-
-import exceptions.ProductOperationException;
 
 /***
  * 商品业务接口实现

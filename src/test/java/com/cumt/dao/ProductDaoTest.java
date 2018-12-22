@@ -48,31 +48,28 @@ public class ProductDaoTest extends BaseTest {
 		System.out.println(num);
 	}
 
-	@Ignore
 	@Test
 	public void testSelectProductById() {
-		long productId = 2L;
+		long productId = 1L;
 		Product product = productDao.selectProductById(productId);
-		System.out.println(product.getProductName());
+		System.out.println(product);
 		List<ProductImg> list = product.getProductImgList();
-		// System.out.println(product.getProductImgList().size());
-		System.out.println(list.size());
-		for (ProductImg i : list) {
-			System.out.println(i.getImgAddr());
+		for(ProductImg img : list) {
+			System.out.println(img);
 		}
 	}
-	
+
 	@Ignore
 	@Test
 	public void testSelectProductList() {
-		//List<Product> list = productDao.selectProductList(null, 0, 100);
+		// List<Product> list = productDao.selectProductList(null, 0, 100);
 		// System.out.println(list.size());
 		Product pro = new Product();
 		pro.setEnableStatus(1);
 		int size = productDao.selectProductCount(pro);
 		System.out.println(size);
 	}
-	
+
 	@Ignore
 	@Test
 	public void testUpdateProductCategoryToNull() {

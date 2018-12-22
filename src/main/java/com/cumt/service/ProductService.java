@@ -6,8 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cumt.dto.ProductExecution;
 import com.cumt.entity.Product;
-
-import exceptions.ProductOperationException;
+import com.cumt.exceptions.ProductOperationException;
 
 /***
  * 商品业务接口

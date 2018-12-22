@@ -74,5 +74,14 @@ public class ProductCategory {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-
+	@Override
+	public String toString() {
+		return "ProductCategory [productCategoryId=" + productCategoryId + ", shopId=" + shopId
+				+ ", productCategoryName=" + productCategoryName + ", priority=" + priority + ", createTime="
+				+ createTime + ", getProductCategoryId()=" + getProductCategoryId() + ", getShopId()=" + getShopId()
+				+ ", getProductCategoryName()=" + getProductCategoryName() + ", getPriority()=" + getPriority()
+				+ ", getCreateTime()=" + getCreateTime() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
+	}
+	
 }

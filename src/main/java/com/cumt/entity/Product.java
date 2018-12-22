@@ -10,6 +10,22 @@ import java.util.List;
  *
  */
 public class Product {
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productName=" + productName + ", productDesc=" + productDesc
+				+ ", imgAddr=" + imgAddr + ", normalPrice=" + normalPrice + ", promotionPrice=" + promotionPrice
+				+ ", priority=" + priority + ", createTime=" + createTime + ", lastEditTime=" + lastEditTime
+				+ ", enableStatus=" + enableStatus + ", productImgList=" + productImgList + ", productCategory="
+				+ productCategory + ", shop=" + shop + ", getProductId()=" + getProductId() + ", getProductName()="
+				+ getProductName() + ", getProductDesc()=" + getProductDesc() + ", getImgAddr()=" + getImgAddr()
+				+ ", getNormalPrice()=" + getNormalPrice() + ", getPromotionPrice()=" + getPromotionPrice()
+				+ ", getPriority()=" + getPriority() + ", getCreateTime()=" + getCreateTime() + ", getLastEditTime()="
+				+ getLastEditTime() + ", getEnableStatus()=" + getEnableStatus() + ", getProductImgList()="
+				+ getProductImgList() + ", getProductCategory()=" + getProductCategory() + ", getShop()=" + getShop()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
+	}
+
 	private Long productId;
 	private String productName;
 	private String productDesc;
@@ -168,5 +184,5 @@ public class Product {
 	public void setShop(Shop shop) {
 		this.shop = shop;
 	}
-
+	
 }

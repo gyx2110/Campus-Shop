@@ -65,5 +65,13 @@ public class WechatAuth {
 	public void setPersonInfo(PersonInfo personInfo) {
 		this.personInfo = personInfo;
 	}
-
+	@Override
+	public String toString() {
+		return "WechatAuth [wechatAuthId=" + wechatAuthId + ", openId=" + openId + ", createTime=" + createTime
+				+ ", personInfo=" + personInfo + ", getWechatAuthId()=" + getWechatAuthId() + ", getOpenId()="
+				+ getOpenId() + ", getCreateTime()=" + getCreateTime() + ", getPersonInfo()=" + getPersonInfo()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
+	}
+	
 }

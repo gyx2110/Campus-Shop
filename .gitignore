@@ -1,3 +1,6 @@
 .settings
 catalina.base_IS_UNDEFINED
 src/main/resources/jdbc.properties
+target
+/target/
+WebContent

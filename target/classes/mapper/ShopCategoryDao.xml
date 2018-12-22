@@ -27,7 +27,7 @@
 			</if>
 			<!-- 如果传递了父类的id,则查询对应父类下的目录 -->
 			<if
-				test="shopCategoryCondition != null and shopCategoryCondition.parent != null">
+				test="shopCategoryCondition != null and shopCategoryCondition.parent != null and shopCategoryCondition.parent.shopCategoryId != null">
 				and parent_id = #{shopCategoryCondition.parent.shopCategoryId}
 			</if>
 		</where>

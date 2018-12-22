@@ -15,12 +15,11 @@ import com.cumt.entity.Area;
 import com.cumt.entity.Shop;
 import com.cumt.entity.ShopCategory;
 import com.cumt.enums.ShopStateEnum;
+import com.cumt.exceptions.ShopOperationException;
 import com.cumt.service.ShopService;
 import com.cumt.util.ImageUtil;
 import com.cumt.util.PageCalculator;
 import com.cumt.util.PathUtil;
-
-import exceptions.ShopOperationException;
 
 /***
  * 店铺Service 实现类

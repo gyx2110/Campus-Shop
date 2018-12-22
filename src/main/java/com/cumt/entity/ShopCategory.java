@@ -112,4 +112,16 @@ public class ShopCategory {
 	private Date lastEditTime;
 	// 上级类， 如果为空，代表为根
 	private ShopCategory parent;
+
+	@Override
+	public String toString() {
+		return "ShopCategory [shopCategoryId=" + shopCategoryId + ", shopCategoryName=" + shopCategoryName
+				+ ", shopCategoryDesc=" + shopCategoryDesc + ", shopCategoryImg=" + shopCategoryImg + ", priority="
+				+ priority + ", createTime=" + createTime + ", lastEditTime=" + lastEditTime + ", parent=" + parent
+				+ ", getShopCategoryId()=" + getShopCategoryId() + ", getShopCategoryName()=" + getShopCategoryName()
+				+ ", getShopCategoryDesc()=" + getShopCategoryDesc() + ", getShopCategoryImg()=" + getShopCategoryImg()
+				+ ", getPriority()=" + getPriority() + ", getCreateTime()=" + getCreateTime() + ", getLastEditTime()="
+				+ getLastEditTime() + ", getParent()=" + getParent() + ", getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + "]";
+	}
 }

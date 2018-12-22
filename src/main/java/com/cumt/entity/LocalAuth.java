@@ -17,6 +17,16 @@ public class LocalAuth {
 	private String password;
 	// 创建时间
 	private Date createTime;
+	@Override
+	public String toString() {
+		return "LocalAuth [localAuthId=" + localAuthId + ", username=" + username + ", password=" + password
+				+ ", createTime=" + createTime + ", lastEditTime=" + lastEditTime + ", personInfo=" + personInfo
+				+ ", getLocalAuthId()=" + getLocalAuthId() + ", getUsername()=" + getUsername() + ", getPassword()="
+				+ getPassword() + ", getCreateTime()=" + getCreateTime() + ", getLastEditTime()=" + getLastEditTime()
+				+ ", getPersonInfo()=" + getPersonInfo() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
+	}
+
 	// 修改时间
 	private Date lastEditTime;
 

@@ -15,6 +15,17 @@ public class PersonInfo {
 	private String name;
 	// 图像地址
 	private String profileImg;
+	@Override
+	public String toString() {
+		return "PersonInfo [userId=" + userId + ", name=" + name + ", profileImg=" + profileImg + ", email=" + email
+				+ ", gender=" + gender + ", enableStutus=" + enableStutus + ", userType=" + userType + ", createTime="
+				+ createTime + ", lastEditTime=" + lastEditTime + ", getUserId()=" + getUserId() + ", getName()="
+				+ getName() + ", getProfileImg()=" + getProfileImg() + ", getEmail()=" + getEmail() + ", getGender()="
+				+ getGender() + ", getEnableStutus()=" + getEnableStutus() + ", getUserType()=" + getUserType()
+				+ ", getCreateTime()=" + getCreateTime() + ", getLastEditTime()=" + getLastEditTime() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
+
 	// 邮箱
 	private String email;
 	// 性别

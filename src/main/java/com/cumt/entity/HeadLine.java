@@ -9,6 +9,17 @@ import java.util.Date;
  *
  */
 public class HeadLine {
+	@Override
+	public String toString() {
+		return "HeadLine [lineId=" + lineId + ", lineName=" + lineName + ", lineLink=" + lineLink + ", lineImg="
+				+ lineImg + ", priority=" + priority + ", enableStatus=" + enableStatus + ", createTime=" + createTime
+				+ ", lastEditTime=" + lastEditTime + ", getLineId()=" + getLineId() + ", getLineName()=" + getLineName()
+				+ ", getLineLink()=" + getLineLink() + ", getLineImg()=" + getLineImg() + ", getPriority()="
+				+ getPriority() + ", getEnableStatus()=" + getEnableStatus() + ", getCreateTime()=" + getCreateTime()
+				+ ", getLastEditTime()=" + getLastEditTime() + ", getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + "]";
+	}
+
 	private Long lineId;
 	// 头条信息
 	private String lineName;
@@ -20,8 +31,10 @@ public class HeadLine {
 	private Integer priority;
 	// 0.不可用 1.可用
 	private Integer enableStatus;
-	public HeadLine() {}
-	
+
+	public HeadLine() {
+	}
+
 	/***
 	 * 
 	 * @param lineId
@@ -45,7 +58,6 @@ public class HeadLine {
 		this.createTime = createTime;
 		this.lastEditTime = lastEditTime;
 	}
-
 
 	public Long getLineId() {
 		return lineId;

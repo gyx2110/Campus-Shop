@@ -19,7 +19,7 @@ $(function() {
             $('.swiper-wrapper').html(swiperHtml);
             // 设置轮播图轮换时间为1秒
             $(".swiper-container").swiper({
-                autoplay: 1000,
+                autoplay: 3000,
                 // 用户对轮播图进行操作时，是否自动停止autoplay
                 autoplayDisableOnInteraction: false
             });
@@ -51,7 +51,7 @@ $(function() {
     // 点击特定的分类
     $('.row').on('click', '.shop-classify', function (e) {
         var shopCategoryId = e.currentTarget.dataset.category;
-        var newUrl = '/o2o/front/shoplist?parentId=' + shopCategoryId;
+        var newUrl = '/ssm/front/shoplist?parentId=' + shopCategoryId;
         window.location.href = newUrl;
     });
 

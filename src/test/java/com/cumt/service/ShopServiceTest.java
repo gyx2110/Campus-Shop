@@ -18,8 +18,7 @@ import com.cumt.entity.Area;
 import com.cumt.entity.PersonInfo;
 import com.cumt.entity.Shop;
 import com.cumt.entity.ShopCategory;
-
-import exceptions.ShopOperationException;
+import com.cumt.exceptions.ShopOperationException;
 
 public class ShopServiceTest extends BaseTest {
 	@Autowired

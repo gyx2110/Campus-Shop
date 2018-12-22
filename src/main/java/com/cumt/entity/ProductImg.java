@@ -15,7 +15,10 @@ public class ProductImg {
 	private Integer priority;
 	private Date createTime;
 	private Long productId;
-	public ProductImg() {}
+
+	public ProductImg() {
+	}
+
 	/***
 	 * 
 	 * @param productImgId
@@ -35,7 +38,6 @@ public class ProductImg {
 		this.createTime = createTime;
 		this.productId = productId;
 	}
-
 
 	public Long getProductImgId() {
 		return productImgId;
@@ -83,6 +85,16 @@ public class ProductImg {
 
 	public void setProductId(Long productId) {
 		this.productId = productId;
+	}
+
+	@Override
+	public String toString() {
+		return "ProductImg [productImgId=" + productImgId + ", imgAddr=" + imgAddr + ", imgDesc=" + imgDesc
+				+ ", priority=" + priority + ", createTime=" + createTime + ", productId=" + productId
+				+ ", getProductImgId()=" + getProductImgId() + ", getImgAddr()=" + getImgAddr() + ", getImgDesc()="
+				+ getImgDesc() + ", getPriority()=" + getPriority() + ", getCreateTime()=" + getCreateTime()
+				+ ", getProductId()=" + getProductId() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
 	}
 
 }

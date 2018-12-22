@@ -1,4 +1,4 @@
-package exceptions;
+package com.cumt.exceptions;
 
 /***
  * 商品操作异常

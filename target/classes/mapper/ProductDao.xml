@@ -95,6 +95,7 @@
 		p.normal_price, p.promotion_price, p.priority, p.create_time,
 		p.last_edit_time,
 		p.enable_status, p.shop_id, p.product_category_id,
+		pimg.product_img_id,
 		pimg.img_addr as pimg_img_addr,
 		pimg.img_desc as pimg_img_desc,
 		pimg.priority,
