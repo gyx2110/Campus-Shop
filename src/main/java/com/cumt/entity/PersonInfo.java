@@ -18,12 +18,16 @@ public class PersonInfo {
 	@Override
 	public String toString() {
 		return "PersonInfo [userId=" + userId + ", name=" + name + ", profileImg=" + profileImg + ", email=" + email
-				+ ", gender=" + gender + ", enableStutus=" + enableStutus + ", userType=" + userType + ", createTime="
+				+ ", gender=" + gender + ", enableStatus=" + enableStatus + ", userType=" + userType + ", createTime="
 				+ createTime + ", lastEditTime=" + lastEditTime + ", getUserId()=" + getUserId() + ", getName()="
 				+ getName() + ", getProfileImg()=" + getProfileImg() + ", getEmail()=" + getEmail() + ", getGender()="
-				+ getGender() + ", getEnableStutus()=" + getEnableStutus() + ", getUserType()=" + getUserType()
+				+ getGender() + ", getEnableStatus()=" + getEnableStatus() + ", getUserType()=" + getUserType()
 				+ ", getCreateTime()=" + getCreateTime() + ", getLastEditTime()=" + getLastEditTime() + ", getClass()="
 				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
+
+	public void setEnableStatus(Integer enableStatus) {
+		this.enableStatus = enableStatus;
 	}
 
 	// 邮箱
@@ -31,7 +35,7 @@ public class PersonInfo {
 	// 性别
 	private String gender;
 	// 启用状态
-	private Integer enableStutus;
+	private Integer enableStatus;
 	// 1.顾客 2.店家 3.超级管理员
 	// 店家可以是顾客 超级管理员可以是顾客或者店家
 	private Integer userType;
@@ -57,7 +61,7 @@ public class PersonInfo {
 		this.profileImg = profileImg;
 		this.email = email;
 		this.gender = gender;
-		this.enableStutus = enableStutus;
+		this.enableStatus = enableStutus;
 		this.userType = userType;
 		this.createTime = createTime;
 		this.lastEditTime = lastEditTime;
@@ -103,12 +107,12 @@ public class PersonInfo {
 		this.gender = gender;
 	}
 
-	public Integer getEnableStutus() {
-		return enableStutus;
+	public Integer getEnableStatus() {
+		return enableStatus;
 	}
 
 	public void setEnableStutus(Integer enableStutus) {
-		this.enableStutus = enableStutus;
+		this.enableStatus = enableStutus;
 	}
 
 	public Integer getUserType() {

@@ -1,6 +1,7 @@
 package com.cumt.web.front;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -162,7 +163,8 @@ public class ShopListController {
 		}
 		// 模糊查询店铺名称的列表
 		if (shopName != null) {
-			String trueShopName = new String(shopName.getBytes("ISO-8859-1"), "utf-8");
+			String trueShopName = URLDecoder.decode(shopName, "UTF-8");
+			//String trueShopName = new String(shopName.getBytes("ISO-8859-1"), "utf-8");
 			// System.out.println("\n" + trueShopName + "\n");
 			shopCondition.setShopName(trueShopName);
 		}

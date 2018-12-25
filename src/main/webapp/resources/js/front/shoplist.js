@@ -147,7 +147,7 @@ $(function() {
 
 	$('#search').on('change', function(e) {
 		shopName = $('#search').val()
-		shopName = encodeURI(shopName)
+		shopName = encodeURI(encodeURI(shopName));
 		// console.log(shopName)
 		$('.list-div').empty();
 		pageNum = 1;

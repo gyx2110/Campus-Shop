@@ -1,6 +1,7 @@
 package com.cumt.web.front;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -74,10 +75,11 @@ public class ShopDetailController {
 	 * 
 	 * @param req
 	 * @return
+	 * @throws UnsupportedEncodingException 
 	 */
 	@RequestMapping(value = "/listproducts", method = RequestMethod.GET)
 	@ResponseBody
-	private Map<String, Object> listProducts(HttpServletRequest req) {
+	private Map<String, Object> listProducts(HttpServletRequest req) throws UnsupportedEncodingException {
 		Map<String, Object> modelMap = new HashMap<>();
 		int pageIndex = HttpServletRequestUtil.getInt(req, "pageIndex");
 		int pageSize = HttpServletRequestUtil.getInt(req, "pageSize");
@@ -104,8 +106,9 @@ public class ShopDetailController {
 	 * @param productCategoryId
 	 * @param productName
 	 * @return
+	 * @throws UnsupportedEncodingException 
 	 */
-	private Product compactProductCondition3Search(long shopId, long productCategoryId, String productName) {
+	private Product compactProductCondition3Search(long shopId, long productCategoryId, String productName) throws UnsupportedEncodingException {
 		Product productCondition = new Product();
 		Shop shop = new Shop();
 		shop.setShopId(shopId);
@@ -116,12 +119,7 @@ public class ShopDetailController {
 			productCondition.setProductCategory(productCategory);
 		}
 		if (productName != null) {
-			String trueProductName = null;
-			try {
-				trueProductName = new String(productName.getBytes("ISO-8859-1"), "utf-8");
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
+			String trueProductName = URLDecoder.decode(productName, "UTF-8");
 			productCondition.setProductName(trueProductName);
 		}
 		productCondition.setEnableStatus(EnableStatusEnum.AVAILABLE.getState());

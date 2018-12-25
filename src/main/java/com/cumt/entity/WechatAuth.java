@@ -18,7 +18,9 @@ public class WechatAuth {
 	// 个人信息
 	private PersonInfo personInfo;
 
-	public WechatAuth() {}
+	public WechatAuth() {
+	}
+
 	/***
 	 * 
 	 * @param wechatAuthId
@@ -65,6 +67,7 @@ public class WechatAuth {
 	public void setPersonInfo(PersonInfo personInfo) {
 		this.personInfo = personInfo;
 	}
+
 	@Override
 	public String toString() {
 		return "WechatAuth [wechatAuthId=" + wechatAuthId + ", openId=" + openId + ", createTime=" + createTime
@@ -73,5 +76,5 @@ public class WechatAuth {
 				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
 				+ "]";
 	}
-	
+
 }

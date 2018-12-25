@@ -135,7 +135,7 @@ $(function() {
 	// 需要查询的商品名发生变化后，重置页码，清空原先的商品列表，按照新的商品名去查询
 	$('#search').on('change', function(e) {
 		productName = e.target.value;
-		productName = encodeURI(productName);
+		productName = encodeURI(encodeURI(productName));
 		$('.list-div').empty();
 		pageNum = 1;
 		addItems(pageSize, pageNum);
