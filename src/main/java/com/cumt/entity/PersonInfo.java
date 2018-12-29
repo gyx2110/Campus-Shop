@@ -111,9 +111,6 @@ public class PersonInfo {
 		return enableStatus;
 	}
 
-	public void setEnableStutus(Integer enableStutus) {
-		this.enableStatus = enableStutus;
-	}
 
 	public Integer getUserType() {
 		return userType;
