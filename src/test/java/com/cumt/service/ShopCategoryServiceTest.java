@@ -20,7 +20,7 @@ public class ShopCategoryServiceTest extends BaseTest {
 	@Autowired
 	private ShopCategoryService shopCategoryService;
 
-	@Ignore
+	//@Ignore
 	@Test
 	public void testGetShopCategoryList() {
 		if (shopCategoryService == null) {

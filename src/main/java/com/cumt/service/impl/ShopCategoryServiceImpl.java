@@ -1,5 +1,7 @@
 package com.cumt.service.impl;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +22,11 @@ import com.cumt.exceptions.ShopCategoryOperationException;
 import com.cumt.service.ShopCategoryService;
 import com.cumt.util.ImageUtil;
 import com.cumt.util.PathUtil;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /***
  * 店铺种类Service实现类
@@ -38,13 +45,61 @@ public class ShopCategoryServiceImpl implements ShopCategoryService {
 	@Autowired
 	private JedisUtil.Strings jedisStrings;
 
-	private static Logger logger = LoggerFactory.getLogger(ShopCategoryServiceImpl.class);
+	private static Logger log = LoggerFactory.getLogger(ShopCategoryServiceImpl.class);
 
 	@Override
 	public List<ShopCategory> getShopCategoryList(ShopCategory shopCategoryCondition, int rowIndex, int pageSize) {
 		// return shopCategoryDao.queryShopCategory(shopCategoryCondition, rowIndex,
 		// pageSize);
-		
+		String key = SHOPCATEGORY;
+		List<ShopCategory> shopCategoryList = null;
+		ObjectMapper mapper = new ObjectMapper();
+		// 查询所有一级类别
+		if (shopCategoryCondition == null) {
+			key = key + "_allfirstlevel";
+		} else if (shopCategoryCondition != null && shopCategoryCondition.getParent() != null
+				&& shopCategoryCondition.getParent().getShopCategoryId() != null) {
+			// 查询对应parentId下的shopCategory
+			key = key + "_parent" + shopCategoryCondition.getParent().getShopCategoryId();
+		} else if (shopCategoryCondition != null) {
+			// 列出所有子类别
+			key = key + "_allsecondlevel";
+		}
+		boolean exists = jedisKeys.exists(key);
+		if (!exists) {
+			shopCategoryList = shopCategoryDao.queryShopCategory(shopCategoryCondition, rowIndex, pageSize);
+			String jsonString;
+			try {
+				jsonString = mapper.writeValueAsString(shopCategoryList);
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+				log.error(e.getMessage());
+				throw new ShopCategoryOperationException(e.getMessage());
+			}
+			jedisStrings.set(key, jsonString);
+		} else {
+			String jsonString = jedisStrings.get(key);
+			JavaType javaType = mapper.getTypeFactory().constructParametricType(ArrayList.class, ShopCategory.class);
+			try {
+				// 将相关key对应的value里的的string转换成对象的实体类集合
+				shopCategoryList = mapper.readValue(jsonString, javaType);
+			} catch (JsonParseException e) {
+				e.printStackTrace();
+				log.error(e.getMessage());
+				throw new ShopCategoryOperationException(e.getMessage());
+			} catch (JsonMappingException e) {
+				e.printStackTrace();
+				log.error(e.getMessage());
+				throw new ShopCategoryOperationException(e.getMessage());
+			} catch (IOException e) {
+				e.printStackTrace();
+				log.error(e.getMessage());
+				throw new ShopCategoryOperationException(e.getMessage());
+			}
+			System.out.println("redis获取 " + key + " success");
+			log.debug("redis获取 " + key + " success");
+		}
+		return shopCategoryList;
 	}
 
 	@Override

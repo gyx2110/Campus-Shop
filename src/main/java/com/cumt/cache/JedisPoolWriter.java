@@ -20,9 +20,10 @@ public class JedisPoolWriter {
 	 * @param host
 	 * @param port
 	 */
-	public JedisPoolWriter(final JedisPoolConfig poolConfig, final String host, final int port) {
+	public JedisPoolWriter(final JedisPoolConfig poolConfig, final String host, final int port,
+			final int timeout, final String password) {
 		try {
-			jedisPool = new JedisPool(poolConfig, host, port);
+			jedisPool = new JedisPool(poolConfig, host, port, timeout, password);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
