@@ -1,29 +1,14 @@
-# 基于SSM框架的校园商铺平台
+# 校园商铺平台
 
- [慕课网教程](https://coding.imooc.com/class/144.html)
+![Travis](https://img.shields.io/badge/language-Java-yellow.svg)<br/>
 
-## 校园商铺o2o搭建过程
-1. 环境搭建及测试
-2. Logback配置与使用
-3. 主从同步数据库的配置 (待实现)
-### 店家管理系统
-1. 店铺类别模块 
-2. 店铺模块 
-3. 商品类别模块 
-4. 商品模块 
-### 前端展示系统
-1. 首页展示 
-2. 店铺列表页展示
-3. 店铺详情页展示
-4. 商品详情页展示
-### 用户管理系统
-1. 本地账号
-2. 微信账号
+## 技术栈：
 
-## 待完善
-1. 添加Redis为系统缓存
-2. 购物门户中系统中采用solrCloud实现全文搜索
-3. 权限管理
-4. Nginx为静态资源代理
-5. vsftpd作为ftp服务
-6. 登录注册功能的具体细节实现
+**前端**：前端UI库 SUI Mobile／ jQuery<br/>
+**后端**：SSM／Spring Boot／图片开源工具 Thumbnailator / 验证码组件Kaptcha／对称加密算法 DES<br/>
+**平台**：Web／微信测试号<br/>
+**数据库**：MySQL/Redis<br/>
+**部署**：DigitalOcean<br/>
+
+
+线上演示地址：http://icumt.ml/ssm/front/index

@@ -10,6 +10,8 @@ import com.cumt.entity.HeadLine;
  *
  */
 public interface HeadLineService {
+	public static final String HEADLINE = "headlinelist";
+	
 	/***
 	 * 根据条件查询头条列表
 	 * @param headLineCondition

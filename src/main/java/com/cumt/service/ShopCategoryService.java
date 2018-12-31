@@ -14,6 +14,8 @@ import com.cumt.entity.ShopCategory;
  *
  */
 public interface ShopCategoryService {
+	public static final String SHOPCATEGORY = "shopcategorylist";
+	
 	/**
 	 * 条件获取店铺类别分页列表
 	 * 

@@ -11,6 +11,7 @@ import com.cumt.entity.Area;
  *
  */
 public interface AreaService {
+	public static final String AREALISTKEY = "arealist";
 	/***
 	 * 获取区域列表
 	 * @return

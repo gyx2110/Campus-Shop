@@ -3,11 +3,14 @@ package com.cumt.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cumt.cache.JedisUtil;
 import com.cumt.dao.ShopCategoryDao;
 import com.cumt.dto.ShopCategoryExecution;
 import com.cumt.entity.ShopCategory;
@@ -29,9 +32,19 @@ public class ShopCategoryServiceImpl implements ShopCategoryService {
 	@Autowired
 	private ShopCategoryDao shopCategoryDao;
 
+	@Autowired
+	private JedisUtil.Keys jedisKeys;
+
+	@Autowired
+	private JedisUtil.Strings jedisStrings;
+
+	private static Logger logger = LoggerFactory.getLogger(ShopCategoryServiceImpl.class);
+
 	@Override
 	public List<ShopCategory> getShopCategoryList(ShopCategory shopCategoryCondition, int rowIndex, int pageSize) {
-		return shopCategoryDao.queryShopCategory(shopCategoryCondition, rowIndex, pageSize);
+		// return shopCategoryDao.queryShopCategory(shopCategoryCondition, rowIndex,
+		// pageSize);
+		
 	}
 
 	@Override
@@ -60,7 +73,7 @@ public class ShopCategoryServiceImpl implements ShopCategoryService {
 		}
 		return new ShopCategoryExecution(OperationStatusEnum.SUCCESS, shopCategory);
 	}
-	
+
 	@Override
 	@Transactional
 	public ShopCategoryExecution modifyShopCategory(ShopCategory shopCategory, MultipartFile shopCategoryImg) {
