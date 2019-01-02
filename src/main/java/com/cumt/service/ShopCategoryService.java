@@ -45,7 +45,7 @@ public interface ShopCategoryService {
 	 * @param shopCategoryImg
 	 * @return
 	 */
-	ShopCategoryExecution modifyShopCategory(ShopCategory shopCategory, MultipartFile shopCategoryImg);
+	ShopCategoryExecution updateShopCategory(ShopCategory shopCategory, MultipartFile shopCategoryImg);
 
 	/**
 	 * 根据shopCategory_Id查询店铺分类信息

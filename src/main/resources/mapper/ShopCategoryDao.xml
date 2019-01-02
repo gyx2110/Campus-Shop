@@ -64,7 +64,7 @@
 		where shop_category_id = #{shopCategory.shopCategoryId}
 	</update>
 
-	<select id="selectShopCategoryById" resultType="com.cumt.entity.ShopCategory">
+	<select id="queryShopCategoryById" resultType="com.cumt.entity.ShopCategory">
 		SELECT
 		shop_category_name,
 		shop_category_desc,

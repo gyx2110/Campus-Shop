@@ -246,7 +246,7 @@ public class ProductManagementController {
 		return productImg;
 	}
 
-	@RequestMapping(value = "/getproductlistbyshop", method = RequestMethod.GET)
+	@RequestMapping(value = "/listproductbyshop", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> getProductListByShop(HttpServletRequest req) {
 		Map<String, Object> modelMap = new HashMap<>();

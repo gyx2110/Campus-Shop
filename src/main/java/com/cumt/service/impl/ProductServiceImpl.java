@@ -136,7 +136,7 @@ public class ProductServiceImpl implements ProductService {
 			// 缩略图不为空则添加
 			if (productImg != null) {
 				// 先获取原有信息，得到原有图片地址
-				Product orignalProduct = productDao.selectProductById(product.getProductId());
+				Product orignalProduct = productDao.queryProductById(product.getProductId());
 				// 删除原有图片
 				if(orignalProduct.getImgAddr() != null) {
 					ImageUtil.deleteFileOrPath(orignalProduct.getImgAddr());
@@ -172,7 +172,7 @@ public class ProductServiceImpl implements ProductService {
 	 */
 	private void deleteProductImgList(Long productId) {
 		// 根据productId获取原有的图片
-		List<ProductImg> productImgList = productImgDao.selectProductImgListByProductId(productId);
+		List<ProductImg> productImgList = productImgDao.queryProductImgListByProductId(productId);
 		if(productImgList != null && !productImgList.isEmpty()) {
 			for(ProductImg productImg : productImgList) {
 				// 删除文件中的图片
@@ -187,7 +187,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product getProductById(long productId) {
-		return productDao.selectProductById(productId);
+		return productDao.queryProductById(productId);
 	}
 
 	@Override
@@ -195,7 +195,7 @@ public class ProductServiceImpl implements ProductService {
 		// 换算成行数
 		int rowIndex = PageCalculator.calculateRowIndex(pageIndex, pageSize);
 		// 获取相应条件下的list
-		List<Product> productList = productDao.selectProductList(productCondition, rowIndex, pageSize);
+		List<Product> productList = productDao.queryProductList(productCondition, rowIndex, pageSize);
 		return new ProductExecution(OperationStatusEnum.SUCCESS, productList);
 	}
 }

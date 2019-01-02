@@ -26,7 +26,7 @@ public interface ProductCategoryService {
 	 * @return
 	 * @throws ProductCategoryOperationException
 	 */
-	ProductCategoryExecution batchInsertProductCategory(List<ProductCategory> list)
+	ProductCategoryExecution batchAddProductCategory(List<ProductCategory> list)
 			throws ProductCategoryOperationException;
 	/***
 	 * 将对应商店(shopId)下的商品类别删除(productCategoryId)
@@ -35,6 +35,6 @@ public interface ProductCategoryService {
 	 * @return
 	 * @throws ProductCategoryOperationException
 	 */
-	ProductCategoryExecution deleteProductCategory(long productCategoryId, long shopId)
+	ProductCategoryExecution removeProductCategory(long productCategoryId, long shopId)
 			throws ProductCategoryOperationException;
 }

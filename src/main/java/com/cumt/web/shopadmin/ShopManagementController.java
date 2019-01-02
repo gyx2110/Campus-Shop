@@ -274,7 +274,7 @@ public class ShopManagementController {
 	 * @param req
 	 * @return
 	 */
-	@RequestMapping(value = "/getshoplist", method = RequestMethod.GET)
+	@RequestMapping(value = "/listshop", method = RequestMethod.GET)
 	@ResponseBody
 	private Map<String, Object> getShopList(HttpServletRequest req) {
 		Map<String, Object> modelMap = new HashMap<>();

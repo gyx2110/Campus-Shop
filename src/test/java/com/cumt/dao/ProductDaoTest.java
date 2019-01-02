@@ -51,7 +51,7 @@ public class ProductDaoTest extends BaseTest {
 	@Test
 	public void testSelectProductById() {
 		long productId = 1L;
-		Product product = productDao.selectProductById(productId);
+		Product product = productDao.queryProductById(productId);
 		System.out.println(product);
 		List<ProductImg> list = product.getProductImgList();
 		for(ProductImg img : list) {
@@ -66,7 +66,7 @@ public class ProductDaoTest extends BaseTest {
 		// System.out.println(list.size());
 		Product pro = new Product();
 		pro.setEnableStatus(1);
-		int size = productDao.selectProductCount(pro);
+		int size = productDao.queryProductCount(pro);
 		System.out.println(size);
 	}
 

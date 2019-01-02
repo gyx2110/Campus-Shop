@@ -1,7 +1,7 @@
 $(function() {
 	// 后台从session中获取shop的信息，这里就不传shopId了
 	var count = 1;
-	var getProductCategoryURL = '/ssm/shopadmin/getproductcategorylist';
+	var getProductCategoryURL = '/ssm/shopadmin/listproductcategory';
 	var addProductCategoryURL = '/ssm/shopadmin/addproductcategorys';
 	var deleteProductCategoryUrl = '/ssm/shopadmin/removeproductcategory';
 	// 调用getProductCategoryList，加载数据

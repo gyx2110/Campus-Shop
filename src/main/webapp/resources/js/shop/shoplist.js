@@ -2,7 +2,7 @@ $(function(){
 	getshoplist();
 	function getshoplist(e) {
 		$.ajax({
-			url: "/ssm/shopadmin/getshoplist",
+			url: "/ssm/shopadmin/listshop",
 			type: "get",
 			dataType: "json",
 			success : function(data) {

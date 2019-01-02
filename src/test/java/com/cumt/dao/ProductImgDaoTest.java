@@ -32,7 +32,7 @@ public class ProductImgDaoTest extends BaseTest {
 	@Test
 	public void testSelectProductImgListByProductId() {
 		long productId = 2L;
-		List<ProductImg> list = productImgDao.selectProductImgListByProductId(productId);
+		List<ProductImg> list = productImgDao.queryProductImgListByProductId(productId);
 		System.out.println(list.size());
 	}
 	

@@ -104,7 +104,7 @@ public class ShopCategoryServiceImpl implements ShopCategoryService {
 
 	@Override
 	public ShopCategory getShopCategoryById(long shopCategoryId) {
-		return shopCategoryDao.selectShopCategoryById(shopCategoryId);
+		return shopCategoryDao.queryShopCategoryById(shopCategoryId);
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public class ShopCategoryServiceImpl implements ShopCategoryService {
 
 	@Override
 	@Transactional
-	public ShopCategoryExecution modifyShopCategory(ShopCategory shopCategory, MultipartFile shopCategoryImg) {
+	public ShopCategoryExecution updateShopCategory(ShopCategory shopCategory, MultipartFile shopCategoryImg) {
 		if (shopCategory == null) {
 			return new ShopCategoryExecution(ShopCategoryStateEnum.NULL_SHOP_CATEGORY);
 		}
@@ -140,7 +140,7 @@ public class ShopCategoryServiceImpl implements ShopCategoryService {
 		}
 		shopCategory.setLastEditTime(new Date());
 		if (shopCategoryImg != null) {
-			ShopCategory originShopCategory = shopCategoryDao.selectShopCategoryById(shopCategory.getShopCategoryId());
+			ShopCategory originShopCategory = shopCategoryDao.queryShopCategoryById(shopCategory.getShopCategoryId());
 			if (originShopCategory.getShopCategoryImg() != null) {
 				// 如果原来ShopCategory有图片 那就把之前的删除掉
 				ImageUtil.deleteFileOrPath(originShopCategory.getShopCategoryImg());

@@ -88,7 +88,7 @@
 		shop_id=#{shop.shopId}
 	</update>
 
-	<select id="selectProductById" resultMap="productMap"
+	<select id="queryProductById" resultMap="productMap"
 		parameterType="Long">
 		select
 		p.product_id, p.product_name, p.product_desc, p.img_addr,
@@ -113,7 +113,7 @@
 		pimg.priority ASC
 	</select>
 
-	<select id="selectProductList" resultType="com.cumt.entity.Product">
+	<select id="queryProductList" resultType="com.cumt.entity.Product">
 		select
 		product_id,
 		product_name,
@@ -154,7 +154,7 @@
 		LIMIT #{rowIndex},#{pageSize}
 	</select>
 
-	<select id="selectProductCount" resultType="int">
+	<select id="queryProductCount" resultType="int">
 		select count(1) from tb_product
 		<where>
 			<if test="productCondition != null">

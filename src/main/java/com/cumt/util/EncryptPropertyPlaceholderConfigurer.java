@@ -1,14 +1,16 @@
 package com.cumt.util;
 
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+
 /***
  * tomcat启动时解密类
+ * 
  * @author draymonder
  *
  */
 public class EncryptPropertyPlaceholderConfigurer extends PropertyPlaceholderConfigurer {
 	// 需要加密的字段数组
-	private String[] encryptPropNames = { "jdbc.username", "jdbc.password", "redis.password"};
+	private String[] encryptPropNames = { "jdbc.username", "jdbc.password", "redis.password" };
 
 	/**
 	 * 对关键的属性进行转换
@@ -18,7 +20,7 @@ public class EncryptPropertyPlaceholderConfigurer extends PropertyPlaceholderCon
 		if (isEncryptProp(propertyName)) {
 			// 对已加密的字段进行解密工作
 			String decryptValue = DESUtil.getDecryptString(propertyValue);
-			System.out.println(decryptValue);
+			// System.out.println(decryptValue);
 			return decryptValue;
 		} else {
 			return propertyValue;

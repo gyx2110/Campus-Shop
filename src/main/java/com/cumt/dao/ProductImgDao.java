@@ -25,7 +25,7 @@ public interface ProductImgDao {
 	 * @param productId
 	 * @return
 	 */
-	List<ProductImg> selectProductImgListByProductId(long productId);
+	List<ProductImg> queryProductImgListByProductId(long productId);
 
 	/***
 	 * 根据商品Id删除商品详情图

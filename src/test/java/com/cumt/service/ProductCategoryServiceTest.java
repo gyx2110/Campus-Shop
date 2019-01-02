@@ -29,7 +29,7 @@ public class ProductCategoryServiceTest extends BaseTest {
 		List<ProductCategory> list = new ArrayList<>();
 		ProductCategory p = new ProductCategory(null, (long)(12+2)/2, "测试商品种类"+(12+2)/2, 12*2, new Date());
 		list.add(p);
-		ProductCategoryExecution productCategoryExecution = productCategoryService.batchInsertProductCategory(list);
+		ProductCategoryExecution productCategoryExecution = productCategoryService.batchAddProductCategory(list);
 		System.out.println(productCategoryExecution.getProductCategoryList().size());
 	}
 	
@@ -38,7 +38,7 @@ public class ProductCategoryServiceTest extends BaseTest {
 	public void testDeleteProductCategory() {
 		long shopId = 2L;
 		long productCategoryId = 20L;
-		ProductCategoryExecution productCategoryExecution = productCategoryService.deleteProductCategory(productCategoryId, shopId);
+		ProductCategoryExecution productCategoryExecution = productCategoryService.removeProductCategory(productCategoryId, shopId);
 		System.out.println(productCategoryExecution.getEffectedNum());
 	}
 }

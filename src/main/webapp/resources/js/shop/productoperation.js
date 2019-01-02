@@ -11,7 +11,7 @@ $(function() {
 	// 根据productId获取商品信息Url
 	var infoUrl = '/ssm/shopadmin/getproductbyid?productId=' + productId;
 	// 获取当前店铺设定的商品类别列表Url
-	var categoryUrl = '/ssm/shopadmin/getproductcategorylist';
+	var categoryUrl = '/ssm/shopadmin/listproductcategory';
 	// 商品提交Url，通过标识符来判断是添加还是编辑操作
 	var productPostUrl = '';
 

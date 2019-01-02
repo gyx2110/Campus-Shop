@@ -58,7 +58,7 @@ public class ShopCategoryServiceTest extends BaseTest {
 		shopCategory.setPriority(10);
 		String imgPath = "d:\\image\\1.jpg";
 		System.out.println(
-				shopCategoryService.modifyShopCategory(shopCategory, path2MultipartFile(imgPath)).getStateInfo());
+				shopCategoryService.updateShopCategory(shopCategory, path2MultipartFile(imgPath)).getStateInfo());
 	}
 
 	// getShopCategoryById(long shopCategoryId)

@@ -14,11 +14,12 @@ public class JedisPoolWriter {
 	private JedisPool jedisPool;
 
 	/***
-	 * 传入配置，主机号和端口号
-	 * 
+	 * 传入配置 主机 端口号 重连时间  密码
 	 * @param poolConfig
 	 * @param host
 	 * @param port
+	 * @param timeout
+	 * @param password
 	 */
 	public JedisPoolWriter(final JedisPoolConfig poolConfig, final String host, final int port,
 			final int timeout, final String password) {

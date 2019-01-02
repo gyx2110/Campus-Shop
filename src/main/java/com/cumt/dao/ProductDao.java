@@ -25,8 +25,8 @@ public interface ProductDao {
 	 * @param pageSize
 	 * @return
 	 */
-	List<Product> selectProductList(@Param("productCondition") Product productCondition,
-			@Param("rowIndex") int rowIndex, @Param("pageSize") int pageSize);
+	List<Product> queryProductList(@Param("productCondition") Product productCondition, @Param("rowIndex") int rowIndex,
+			@Param("pageSize") int pageSize);
 
 	/***
 	 * 根据查询条件获取相应条件的商品总数
@@ -34,7 +34,7 @@ public interface ProductDao {
 	 * @param productCondition
 	 * @return
 	 */
-	int selectProductCount(@Param("productCondition") Product productCondition);
+	int queryProductCount(@Param("productCondition") Product productCondition);
 
 	/***
 	 * 根据相应的productId返回相应的商品
@@ -42,7 +42,7 @@ public interface ProductDao {
 	 * @param productId
 	 * @return
 	 */
-	Product selectProductById(long productId);
+	Product queryProductById(long productId);
 
 	/***
 	 * 添加商品
@@ -59,9 +59,10 @@ public interface ProductDao {
 	 * @return
 	 */
 	int updateProductCategoryToNull(long productCategoryId);
-	
+
 	/***
 	 * 更新商品信息
+	 * 
 	 * @param product
 	 * @return
 	 */

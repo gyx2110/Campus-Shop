@@ -51,5 +51,5 @@ public interface ShopCategoryDao {
 	 * @param shopCategory
 	 * @return
 	 */
-	ShopCategory selectShopCategoryById(long shopCategoryId);
+	ShopCategory queryShopCategoryById(long shopCategoryId);
 }

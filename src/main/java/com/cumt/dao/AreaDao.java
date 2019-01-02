@@ -15,6 +15,7 @@ import com.cumt.entity.Area;
 public interface AreaDao {
 	/***
 	 * 列出区域列表
+	 * 
 	 * @return
 	 */
 	public List<Area> queryArea();

@@ -68,7 +68,7 @@ public class ShopCategoryDaoTest extends BaseTest {
 	@Ignore
 	@Test
 	public void testSelectShopCategoryById() {
-		ShopCategory shopCategory = shopCategoryDao.selectShopCategoryById(1);
+		ShopCategory shopCategory = shopCategoryDao.queryShopCategoryById(1);
 		System.out.println(shopCategory.getShopCategoryName());
 	}
 }

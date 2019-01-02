@@ -36,7 +36,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
 	@Override
 	@Transactional
-	public ProductCategoryExecution batchInsertProductCategory(List<ProductCategory> list)
+	public ProductCategoryExecution batchAddProductCategory(List<ProductCategory> list)
 			throws ProductCategoryOperationException {
 		if (list != null && !list.isEmpty()) {
 			try {
@@ -56,7 +56,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
 	@Override
 	@Transactional
-	public ProductCategoryExecution deleteProductCategory(long productCategoryId, long shopId)
+	public ProductCategoryExecution removeProductCategory(long productCategoryId, long shopId)
 			throws ProductCategoryOperationException {
 		// 解除 tb_product_category 与 tb_product 的 关联
 		try {

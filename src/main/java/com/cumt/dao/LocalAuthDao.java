@@ -20,7 +20,7 @@ public interface LocalAuthDao {
 	 * @param password
 	 * @return
 	 */
-	LocalAuth queryLocalByUserNameAndPwd(@Param("username") String username, @Param("password") String password);
+	LocalAuth queryLocalByUsernameAndPwd(@Param("username") String username, @Param("password") String password);
 
 	/***
 	 * Id查询用户

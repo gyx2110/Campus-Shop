@@ -41,7 +41,7 @@ public class ProductCategoryController {
 	 * @param req
 	 * @return
 	 */
-	@RequestMapping(value = "/getproductcategorylist", method = RequestMethod.GET)
+	@RequestMapping(value = "/listproductcategory", method = RequestMethod.GET)
 	@ResponseBody
 	private Result<List<ProductCategory>> getProductCategoryList(HttpServletRequest req) {
 		List<ProductCategory> list = null;
@@ -89,7 +89,7 @@ public class ProductCategoryController {
 			}
 			try {
 				ProductCategoryExecution productCategoryExecution = productCategoryService
-						.batchInsertProductCategory(list);
+						.batchAddProductCategory(list);
 				// 添加成功
 				if (productCategoryExecution.getState() == OperationStatusEnum.SUCCESS.getState()) {
 					modelMap.put("success", true);
@@ -127,7 +127,7 @@ public class ProductCategoryController {
 				try {
 					Long shopId = currentShop.getShopId();
 					ProductCategoryExecution productCategoryExecution = productCategoryService
-							.deleteProductCategory(productCategoryId, shopId);
+							.removeProductCategory(productCategoryId, shopId);
 					if (productCategoryExecution.getState() == OperationStatusEnum.SUCCESS.getState()) {
 						modelMap.put("success", true);
 					} else {
