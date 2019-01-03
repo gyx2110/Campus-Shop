@@ -11,4 +11,4 @@
 **部署**：DigitalOcean<br/>
 
 
-线上演示地址：http://icumt.ml/ssm/front/index
+线上演示地址：http://o2o.draymonder.site/ssm/front/index
