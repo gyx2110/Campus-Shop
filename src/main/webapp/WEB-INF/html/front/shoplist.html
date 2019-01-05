@@ -87,14 +87,23 @@
 	<div class="panel panel-right panel-reveal" id="panel-left-demo">
 		<div class="content-block">
 			<p>
-				<a href="/ssm/front/myrecord" class="close-panel">消费记录</a>
-			</p>
-			<p>
-				<a href="/ssm/front/mypoint" class="close-panel">我的积分</a>
-			</p>
-			<p>
-				<a href="/ssm/front/pointrecord" class="close-panel">积分兑换记录</a>
-			</p>
+					<a href="/ssm/local/accountbind?usertype=1" class="close-panel">绑定帐号</a>
+				</p>
+				<p>
+					<a href="/ssm/local/changepwd?usertype=1" class="close-panel">修改密码</a>
+				</p>
+				<p>
+					<a href="/ssm/front/myrecord" class="close-panel">消费记录</a>
+				</p>
+				<p>
+					<a href="/ssm/front/mypoint" class="close-panel">我的积分</a>
+				</p>
+				<p>
+					<a href="/ssm/front/pointrecord" class="close-panel">积分兑换记录</a>
+				</p>
+				<p>
+					<a href="#" usertype="1" class="close-panel" id="log-out">登出系统</a>
+				</p>
 			<!-- Click on link with "close-panel" class will close panel -->
 		</div>
 	</div>
@@ -105,6 +114,7 @@
 	<script type='text/javascript' src='../resources/js/common/common.js' charset='utf-8'></script>
 	<script type='text/javascript' src='../resources/js/front/shoplist.js' charset='utf-8'></script>
 	<script type='text/javascript' src='../resources/js/common/date.format.js' charset='utf-8'></script>
+	<script type='text/javascript' src='../resources/js/local/logout.js' charset='utf-8'></script>
 	
 </body>
 </html>

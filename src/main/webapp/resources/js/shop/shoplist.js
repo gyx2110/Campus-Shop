@@ -9,6 +9,9 @@ $(function(){
 				if(data.success) {
 					handleList(data.shopList);
 					handleUser(data.user);
+				} else {
+					console.log("user error");
+					window.location.href = "/ssm/shopadmin/usernull";
 				}
 			}
 		});

@@ -72,6 +72,7 @@ public class WechatLoginController {
 				log.error("error in getUserAccessToken or getUserInfo or findByOpenId: " + e.toString());
 			}
 		}
+		
 		/***
 		 * 获取OpenId 看数据库有没有账号 没有相应账号的话，就自动创建上，实现微信与网站的无缝对接
 		 * 
@@ -94,7 +95,15 @@ public class WechatLoginController {
 				personInfo = personInfoService.getPersonInfoById(auth.getPersonInfo().getUserId());
 				req.getSession().setAttribute("user", personInfo);
 			}
+		} else {
+			// 如果已经注册过用户的话，那么就从数据库读取记录
+			PersonInfo personInfo = auth.getPersonInfo();
+			req.getSession().setAttribute("user", personInfo);
 		}
+		
+		// debug userId
+		System.out.println("wechat 绑定的user_Id:" + auth.getPersonInfo().getUserId());
+		
 		// 跳转链接
 		if (FRONTEND.equals(roleType)) {
 			return "front/mainpage";

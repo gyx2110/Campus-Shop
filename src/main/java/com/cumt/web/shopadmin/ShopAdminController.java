@@ -34,6 +34,16 @@ public class ShopAdminController {
 		return "shop/shoplist";
 	}
 
+	/**
+	 * 店铺账号无效页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/usernull", method = RequestMethod.GET)
+	public String userNull() {
+		return "shop/usernull";
+	}
+	
 	/***
 	 * 店铺管理页面
 	 * 
