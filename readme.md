@@ -11,4 +11,9 @@
 **部署**：DigitalOcean<br/>
 
 
-线上演示地址：http://o2o.draymonder.site/ssm/front/index
+线上演示地址：
+[前台页面](http://o2o.draymonder.site/ssm/front/index)
+
+[店铺管理](http://o2o.draymonder.site/ssm/shopadmin/shoplist)
+账号: `ixiaobing` &nbsp;&nbsp;密码: `ixiaobing`  
+

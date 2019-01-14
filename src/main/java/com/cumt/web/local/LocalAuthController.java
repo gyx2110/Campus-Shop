@@ -50,7 +50,7 @@ public class LocalAuthController {
 			return modelMap;
 		}
 		// 获取输入的账号
-		String username = HttpServletRequestUtil.getString(req, "userName");
+		String username = HttpServletRequestUtil.getString(req, "username");
 		// 密码
 		String password = HttpServletRequestUtil.getString(req, "password");
 		PersonInfo user = (PersonInfo) req.getSession().getAttribute("user");
