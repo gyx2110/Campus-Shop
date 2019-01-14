@@ -12,7 +12,7 @@
     http://www.springframework.org/schema/context 
     http://www.springframework.org/schema/context/spring-context-3.0.xsd 
     http://www.springframework.org/schema/mvc 
-    http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">    
+    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">    
     <!-- 默认的注解映射的支持 --> 
     <mvc:annotation-driven /> 
     <mvc:resources mapping="/resources/**" location="/resources/" />
@@ -37,4 +37,26 @@
     </bean> 
     
     <context:component-scan base-package="com.cumt.web"/>
+    
+    <mvc:interceptors>
+    	<mvc:interceptor>
+    		<mvc:mapping path="/shopadmin/**" />
+    		<bean id="shopInterceptor" class="com.cumt.interceptor.controller.ShopLoginInterceptor"/>
+    	</mvc:interceptor>
+    	<mvc:interceptor>
+            <mvc:mapping path="/shopadmin/**"/>
+            <!-- shoplist page -->
+            <mvc:exclude-mapping path="/shopadmin/shoplist"/>
+            <mvc:exclude-mapping path="/shopadmin/listshop"/>
+            <!-- shopregister page -->
+            <mvc:exclude-mapping path="/shopadmin/getshopinitinfo"/>
+            <mvc:exclude-mapping path="/shopadmin/registershop"/>
+            <mvc:exclude-mapping path="/shopadmin/shopoperation"/>
+            <!-- shopmanage page -->
+            <mvc:exclude-mapping path="/shopadmin/shopmanagement"/>
+            <mvc:exclude-mapping path="/shopadmin/getshopmanagementinfo"/>
+            <bean id="shopPermissionInterceptor"
+                  class="com.cumt.interceptor.controller.ShopPermissionInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

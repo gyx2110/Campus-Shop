@@ -24,7 +24,7 @@ $(function() {
 			type : "post",
 			dataType : 'json',
 			data : {
-				userName : userName,
+				username : userName,
 				password : password,
 				verifyCodeActual : verifyCodeActual
 			},

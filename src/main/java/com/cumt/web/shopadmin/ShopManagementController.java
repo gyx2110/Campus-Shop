@@ -234,8 +234,10 @@ public class ShopManagementController {
 		}
 		return modelMap;
 	}
+
 	/***
 	 * 获取相应店铺信息
+	 * 
 	 * @param req
 	 * @return
 	 */
@@ -278,17 +280,17 @@ public class ShopManagementController {
 	@ResponseBody
 	private Map<String, Object> getShopList(HttpServletRequest req) {
 		Map<String, Object> modelMap = new HashMap<>();
-		PersonInfo user = null;
-		/*
-		PersonInfo user = new PersonInfo();
-		 
-		user.setUserId(1L);
-		user.setName("draymonder");
-		req.getSession().setAttribute("user", user);
-		*/
-		user = (PersonInfo) req.getSession().getAttribute("user");
+		// // PersonInfo user = null;
+		//
+		// PersonInfo user = new PersonInfo();
+		//
+		// user.setUserId(1L);
+		// user.setName("draymonder");
+		// req.getSession().setAttribute("user", user);
+
+		PersonInfo user = (PersonInfo) req.getSession().getAttribute("user");
 		// 未实现 登陆功能 因而先手动赋值
-		if(user == null) {
+		if (user == null) {
 			modelMap.put("success", false);
 			modelMap.put("errMsg", "未授权店铺账号\n");
 			return modelMap;
@@ -298,6 +300,7 @@ public class ShopManagementController {
 			shopCondition.setOwner(user);
 			ShopExecution shopExecution = shopService.getShopList(shopCondition, 0, 100);
 			if (shopExecution.getState() == ShopStateEnum.SUCCESS.getState()) {
+				req.getSession().setAttribute("shopList", shopExecution.getShopList());
 				modelMap.put("success", true);
 				modelMap.put("shopList", shopExecution.getShopList());
 				modelMap.put("user", user);

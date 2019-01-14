@@ -18,7 +18,7 @@ $(function() {
 		}
 		// 添加表单数据
 		var formData = new FormData();
-		formData.append('userName', userName);
+		formData.append('username', userName);
 		formData.append('password', password);
 		formData.append('newPassword', newPassword);
 		// 获取验证码

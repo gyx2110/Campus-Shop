@@ -34,7 +34,7 @@ $(function() {
 			type : "post",
 			dataType : 'json',
 			data : {
-				userName : userName,
+				username : userName,
 				password : password,
 				verifyCodeActual : verifyCodeActual,
 				//是否需要做验证码校验
