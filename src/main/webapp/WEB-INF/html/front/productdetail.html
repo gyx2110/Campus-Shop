@@ -25,7 +25,7 @@
 				<h1 class="title">商品详情</h1>
 			</header>
 			<nav class="bar bar-tab">
-				<a class="tab-item" href="/myo2o/front/index" external> <span
+				<a class="tab-item" href="/ssm/front/index" external> <span
 					class="icon icon-home"></span> <span class="tab-label">首页</span>
 				</a> <a class="tab-item" href="#" id="me"> <span
 					class="icon icon-me"></span> <span class="tab-label">我</span>
@@ -34,8 +34,15 @@
 
 			<!-- 内容区域 -->
 			<div class="content infinite-scroll infinite-scroll-bottom"
-				data-distance="100">
-
+				data-distance="50">
+				<div  align="center" class="swiper-container" data-space-between='1'>
+					<div class="swiper-wrapper">
+						<!-- <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
+					      <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i4/TB10rkPGVXXXXXGapXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
+					      <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1kQI3HpXXXXbSXFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div> -->
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
 				<div class="shop-detail-dev">
 					<div class="card">
 						<!-- 商品缩略图 -->
@@ -45,26 +52,32 @@
 						</div>
 						<div class="card-content">
 							<div class="card-content-inner">
-								<p class="color-gray">
-									<span id="product-time">2015/01/15</span>
+								<p class="color-gray" align="right">
+									<span id="product-time" >2015/01/15</span>
 								</p>
+								<b><font size=3 >
 								<p id="product-name"></p>
+								</font></b>
+								
 								<p id="product-desc"></p>
+								
+								<p>
+									<span id="promotion-price"></span> 
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<span id="normal-price"></span> 
+								</p>
+								
 							</div>
 						</div>
 						<!-- 幻灯片显示商品详情图 -->
 
 					</div>
-					<div class="swiper-container" data-space-between='10'>
-						<div class="swiper-wrapper">
-							<!-- <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
-						      <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i4/TB10rkPGVXXXXXGapXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
-						      <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1kQI3HpXXXXbSXFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div> -->
-						</div>
-						<div class="swiper-pagination"></div>
-					</div>
+				
+					
+					<div class="list-div"></div>
 				</div>
-				<div class="list-div"></div>
+				
+				
 			</div>
 		</div>
 

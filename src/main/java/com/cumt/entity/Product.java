@@ -16,14 +16,7 @@ public class Product {
 				+ ", imgAddr=" + imgAddr + ", normalPrice=" + normalPrice + ", promotionPrice=" + promotionPrice
 				+ ", priority=" + priority + ", createTime=" + createTime + ", lastEditTime=" + lastEditTime
 				+ ", enableStatus=" + enableStatus + ", productImgList=" + productImgList + ", productCategory="
-				+ productCategory + ", shop=" + shop + ", getProductId()=" + getProductId() + ", getProductName()="
-				+ getProductName() + ", getProductDesc()=" + getProductDesc() + ", getImgAddr()=" + getImgAddr()
-				+ ", getNormalPrice()=" + getNormalPrice() + ", getPromotionPrice()=" + getPromotionPrice()
-				+ ", getPriority()=" + getPriority() + ", getCreateTime()=" + getCreateTime() + ", getLastEditTime()="
-				+ getLastEditTime() + ", getEnableStatus()=" + getEnableStatus() + ", getProductImgList()="
-				+ getProductImgList() + ", getProductCategory()=" + getProductCategory() + ", getShop()=" + getShop()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-				+ "]";
+				+ productCategory + ", shop=" + shop + ", point=" + point + "]";
 	}
 
 	private Long productId;
@@ -43,7 +36,16 @@ public class Product {
 	private List<ProductImg> productImgList;
 	private ProductCategory productCategory;
 	private Shop shop;
-	
+	// 购买商品所积累的积分
+	private Integer point;
+	public Integer getPoint() {
+		return point;
+	}
+
+	public void setPoint(Integer point) {
+		this.point = point;
+	}
+
 	public Product() {}
 	
 	/***
