@@ -65,6 +65,7 @@ $(function() {
 	                $('#priority').val(product.priority);
 	                $('#normal-price').val(product.normalPrice);
 	                $('#promotion-price').val(product.promotionPrice);
+	                $('#point').val(product.point);
 	                // 设置商品类别列表及选中的商品类别
 	                var optionHtml = '';
 	                var optionArr = data.productCategoryList;
@@ -111,7 +112,7 @@ $(function() {
 
 				product.productName = $('#product-name').val();
 				product.productDesc = $('#product-desc').val();
-
+				product.point = $('#point').val()
 				// 获取商品的特定目录值
 				product.productCategory = {
 					productCategoryId : $('#product-category').find('option').not(function() {

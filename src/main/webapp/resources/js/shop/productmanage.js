@@ -29,7 +29,7 @@ $(function() {
 							+ item.productName
 							+ '</div>'
 							+ '<div class="col-20">'
-							+ item.priority
+							+ item.point
 							+ '</div>'
 							+ '<div class="col-60">'
 							+ '<a href="#" class="edit" data-id="'
@@ -76,7 +76,7 @@ $(function() {
 		} 
 		// 点击“预览按钮”
 		else if (target.hasClass('preview')) {
-			window.location.href = '/ssm/frontend/productdetail?productId=' + e.currentTarget.dataset.id;
+			window.location.href = '/ssm/front/productdetail?productId=' + e.currentTarget.dataset.id;
 		}
 	});
 

@@ -16,7 +16,7 @@
 		<result column="create_time" property="createTime" />
 		<result column="last_edit_time" property="lastEditTime" />
 		<result column="enable_status" property="enableStatus" />
-
+		<result column="point" property="point" />
 		<!-- 一对一使用association product中的属性为productCategory， 通过数据库中的product_category_id关联起来的 
 			类型为 com.cumt.entity.ProductCategory -->
 		<association property="productCategory" column="product_category_id"
@@ -53,7 +53,7 @@
 		last_edit_time,
 		enable_status,
 		product_category_id,
-		shop_id
+		shop_id, point
 		)
 		values
 		(
@@ -62,7 +62,7 @@
 		#{normalPrice}, #{promotionPrice}, #{priority},
 		#{createTime}, #{lastEditTime}, #{enableStatus},
 		#{productCategory.productCategoryId},
-		#{shop.shopId}
+		#{shop.shopId}, #{point}
 		)
 	</insert>
 
@@ -77,10 +77,12 @@
 			<if test="priority != null">priority = #{priority}, </if>
 			<if test="lastEditTime != null">last_edit_time = #{lastEditTime}, </if>
 			<if test="enableStatus != null">enable_status = #{enableStatus}, </if>
+			<if test="point != null">point = #{point}, </if>
 			<if
 				test="productCategory != null and productCategory.productCategoryId != null">
 				product_category_id = #{productCategory.productCategoryId}
 			</if>
+			
 		</set>
 		where
 		product_id = #{productId}
@@ -94,7 +96,7 @@
 		p.product_id, p.product_name, p.product_desc, p.img_addr,
 		p.normal_price, p.promotion_price, p.priority, p.create_time,
 		p.last_edit_time,
-		p.enable_status, p.shop_id, p.product_category_id,
+		p.enable_status, p.shop_id, p.product_category_id,p.point,
 		pimg.product_img_id,
 		pimg.img_addr as pimg_img_addr,
 		pimg.img_desc as pimg_img_desc,
@@ -126,7 +128,8 @@
 		last_edit_time,
 		enable_status,
 		product_category_id,
-		shop_id
+		shop_id,
+		point
 		from
 		tb_product
 		<where>
