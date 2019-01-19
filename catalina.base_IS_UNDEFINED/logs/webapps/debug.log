@@ -1,0 +1,21 @@
+2019-01-19 13:22:54 DEBUG com.cumt.dao.AreaDaoTest - Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2019-01-19 13:27:07 DEBUG com.cumt.dao.AreaDaoTest - Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2019-01-19 13:27:12 DEBUG com.cumt.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name, priority FROM tb_area ORDER BY priority DESC 
+2019-01-19 13:27:12 DEBUG com.cumt.dao.AreaDao.queryArea - ==> Parameters: 
+2019-01-19 13:27:12 DEBUG com.cumt.dao.AreaDao.queryArea - <==      Total: 5
+2019-01-19 13:29:32 DEBUG com.cumt.dao.AreaDaoTest - Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2019-01-19 13:29:37 DEBUG com.cumt.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name, priority FROM tb_area ORDER BY priority DESC 
+2019-01-19 13:29:37 DEBUG com.cumt.dao.AreaDao.queryArea - ==> Parameters: 
+2019-01-19 13:29:37 DEBUG com.cumt.dao.AreaDao.queryArea - <==      Total: 5
+2019-01-19 13:39:15 DEBUG com.cumt.dao.AreaDaoTest - Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2019-01-19 13:39:20 DEBUG com.cumt.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name, priority FROM tb_area ORDER BY priority DESC 
+2019-01-19 13:39:20 DEBUG com.cumt.dao.AreaDao.queryArea - ==> Parameters: 
+2019-01-19 13:39:20 DEBUG com.cumt.dao.AreaDao.queryArea - <==      Total: 5
+2019-01-19 13:51:03 DEBUG com.cumt.dao.AreaDaoTest - Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2019-01-19 13:51:08 DEBUG com.cumt.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name, priority FROM tb_area ORDER BY priority DESC 
+2019-01-19 13:51:08 DEBUG com.cumt.dao.AreaDao.queryArea - ==> Parameters: 
+2019-01-19 13:51:08 DEBUG com.cumt.dao.AreaDao.queryArea - <==      Total: 5
+2019-01-19 13:51:19 DEBUG com.cumt.dao.AreaDaoTest - Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2019-01-19 13:51:24 DEBUG com.cumt.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name, priority FROM tb_area ORDER BY priority DESC 
+2019-01-19 13:51:24 DEBUG com.cumt.dao.AreaDao.queryArea - ==> Parameters: 
+2019-01-19 13:51:24 DEBUG com.cumt.dao.AreaDao.queryArea - <==      Total: 5
