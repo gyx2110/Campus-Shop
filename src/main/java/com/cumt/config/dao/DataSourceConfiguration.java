@@ -1,11 +1,11 @@
 package com.cumt.config.dao;
 
 import com.cumt.util.DESUtil;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 import java.beans.PropertyVetoException;
 
@@ -34,8 +34,8 @@ public class DataSourceConfiguration {
      * @throws PropertyVetoException
      */
     @Bean(name="dataSource")
-    public ComboPooledDataSource createDataSouce() throws PropertyVetoException {
-        // 生成dataSouce实例
+    public ComboPooledDataSource  createDataSource() throws PropertyVetoException {
+        // 生成dataSource实例
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         // 按照配置文件 配置信息
         // 驱动

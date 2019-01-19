@@ -46,7 +46,7 @@ public class SessionFactoryConfiguration {
     private String typeAliasPackage;
 
     @Autowired
-    private DataSource dataSoure;
+    private DataSource dataSource;
 
     /**
      * 创建 sqlSessionFactoryBean 实例
@@ -58,7 +58,7 @@ public class SessionFactoryConfiguration {
     public SqlSessionFactoryBean createSqlSessionFactory() throws IOException{
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         // 注入数据库连接池
-        sqlSessionFactoryBean.setDataSource(dataSoure);
+        sqlSessionFactoryBean.setDataSource(dataSource);
         // 实体类所在的package
         sqlSessionFactoryBean.setTypeAliasesPackage(typeAliasPackage);
         // mybatis-config.xml 配置文件的路径

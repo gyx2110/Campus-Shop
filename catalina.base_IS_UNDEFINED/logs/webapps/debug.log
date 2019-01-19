@@ -1,0 +1,20 @@
+2019-01-19 19:44:16 DEBUG com.cumt.service.WechatAuthServiceTest - Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2019-01-19 19:45:51 DEBUG com.cumt.service.WechatAuthServiceTest - Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2019-01-19 19:49:05 DEBUG com.cumt.service.WechatAuthServiceTest - Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2019-01-19 19:53:34 DEBUG com.cumt.service.WechatAuthServiceTest - Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2019-01-19 20:03:14 DEBUG com.cumt.dao.AreaDaoTest - Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2019-01-19 20:10:46 DEBUG com.cumt.dao.AreaDaoTest - Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2019-01-19 20:20:44 DEBUG com.cumt.dao.AreaDaoTest - Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2019-01-19 20:20:50 DEBUG com.cumt.dao.AreaDao.queryArea - ==>  Preparing: SELECT area_id, area_name, priority FROM tb_area ORDER BY priority DESC 
+2019-01-19 20:20:50 DEBUG com.cumt.dao.AreaDao.queryArea - ==> Parameters: 
+2019-01-19 20:20:50 DEBUG com.cumt.dao.AreaDao.queryArea - <==      Total: 5
+2019-01-19 20:21:10 DEBUG com.cumt.service.WechatAuthServiceTest - Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2019-01-19 20:21:16 DEBUG com.cumt.dao.PersonInfoDao.insertPersonInfo - ==>  Preparing: insert into tb_person_info (name,profile_img,email,gender,enable_status, user_type,create_time,last_edit_time) values (?, ?,?,?, ?, ?, ?, ?) 
+2019-01-19 20:21:16 DEBUG com.cumt.dao.PersonInfoDao.insertPersonInfo - ==> Parameters: draymonder(String), null, null, null, 1(Integer), 1(Integer), 2019-01-19 20:21:15.936(Timestamp), null
+2019-01-19 20:21:16 DEBUG com.cumt.dao.PersonInfoDao.insertPersonInfo - <==    Updates: 1
+2019-01-19 20:21:16 DEBUG com.cumt.dao.WechatAuthDao.insertWechatAuth - ==>  Preparing: INSERT INTO tb_wechat_auth(user_id,open_id,create_time) VALUES (?,?,?) 
+2019-01-19 20:21:16 DEBUG com.cumt.dao.WechatAuthDao.insertWechatAuth - ==> Parameters: 4(Long), xxxxxx(String), 2019-01-19 20:21:15.935(Timestamp)
+2019-01-19 20:21:16 DEBUG com.cumt.dao.WechatAuthDao.insertWechatAuth - <==    Updates: 1
+2019-01-19 20:21:43 DEBUG com.cumt.service.AreaServiceTest - Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE
+2019-01-19 20:21:51 DEBUG com.cumt.service.impl.AreaServiceImpl - redis获取 arealist success
+2019-01-19 20:21:52 DEBUG com.cumt.service.impl.AreaServiceImpl - redis获取 arealist success

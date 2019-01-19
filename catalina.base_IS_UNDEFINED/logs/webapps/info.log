@@ -1,0 +1,21 @@
+2019-01-19 19:44:16 INFO  com.cumt.service.WechatAuthServiceTest - Starting WechatAuthServiceTest on LAPTOP-U13H08NI with PID 30204 (started by draymonder in D:\o2o\cumt)
+2019-01-19 19:44:16 INFO  com.cumt.service.WechatAuthServiceTest - No active profile set, falling back to default profiles: default
+2019-01-19 19:45:51 INFO  com.cumt.service.WechatAuthServiceTest - Starting WechatAuthServiceTest on LAPTOP-U13H08NI with PID 25748 (started by draymonder in D:\o2o\cumt)
+2019-01-19 19:45:51 INFO  com.cumt.service.WechatAuthServiceTest - No active profile set, falling back to default profiles: default
+2019-01-19 19:49:05 INFO  com.cumt.service.WechatAuthServiceTest - Starting WechatAuthServiceTest on LAPTOP-U13H08NI with PID 29700 (started by draymonder in D:\o2o\cumt)
+2019-01-19 19:49:05 INFO  com.cumt.service.WechatAuthServiceTest - No active profile set, falling back to default profiles: default
+2019-01-19 19:53:34 INFO  com.cumt.service.WechatAuthServiceTest - Starting WechatAuthServiceTest on LAPTOP-U13H08NI with PID 29080 (started by draymonder in D:\o2o\cumt)
+2019-01-19 19:53:34 INFO  com.cumt.service.WechatAuthServiceTest - No active profile set, falling back to default profiles: default
+2019-01-19 20:03:14 INFO  com.cumt.dao.AreaDaoTest - Starting AreaDaoTest on LAPTOP-U13H08NI with PID 31388 (started by draymonder in D:\o2o\cumt)
+2019-01-19 20:03:14 INFO  com.cumt.dao.AreaDaoTest - No active profile set, falling back to default profiles: default
+2019-01-19 20:10:46 INFO  com.cumt.dao.AreaDaoTest - Starting AreaDaoTest on LAPTOP-U13H08NI with PID 27496 (started by draymonder in D:\o2o\cumt)
+2019-01-19 20:10:46 INFO  com.cumt.dao.AreaDaoTest - No active profile set, falling back to default profiles: default
+2019-01-19 20:20:44 INFO  com.cumt.dao.AreaDaoTest - Starting AreaDaoTest on LAPTOP-U13H08NI with PID 11552 (started by draymonder in D:\o2o\cumt)
+2019-01-19 20:20:44 INFO  com.cumt.dao.AreaDaoTest - No active profile set, falling back to default profiles: default
+2019-01-19 20:20:49 INFO  com.cumt.dao.AreaDaoTest - Started AreaDaoTest in 5.538 seconds (JVM running for 6.999)
+2019-01-19 20:21:10 INFO  com.cumt.service.WechatAuthServiceTest - Starting WechatAuthServiceTest on LAPTOP-U13H08NI with PID 19672 (started by draymonder in D:\o2o\cumt)
+2019-01-19 20:21:10 INFO  com.cumt.service.WechatAuthServiceTest - No active profile set, falling back to default profiles: default
+2019-01-19 20:21:15 INFO  com.cumt.service.WechatAuthServiceTest - Started WechatAuthServiceTest in 4.982 seconds (JVM running for 6.29)
+2019-01-19 20:21:43 INFO  com.cumt.service.AreaServiceTest - Starting AreaServiceTest on LAPTOP-U13H08NI with PID 30920 (started by draymonder in D:\o2o\cumt)
+2019-01-19 20:21:43 INFO  com.cumt.service.AreaServiceTest - No active profile set, falling back to default profiles: default
+2019-01-19 20:21:48 INFO  com.cumt.service.AreaServiceTest - Started AreaServiceTest in 5.026 seconds (JVM running for 6.391)
